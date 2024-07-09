@@ -15,14 +15,14 @@ function App() {
     <>
       {/* <FontAwesomeIcon icon={faHouse} />
       <FontAwesomeIcon icon={faUser} /> */}
-       <div className='bg-gray-300 h-100% px-20 py-10'>
+       <div className='bg-gray-300 px-5 lg:px-20 py-10'>
         <HeaderHome/>
         <div className="flex mt-14">
        <Filters/>
-       <div className="grid grid-cols-3 gap-y-4 gap-x-64">
+       <div className="grid grid-cols-3 gap-y-4 gap-x-4 lg:gap-x-32 xl:gap-x-64">
 
        {store.muebles.map((mueble)=> (
-        <Card categoria={mueble.categoria} color={mueble.color} disponibles={mueble.disponibilidad}/>
+        <Card key={mueble.id} categoria={mueble.categoria} color={mueble.color} disponibles={mueble.disponibilidad}/>
        ))}
         </div>
         </div>

@@ -1,3 +1,5 @@
+import { faSortDown } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 
 
@@ -8,7 +10,7 @@ const Filters = () => {
         <>
         <div className=" mr-20">
         <span className="text-3xl"><strong>estos filtros te <br/>pueden servir</strong></span>
-        <p className=""><i className="fa-solid fa-arrow-down-short-wide"></i></p>
+        <p className=""><FontAwesomeIcon icon={faSortDown} size="2xl" /></p>
         {/* Filtros Colores */}
         <div className="list-color text-2xl mt-10">
             <span className="text-3xl"><strong>color</strong></span>
