@@ -15,10 +15,15 @@ function App() {
       {/* <FontAwesomeIcon icon={faHouse} />
       <FontAwesomeIcon icon={faUser} /> */}
       <div className="bg-gray-300 px-5 lg:px-20 py-10">
-        <div className=" max-xl:hidden"><HeaderHome /></div>
+        <div className=" max-xl:hidden">
+          <HeaderHome />
+        </div>
         <div className="flex mt-14">
-          <Filters />
-          <div className="grid grid-cols-3 gap-y-4 gap-x-4 lg:gap-x-32 xl:gap-x-64">
+          <div className="max-xl:hidden">
+            <Filters />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-y-4 gap-x-4 lg:gap-x-32 xl:gap-x-64">
             {store.muebles.map((mueble) => (
               <Card
                 key={mueble.id}
