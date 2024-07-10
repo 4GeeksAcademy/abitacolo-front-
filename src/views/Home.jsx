@@ -18,13 +18,16 @@ function App() {
         <div className=" max-xl:hidden">
           <HeaderHome />
         </div>
-        <div className="flex mt-14">
+        <div className="xl:hidden">
+            <button className="bg-gray-400 p-2 rounded">Filters</button>
+          </div>
+        <div className="flex mt-14 max-xl:justify-center">
           <div className="max-xl:hidden">
             <Filters />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-y-4 gap-x-4 lg:gap-x-32 xl:gap-x-64">
-            {store.muebles.map((mueble) => (
+          <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-y-4 gap-x-24 xl:gap-x-32  justify-items-stretch">
+            {store.muebles.map((mueble) => ( 
               <Card
                 key={mueble.id}
                 categoria={mueble.categoria}
@@ -39,5 +42,4 @@ function App() {
     </>
   );
 }
-
 export default App;

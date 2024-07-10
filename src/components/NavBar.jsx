@@ -33,7 +33,6 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="relative">
-                <i className="fa-regular fa-user me-3"></i>
                 <a href="#" className="hover:underline">
                   mi cuenta
                 </a>
@@ -64,7 +63,7 @@ const Navbar = () => {
             className="mt-4 md:mt-0 w-full md:w-auto"
           />
         </header>
-        <div className="mt-10 mb-5 flex justify-between">
+        <div className="mt-10 mb-5 flex justify-between max-sm:hidden">
           <a href="#" className="font-bold text-lg">
             <span className="me-5">
               <FontAwesomeIcon icon={faMessage} size="xl" />

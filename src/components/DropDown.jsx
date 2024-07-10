@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,42 +33,42 @@ export default function DropDown() {
 
       <div
         id="dropdown"
-        className={`z-10 ${isOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2 absolute`}
+        className={`z-10 ${
+          isOpen ? "block" : "hidden"
+        } bg-gray-200 divide-y divide-gray-100 rounded-lg shadow w-28 mt-2 absolute`}
       >
         <ul
           className="py-2 text-sm text-gray-700 "
           aria-labelledby="dropdownDefaultButton"
         >
           <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 "
-            >
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
               mi cuenta
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 "
-            >
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
               FAQ
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 "
-            >
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
               nuestra misión
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 "
-            >
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
               ESP/ENG
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+              ¿podemos ayudarte?
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+            ajustes y configuración de cookies
             </a>
           </li>
         </ul>
