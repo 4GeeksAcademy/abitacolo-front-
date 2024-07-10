@@ -8,7 +8,7 @@ export default function DropDown() {
   return (
     <>
       <button
-        id="dropdownDefaultButton"
+        id="dropdown"
         onClick={toggleDropdown}
         className="text-white bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
         type="button"
@@ -33,7 +33,7 @@ export default function DropDown() {
 
       <div
         id="dropdown"
-        className={`z-10 ${isOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute`}
+        className={`z-10 ${isOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2 absolute`}
       >
         <ul
           className="py-2 text-sm text-gray-700 "

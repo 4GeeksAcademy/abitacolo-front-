@@ -4,7 +4,7 @@ import sostenible from "/src/assets/sostenible.png";
 
 const FooterBody = () => {
   return (
-    <div className="px-5 lg:px-20 py-10">
+    <div className="px-5 lg:px-20 py-10 max-md:hidden">
       <div className="flex justify-between border-b-4 border-black">
         <img src={abitacolo} alt="Abitacolo" />
         <p className="place-self-end text-2xl">MADRID</p>
