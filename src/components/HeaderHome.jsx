@@ -1,7 +1,10 @@
 import React from "react";
 import flechaLarga from "/src/assets/fecha-larga.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightLong, faSortDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightLong,
+  faSortDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const steps = [
@@ -49,7 +52,7 @@ const Header = () => {
             </React.Fragment>
           ))}
         </ol>
-        <img className="max-xl:invisible" src={flechaLarga} alt="fecha"/>
+        <img className="" src={flechaLarga} alt="fecha" />
         <div className="grid">
           <p className="w-44 justify-self-end me-56">
             <span className="font-bold">y lo mejor...</span>

@@ -1,5 +1,5 @@
 import React from "react";
-import mueble from "/src/assets/muebleabitacolo.png"
+import mueble from "/src/assets/muebleabitacolo.png";
 
 const Card = ({ imagen, categoria, color, disponibles }) => {
   return (

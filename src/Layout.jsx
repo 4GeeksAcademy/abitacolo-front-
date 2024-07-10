@@ -9,20 +9,20 @@ import injectContext from "./context/appContext.jsx";
 import "./index.css";
 
 const Layout = () => {
-  return(
+  return (
     <React.StrictMode>
-    <BrowserRouter>
-      <ScrollToTop>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<h1>Not found!</h1>} />
-        </Routes>
-        <FooterBody />
-      </ScrollToTop>
-    </BrowserRouter>
-  </React.StrictMode>
-  )
-}
+      <BrowserRouter>
+        <ScrollToTop>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<h1>Not found!</h1>} />
+          </Routes>
+          <FooterBody />
+        </ScrollToTop>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+};
 
 export default injectContext(Layout);
