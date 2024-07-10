@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      {/* <FontAwesomeIcon icon={faHouse} />
+      {/* <FontAwesomeIcons icon={faHouse} />
       <FontAwesomeIcon icon={faUser} /> */}
       <div className="bg-gray-300 px-5 lg:px-20 py-10">
         <div className=" max-xl:hidden"><HeaderHome /></div>
