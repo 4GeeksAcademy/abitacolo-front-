@@ -2,8 +2,9 @@ import React from "react";
 import logoAbitacolo from "../assets/logoabitacolo.png";
 import logoMueble from "../assets/muebleabitacolo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGears, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faGears, faMessage, faUser } from "@fortawesome/free-solid-svg-icons";
 import DropDown from "./DropDown";
+import DarkButton from "./DarkButton";
 
 const Navbar = () => {
   return (
@@ -14,8 +15,12 @@ const Navbar = () => {
           <div>
             <img src={logoAbitacolo} alt="Logo Abitacolo" />
           </div>
+
           <div className="max-sm:hidden">
             <ul className="flex space-x-4 place-self-end text-lg">
+              <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black">
+                <DarkButton />
+              </li>
               <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black">
                 <a href="#" className="hover:underline">
                   ESP
@@ -34,7 +39,7 @@ const Navbar = () => {
               </li>
               <li className="relative">
                 <a href="#" className="hover:underline">
-                  mi cuenta
+                  <FontAwesomeIcon icon={faUser} /> mi cuenta
                 </a>
               </li>
             </ul>
