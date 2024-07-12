@@ -1,0 +1,8 @@
+{
+    "header" : {
+        "message": "Welcome message to the Abitacolo website"
+    },
+    "home":{
+        "body": "A store to rent the best furnitures"
+    }
+}
