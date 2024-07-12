@@ -1,8 +1,6 @@
 {
-    "header" : {
-        "message": "Bienvenidos a la web de Abitacolo"
-    },
-    "home":{
-        "body": "Una tienda donde alquiler los mejores muebles"
-    }
+  "navBar": {
+    "profile": "Mi cuenta",
+    "body": "decora tu hogar en Madrid de forma más fácil, barata y sostenible alquilando nuestros muebles recuperados"
+  }
 }

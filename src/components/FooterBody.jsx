@@ -1,10 +1,17 @@
 import React from "react";
 import abitacolo from "/src/assets/abitacolo.png";
 import sostenible from "/src/assets/sostenible.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faSquareXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const FooterBody = () => {
   return (
-    <div className="px-5 lg:px-20 py-10 max-md:hidden">
+    <div className="px-5 lg:px-20 py-10 max-lg:hidden">
       <div className="flex justify-between border-b-4 border-black">
         <img src={abitacolo} alt="Abitacolo" />
         <p className="place-self-end text-2xl">MADRID</p>
@@ -67,10 +74,10 @@ const FooterBody = () => {
         <div>
           <div className="font-bold mb-5 text-3xl">¡siguenos en redes!</div>
           <div className=" flex justify-between mt-11">
-            <i className="fa-brands fa-linkedin fa-2xl"></i>
-            <i className="fa-brands fa-facebook fa-2xl"></i>
-            <i className="fa-brands fa-instagram fa-2xl"></i>
-            <i className="fa-brands fa-square-x-twitter fa-2xl"></i>
+            <FontAwesomeIcon icon={faLinkedin} size="2xl" />
+            <FontAwesomeIcon icon={faFacebook} size="2xl" />
+            <FontAwesomeIcon icon={faInstagram} size="2xl" />
+            <FontAwesomeIcon icon={faSquareXTwitter} size="2xl" />
           </div>
         </div>
       </div>
