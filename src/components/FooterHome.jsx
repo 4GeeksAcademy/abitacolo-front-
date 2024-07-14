@@ -2,7 +2,7 @@ import React from "react";
 
 const FooterHome = () => {
   return (
-    <div className="flex justify-center my-16 gap-14 ">
+    <div className="flex justify-center my-16 gap-14 dark:bg-prueba-color ">
       <div className=" grid place-items-center  max-md:hidden">
         <div className="bg-black h-1.5  w-36"></div>
       </div>

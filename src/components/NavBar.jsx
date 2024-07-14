@@ -13,8 +13,8 @@ const Navbar = () => {
   const [t,i18n] = useTranslation("global");
   return (
     <div>
-      <div className="bg-black text-center h-10"></div>
-      <div className="px-5 lg:px-20">
+      <div className=" text-center h-10 dark:bg-prueba-color"></div>
+      <div className="px-5 lg:px-20 dark:bg-prueba-color">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black">
           <div>
             <img src={logoAbitacolo} alt="Logo Abitacolo" />
