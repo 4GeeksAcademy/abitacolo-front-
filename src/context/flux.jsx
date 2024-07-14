@@ -2,13 +2,15 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       muebles: [
-        {
-          id: 1,
-          estilo: "Industrial",
-          categoria: "Cama",
-          color: "Negro",
-          disponibilidad: "esta disponible",
-        },
+        // {
+        //   id: 1,
+        //   estilo: "Industrial",
+        //   categoria: "Cama",
+        //   color: "Negro",
+        //   estilo: "Nordico",
+        //   disponible: true,
+        //   medidas: [20, 30, 40], //alto x ancho x fondo??
+        // },
         {
           id: 2,
           estilo: "Industrial",
