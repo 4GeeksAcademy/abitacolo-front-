@@ -1,6 +1,11 @@
 {
   "navBar": {
-    "profile": "Mi cuenta",
-    "body": "decora tu hogar en # Madrid \n\n **asdasd** de forma más fácil, barata y sostenible alquilando nuestros muebles recuperados"
+    "mision": "nuestra misíon",
+    "profile": "mi cuenta",
+    "body": "decora tu hogar **en Madrid** de \n\n forma más fácil, barata y\n\n sostenible alquilando nuestros\n\n **muebles recuperados**",
+    "help": "¿podemos ayudarte?",
+    "configuration": "ajustes y configuración de cookies",
+    "until": "hasta 21 · 12 · 2024",
+    "recovered": "177 muebles recuperados"
   }
 }

@@ -26,8 +26,7 @@ const Navbar = () => {
                 <DarkButton />
               </li>
               <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
-               <SwitchLanguage/>
-
+                <SwitchLanguage />
               </li>
               <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
                 <a href="#" className="hover:underline">
@@ -36,7 +35,7 @@ const Navbar = () => {
               </li>
               <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
                 <a href="#" className="hover:underline">
-                  nuestra misión
+                  {t("navBar.mision")}
                 </a>
               </li>
               <li className="relative">
@@ -53,20 +52,13 @@ const Navbar = () => {
         </nav>
         <header className="text-center my-12 flex flex-col md:flex-row justify-between md:mx-48">
           <div className="">
-            {/*  <p className="mt-4 text-3xl	 text-left">
-              decora tu hogar <span className="font-bold">en Madrid</span> de
-              <br /> forma más fácil, barata y<br /> sostenible alquilando
-              nuestros
-              <br /> <span className="font-bold">muebles recuperados</span>
-            </p> */}
-
             <Markdown className="mt-4 text-3xl	 text-left">
               {t("navBar.body")}
             </Markdown>
 
             <div className="mt-8 text-sm border-b-2 border-black flex justify-between">
-              <p>hasta 21 · 12 · 2024</p>
-              <span className="font-bold">177 muebles recuperados</span>
+              <p>{t("navBar.until")}</p>
+              <span className="font-bold">{t("navBar.recovered")}</span>
             </div>
           </div>
           <img
@@ -80,10 +72,10 @@ const Navbar = () => {
             <span className="me-5">
               <FontAwesomeIcon icon={faMessage} size="xl" />
             </span>{" "}
-            ¿podemos ayudarte?
+            {t("navBar.help")}
           </a>
           <p className="font-bold text-lg">
-            ajustes y configuración de cookies
+            {t("navBar.configuration")}
             <span className="ms-5">
               <FontAwesomeIcon icon={faGears} size="xl" />
             </span>
