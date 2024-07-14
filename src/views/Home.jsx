@@ -19,7 +19,9 @@ function App() {
           <HeaderHome />
         </div>
         <div className="xl:hidden">
-          <button className="bg-gray-400 p-2 rounded text-2xl"><FontAwesomeIcon icon={faSliders} /> Filtros</button>
+          <button className="bg-gray-400 p-2 rounded text-2xl">
+            <FontAwesomeIcon icon={faSliders} /> Filtros
+          </button>
         </div>
         <div className="flex mt-14 max-xl:justify-center">
           <div className="max-xl:hidden">
