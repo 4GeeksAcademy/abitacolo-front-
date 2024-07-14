@@ -14,7 +14,7 @@ function App() {
     <>
       {/* <FontAwesomeIcons icon={faHouse} />
       <FontAwesomeIcon icon={faUser} /> */}
-      <div className="bg-gray-300 px-5 lg:px-20 py-10 dark:bg-black">
+      <div className="bg-gray-300 px-5 lg:px-20 py-10 dark:bg-prueba-color">
         <div className=" max-xl:hidden">
           <HeaderHome />
         </div>

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  background-color: bg-prueba-color;
+}

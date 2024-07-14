@@ -19,7 +19,7 @@ const Header = () => {
     },
   ];
   return (
-    <div className="flex pt-16 text-left justify-between">
+    <div className="flex pt-16 text-left justify-between ">
       <div className="text-3xl">
         <p>
           recuperamos

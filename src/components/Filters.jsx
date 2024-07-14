@@ -5,7 +5,7 @@ import React from "react";
 const Filters = () => {
   return (
     <>
-      <div className=" mr-20">
+      <div className=" mr-20 dark:bg-prueba-color">
         <span className="text-3xl">
           <strong>
             estos filtros te <br />
