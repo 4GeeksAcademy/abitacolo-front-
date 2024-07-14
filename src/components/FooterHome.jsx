@@ -4,7 +4,7 @@ const FooterHome = () => {
   return (
     <div className="flex justify-center my-16 gap-14 dark:bg-prueba-color ">
       <div className=" grid place-items-center  max-md:hidden">
-        <div className="bg-black h-1.5  w-36"></div>
+        <div className="bg-black dark:bg-grayShadow h-1  w-36"></div>
       </div>
       <div>
         <p className="text-3xl text-center">
@@ -16,7 +16,7 @@ const FooterHome = () => {
         </p>
       </div>
       <div className="grid place-items-center max-md:hidden">
-        <div className="bg-black h-1.5  w-36"></div>
+        <div className="bg-black dark:bg-grayShadow h-1  w-36"></div>
       </div>
     </div>
   );

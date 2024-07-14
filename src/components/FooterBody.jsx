@@ -11,8 +11,7 @@ import {
 
 const FooterBody = () => {
   return (
-    <div className="px-5 lg:px-20 py-10 max-lg:hidden dark:bg-prueba-color">
-
+    <div className="px-5 lg:px-20 py-10 max-lg:hidden dark:bg-darkGrayShadow dark:text-abitacoloGray">
       <div className="flex justify-between border-b-4 border-black">
         <img src={abitacolo} alt="Abitacolo" />
         <p className="place-self-end text-2xl">MADRID</p>

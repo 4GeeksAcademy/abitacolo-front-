@@ -1,4 +1,4 @@
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { faSliders, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
@@ -177,20 +177,21 @@ const Filters = () => {
           </div>
 
           {/* Ver disponibilidad */}
-          <div className="inline-block border-y-4 border-solid border-black mt-10 p-1 ">
+          <div className="inline-block border-y-2 border-solid dark:border-abitacoloGray border-black mt-10 p-1 ">
             <div className="flex justify-center">
               <input type="checkbox" id="disponibilidad"></input>
               <label className="ml-2">
-                <strong>Ver solo muebles</strong> <br />
+                <strong>ver solo muebles</strong> <br />
                 <strong> disponibles ahora </strong>
               </label>
             </div>
           </div>
 
           {/* Boton aplicar filtros */}
-          <div className="button mt-5">
-            <button className="p-3 border-4 border-solid border-black rounded-xl mt-4 ml-2 hover:bg-gray-200">
-              <i className="fa-solid fa-filter"></i>Aplicar filtros
+          <div className="grid mt-5">
+            <button className="p-3 border-2 dark:text-white dark:bg-grayShadow border-solid border-black dark:border-white rounded-full mt-4">
+              <FontAwesomeIcon icon={faSliders} />
+              <span className="ms-3">aplicar filtros</span>
             </button>
           </div>
         </div>

@@ -12,9 +12,9 @@ import Markdown from "react-markdown";
 const Navbar = () => {
   const [t, i18n] = useTranslation("global");
   return (
-    <div className="dark:text-abitacoloGray dark:bg-darkGrayShadow">
-      <div className=" text-center h-10 "></div>
-      <div className="px-5 lg:px-20">
+    <div className="">
+      <div className=" text-center h-10 bg-darkGrayShadow border-b-2 border-white"></div>
+      <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-darkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-white">
           <div>
             <img src={logoAbitacolo} alt="Logo Abitacolo" />
@@ -59,7 +59,7 @@ const Navbar = () => {
               {t("navBar.body")}
             </Markdown>
 
-            <div className="mt-8 text-sm border-b-2 border-black flex justify-between">
+            <div className="mt-8 text-sm dark:border-abitacoloGray border-b-2 border-black flex justify-between">
               <p>{t("navBar.until")}</p>
               <span className="font-bold">{t("navBar.recovered")}</span>
             </div>
