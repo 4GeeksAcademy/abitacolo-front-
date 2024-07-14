@@ -70,7 +70,7 @@ const Navbar = () => {
             className="mt-4 md:mt-0 w-full md:w-auto"
           />
         </header>
-        <div className="mt-10 mb-5 flex justify-between max-sm:hidden">
+        <div className="mt-10 pb-5 flex justify-between max-sm:hidden">
           <a href="#" className="font-bold text-lg">
             <span className="me-5">
               <FontAwesomeIcon icon={faMessage} size="xl" />
