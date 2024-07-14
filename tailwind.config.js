@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         abitacoloGray: "#CCCCCC",
-        darkGrayShadow: "#333333",
+        abitacoloDarkGrayShadow: "#333333",
         abitacoloGreen: "#99CC33",
         black: "#000000",
-        grayShadow: "#666666",
+        abitacoloGrayShadow: "#666666",
         white: "#FFFFFF",
       },
     },

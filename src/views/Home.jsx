@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-darkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
+      <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
         <div className=" max-xl:hidden">
           <HeaderHome />
         </div>
