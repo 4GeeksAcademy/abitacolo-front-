@@ -12,31 +12,34 @@ import Markdown from "react-markdown";
 const Navbar = () => {
   const [t, i18n] = useTranslation("global");
   return (
-    <div>
-      <div className=" text-center h-10 dark:bg-prueba-color"></div>
-      <div className="px-5 lg:px-20 dark:bg-prueba-color ">
+    <div className="dark:text-abitacoloGray dark:bg-darkGrayShadow">
+      <div className=" text-center h-10 "></div>
+      <div className="px-5 lg:px-20">
         <nav className="flex justify-between items-center py-4 border-b-4 border-white">
           <div>
             <img src={logoAbitacolo} alt="Logo Abitacolo" />
           </div>
 
-          <div className="max-sm:hidden dark:text-white">
-            <ul className="flex space-x-4 place-self-end text-lg ">
-              <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black  ">
+          <div className="grid place-self-end max-sm:hidden dark:text-white">
+            <ul className="flex items-center space-x-4 text-lg">
+              <li className="">
                 <DarkButton />
               </li>
-              <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
+              <li className="flex items-center">
                 <SwitchLanguage />
+                <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
+              <li className="flex items-center">
                 <a href="#" className="hover:underline">
                   FAQ
                 </a>
+                <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="relative after:content-['·'] after:absolute after:right-[-12px] after:top-1/2 after:transform after:-translate-y-1/2 after:text-lg after:text-black ">
+              <li className="flex items-center">
                 <a href="#" className="hover:underline">
                   {t("navBar.mision")}
                 </a>
+                <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
                 <a href="#" className="hover:underline">
@@ -52,7 +55,7 @@ const Navbar = () => {
         </nav>
         <header className="text-center my-12 flex flex-col md:flex-row justify-between md:mx-48">
           <div className="">
-            <Markdown className="mt-4 text-3xl	 text-left">
+            <Markdown className="mt-4 text-3xl text-left">
               {t("navBar.body")}
             </Markdown>
 
