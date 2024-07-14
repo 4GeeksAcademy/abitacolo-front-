@@ -11,7 +11,8 @@ export default {
         'brown-light-mode': '#333333',
         'green-light-mode': '#99CC33',
         'dark-gray-dark-mode': '#666666',
-        'prueba-color': '#121212'
+        'prueba-color': '#121212',
+        
       }
     },
   },
