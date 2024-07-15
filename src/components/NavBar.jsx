@@ -13,7 +13,8 @@ const Navbar = () => {
   const [t, i18n] = useTranslation("global");
   return (
     <div className="">
-      <div className=" text-center h-10 dark:bg-abitacoloDarkGrayShadow border-b-2 border-white"></div>
+      <div className=" text-center h-5 bg-abitacoloDarkGrayShadow border-b"></div>
+      <div className=" text-center h-5 bg-abitacoloDarkGrayShadow border-b"></div>
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-white">
           <div>
