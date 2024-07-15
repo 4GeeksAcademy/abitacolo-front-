@@ -12,6 +12,8 @@ import global_en from "./translations/en/global.json";
 import global_es from "./translations/es/global.json";
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
+import RegistrationForm from "./views/SignUp.jsx";
+
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -35,6 +37,7 @@ const Layout = () => {
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/Registro" element={<RegistrationForm/>} />
               <Route path="*" element={<h1>Not found!</h1>} />
             </Routes>
             <FooterBody />
