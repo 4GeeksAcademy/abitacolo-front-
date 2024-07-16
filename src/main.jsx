@@ -1,6 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Layout from "./Layout.jsx";
+import Layout from "./Layout";
 import "./index.css";
 
-createRoot(document.getElementById("root")).render(<Layout />);
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  createRoot(rootElement).render(<Layout />);
+} else {
+  console.error("Root element not found");
+}

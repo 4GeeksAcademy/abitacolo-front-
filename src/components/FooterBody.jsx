@@ -1,6 +1,5 @@
 import React from "react";
 import abitacolo from "/src/assets/abitacolo.png";
-import sostenible from "/src/assets/sostenible.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -14,7 +13,7 @@ import Markdown from "react-markdown";
 import SwitchLanguage from "./SwitchLanguage";
 
 const FooterBody = () => {
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   return (
     <div className="px-5 lg:px-20 py-10 max-lg:hidden dark:bg-abitacoloDarkGrayShadow dark:text-abitacoloGray">
@@ -22,11 +21,11 @@ const FooterBody = () => {
         <img src={abitacolo} alt="Abitacolo" />
         <p className="place-self-end text-2xl">MADRID</p>
       </div>
-      <div className=" flex justify-between mt-10">
+      <div className="flex justify-between mt-10">
         <div className="flex flex-col items-center text-sm text-center dark:bg-abitacoloGrayShadow bg-abitacoloGray pt-8 px-2 dark:text-wh">
           <FontAwesomeIcon icon={faRecycle} size="2xl" className="mb-2" />
           <span className="font-bold mb-1">{t("footer.recycleOne")}</span>
-          <Markdown className="">{t("footer.recycleTwo")}</Markdown>
+          <Markdown>{t("footer.recycleTwo")}</Markdown>
         </div>
         <div>
           <p className="font-bold mb-5 text-3xl">muebles</p>
@@ -44,7 +43,7 @@ const FooterBody = () => {
           <ul>
             <li>percheros</li>
             <li>sillas y taburetes</li>
-            <li>msillones y sofás</li>
+            <li>sillones y sofás</li>
             <li>lámparas</li>
             <li>marcos y espejos</li>
             <li>otros objetos</li>
@@ -56,8 +55,8 @@ const FooterBody = () => {
             <li>nuestra misión</li>
             <li>contacto</li>
             <li>trabaja con nosotros</li>
-            <li>sanos tu opinión</li>
-            <li>suscribete a</li>
+            <li>danos tu opinión</li>
+            <li>suscríbete a</li>
             <li>nuestra newsletter</li>
           </ul>
         </div>
@@ -77,8 +76,8 @@ const FooterBody = () => {
           <SwitchLanguage />
         </div>
         <div>
-          <div className="font-bold mb-5 text-3xl">¡siguenos en redes!</div>
-          <div className=" flex justify-between mt-11">
+          <p className="font-bold mb-5 text-3xl">¡síguenos en redes!</p>
+          <div className="flex justify-between mt-11">
             <FontAwesomeIcon icon={faLinkedin} size="2xl" />
             <FontAwesomeIcon icon={faFacebook} size="2xl" />
             <FontAwesomeIcon icon={faInstagram} size="2xl" />
@@ -86,8 +85,10 @@ const FooterBody = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <p>datos de copyright</p>
+      <div className="flex justify-center mt-10">
+        <p>
+          © {new Date().getFullYear()} Abitacolo. Todos los derechos reservados.
+        </p>
       </div>
     </div>
   );
