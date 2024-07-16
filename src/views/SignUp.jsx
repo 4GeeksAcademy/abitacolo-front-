@@ -1,7 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
+import LoginForm from "./Login";
 
 
 const RegistrationForm = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  if (showLogin) {
+    return <LoginForm />;
+  }
   return (
     <div className="font-sans">
       <div className="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
@@ -65,9 +71,16 @@ const RegistrationForm = () => {
               <div className="mt-7">
                 <div className="flex justify-center items-center">
                   <label className="mr-2">¿Ya tienes una cuenta?</label>
-                  <a href="#" className="text-blue-500 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
-                    Iniciar sesion
-                  </a>
+                  <a 
+            href="#" 
+            className="text-blue-500 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowLogin(true);
+            }}
+          >
+            Iniciar sesión 
+          </a>
                 </div>
               </div>
             </form>

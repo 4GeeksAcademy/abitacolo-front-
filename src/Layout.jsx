@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "/src/views/Home.jsx";
 import Navbar from "./components/NavBar.jsx";
@@ -28,24 +28,37 @@ i18next.init({
   },
 });
 
+
+const MainContent = () => {
+  const location = useLocation();
+  const showNavbar = location.pathname !== '/Registro';
+
+  return (
+    <>
+      {showNavbar && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Registro" element={<RegistrationForm />} />
+        <Route path="*" element={<h1>Not found!</h1>} />
+      </Routes>
+      <FooterBody />
+    </>
+  );
+};
+
 const Layout = () => {
   return (
     <React.StrictMode>
       <I18nextProvider i18n={i18next}>
         <BrowserRouter>
           <ScrollToTop>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Registro" element={<RegistrationForm/>} />
-              <Route path="*" element={<h1>Not found!</h1>} />
-            </Routes>
-            <FooterBody />
+            <MainContent />
           </ScrollToTop>
         </BrowserRouter>
       </I18nextProvider>
     </React.StrictMode>
   );
 };
+
 
 export default injectContext(Layout);
