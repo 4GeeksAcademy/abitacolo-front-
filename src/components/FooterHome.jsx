@@ -10,8 +10,7 @@ const FooterHome = () => {
         <p className="text-3xl text-center">
           en abitacolo creemos que la
           <br /> <span className="font-bold">historia</span> de cada{" "}
-          <span className="line-through">ser humano </span>
-          es la
+          <span className="line-through">ser humano </span> (mueble) es la
           <br /> que lo hace único y maravilloso
         </p>
       </div>

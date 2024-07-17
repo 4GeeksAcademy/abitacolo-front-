@@ -19,6 +19,7 @@ const injectContext = (PassedComponent) => {
 
     useEffect(() => {
       state.actions.loadSomeData();
+      state.actions.getMuebles();
     }, []);
 
     return (

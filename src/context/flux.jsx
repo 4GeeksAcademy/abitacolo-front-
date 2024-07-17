@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       muebles: {
+        test: [],
         percheros: [
           {
             id_codigo: "h001",
@@ -421,6 +422,27 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       loadSomeData: () => {
         console.log("Testing from flux");
+      },
+      getMuebles: () => {
+        const store = getStore();
+        const actions = getActions();
+        console.log("Fetching muebles...");
+
+        fetch("http://localhost:3000/mueble") // Reemplaza con la URL de tu API
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Data fetched from API:", data);
+            setStore({ ...store, muebles: { ...store.muebles, test: data } });
+            console.log("Store updated with new data:", store.muebles.test);
+          })
+          .catch((error) => {
+            console.error("Error fetching muebles:", error);
+          });
       },
     },
   };

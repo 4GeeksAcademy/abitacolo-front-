@@ -208,7 +208,7 @@ const Filters = () => {
 
           {/* Boton aplicar filtros */}
           <div className="grid mt-5">
-            <button className="p-3 border-2 dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4">
+            <button className="p-3 border-2 bg-abitacoloGreen dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4">
               <FontAwesomeIcon icon={faSliders} />
               <span className="ms-3">aplicar filtros</span>
             </button>

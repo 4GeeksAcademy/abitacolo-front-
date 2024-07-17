@@ -25,6 +25,7 @@ function Home() {
     "estanterias_baldas",
     "aparadores",
     "otros",
+    "test",
   ];
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
@@ -41,17 +42,21 @@ function Home() {
           <Filters />
         </div>
         <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
-          {categories.map((category) => (
-            <Link key={category} to={`/categoria/${category}`}>
-              <CardCategorias
-                categoria={muebles[category][0].categoria}
-                recuperados={muebles[category].length}
-                disponibles={
-                  muebles[category].filter((item) => item.disponible).length
-                }
-              />
-            </Link>
-          ))}
+          {muebles.test.length > 0 ? (
+            categories.map((category) => (
+              <Link key={category} to={`/categoria/${category}`}>
+                <CardCategorias
+                  categoria={muebles[category][0]?.categoria}
+                  recuperados={muebles[category].length}
+                  disponibles={
+                    muebles[category].filter((item) => item.disponible).length
+                  }
+                />
+              </Link>
+            ))
+          ) : (
+            <p>Cargando...</p>
+          )}
         </div>
       </div>
       <FooterHome />

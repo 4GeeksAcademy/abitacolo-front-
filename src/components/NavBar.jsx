@@ -1,5 +1,5 @@
 import React from "react";
-import logoAbitacolo from "../assets/logoabitacolo.png";
+import logoAbitacolo from "../assets/A_identidad-PNG/A_claro-01.png";
 import logoMueble from "../assets/muebleabitacolo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGears, faMessage, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black dark:border-white">
           <Link to={"/"}>
-            <div>
+            <div className="w-60">
               <img src={logoAbitacolo} alt="Logo Abitacolo" />
             </div>
           </Link>
