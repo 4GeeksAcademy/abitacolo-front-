@@ -1,15 +1,30 @@
 import React, { useContext } from "react";
-import HeaderHome from "/src/components/HeaderHome.jsx";
+import HeaderHome from "../components/HeaderHome";
 import FooterHome from "../components/FooterHome";
 import Filters from "../components/Filters";
-import Card from "../components/Card";
+import CardCategorias from "../components/CardCategorias";
 import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 
-function App() {
+function Home() {
   const { store } = useContext(Context);
+  const { muebles } = store;
 
+  const categories = [
+    "percheros",
+    "mesas_escritorios",
+    "sillones_sofas",
+    "mesillas",
+    "camas_cabeceros",
+    "sillas_taburetes",
+    "armarios_comodas",
+    "espejos_marcos",
+    "lamparas",
+    "estanterias_baldas",
+    "aparadores",
+    "otros",
+  ];
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
       <div className="max-xl:hidden">
@@ -21,16 +36,18 @@ function App() {
         </button>
       </div>
       <div className="flex mt-14 max-xl:justify-center">
-        <div className="max-xl:hidden">
+        <div className="max-smartphone:hidden">
           <Filters />
         </div>
-        <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-y-4 gap-x-24 xl:gap-x-32 justify-items-stretch">
-          {store.muebles.map((mueble) => (
-            <Card
-              key={mueble.id}
-              categoria={mueble.categoria}
-              color={mueble.color}
-              disponibles={mueble.disponibilidad}
+        <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
+          {categories.map((category) => (
+            <CardCategorias
+              key={category}
+              categoria={muebles[category][0].categoria}
+              recuperados={muebles[category].length}
+              disponibles={
+                muebles[category].filter((item) => item.disponible).length
+              }
             />
           ))}
         </div>
@@ -40,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

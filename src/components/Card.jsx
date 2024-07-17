@@ -9,7 +9,9 @@ const Card = ({ imagen, categoria, color, disponibles }) => {
       <span>Color: {color}</span>
       <br />
       <span>
-        <strong>El mueble {disponibles}</strong>
+        <strong>
+          El mueble {disponibles ? "esta disponible" : "no esta disponible"}
+        </strong>
       </span>
     </div>
   );
