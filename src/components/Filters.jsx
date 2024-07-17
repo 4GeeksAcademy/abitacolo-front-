@@ -1,11 +1,30 @@
-import { faSliders, faSortDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEraser,
+  faSliders,
+  faSortDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useRef } from "react";
 
 const Filters = () => {
+  const formRef = useRef(null);
+
+  const handleClearFilters = () => {
+    const checkboxes = formRef.current.querySelectorAll(
+      'input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+    const textInputs = formRef.current.querySelectorAll('input[type="text"]');
+    textInputs.forEach((input) => {
+      input.value = "";
+    });
+  };
+
   return (
     <>
-      <div className=" mr-20 dark:bg-prueba-color">
+      <div className="mr-20 dark:bg-prueba-color">
         <span className="text-3xl">
           <strong>
             estos filtros te <br />
@@ -16,7 +35,7 @@ const Filters = () => {
           <FontAwesomeIcon icon={faSortDown} size="2xl" />
         </p>
         {/* Filtros Colores */}
-        <div className="list-color text-2xl mt-10">
+        <div ref={formRef} className="list-color text-2xl mt-10">
           <span className="text-3xl">
             <strong>color</strong>
           </span>
@@ -124,7 +143,7 @@ const Filters = () => {
               <div className="mt-4">
                 <input
                   type="text"
-                  className="border-2 border-solid border-black rounded w-20  "
+                  className="border-2 border-solid border-black rounded w-20"
                   placeholder="desde"
                 ></input>
                 <input
@@ -192,6 +211,16 @@ const Filters = () => {
             <button className="p-3 border-2 dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4">
               <FontAwesomeIcon icon={faSliders} />
               <span className="ms-3">aplicar filtros</span>
+            </button>
+          </div>
+          {/* Boton borrar filtros */}
+          <div className="grid mt-5">
+            <button
+              onClick={handleClearFilters}
+              className="p-3 border-2 dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4"
+            >
+              <FontAwesomeIcon icon={faEraser} />
+              <span className="ms-3">borrar filtros</span>
             </button>
           </div>
         </div>

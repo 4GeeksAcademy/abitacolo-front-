@@ -228,7 +228,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           {
             id_codigo: "eb001",
             nombre: "Estantería Flotante Minimalista",
-            disponible: true,
+            disponible: false,
             color: "Blanco",
             espacio: "estudio",
             estilo: "minimalista",
@@ -273,7 +273,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           {
             id_codigo: "a001",
             nombre: "Mesa Roberto",
-            disponible: true,
+            disponible: false,
             color: "Natural",
             espacio: "dormitorio",
             estilo: "industrial",
@@ -314,7 +314,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           {
             id_codigo: "a003",
             nombre: "Mesa de Trabajo Luis",
-            disponible: true,
+            disponible: false,
             color: "Negro",
             espacio: "estudio",
             estilo: "minimalista",
