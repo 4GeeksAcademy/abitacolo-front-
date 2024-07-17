@@ -42,10 +42,7 @@ function Home() {
         </div>
         <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
           {categories.map((category) => (
-            <Link
-              key={category}
-              to={`/categoria/${muebles[category][0].categoria}`}
-            >
+            <Link key={category} to={`/categoria/${category}`}>
               <CardCategorias
                 categoria={muebles[category][0].categoria}
                 recuperados={muebles[category].length}

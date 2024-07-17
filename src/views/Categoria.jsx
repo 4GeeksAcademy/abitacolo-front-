@@ -14,7 +14,6 @@ function Home() {
 
   // Define la categoría que quieres mostrar dinámicamente
   const categoriaMostrar = useParams().name;
-  console.log(categoriaMostrar);
 
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10">
@@ -24,10 +23,7 @@ function Home() {
       <div className="flex mt-14">
         <Filters className="max-smartphone:hidden" />
         <div className="mt-6">
-          <MueblesPorCategoria
-            categoria={categoriaMostrar}
-            muebles={muebles[categoriaMostrar]}
-          />
+          <MueblesPorCategoria muebles={muebles[categoriaMostrar]} />
         </div>
       </div>
       <FooterHome />

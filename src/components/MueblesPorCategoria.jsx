@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MueblesPorCategoria = ({ categoria, muebles }) => {
+const MueblesPorCategoria = ({ muebles }) => {
   return (
     <div className="mt-4">
-      <p className="text-4xl mb-8 flex justify-center font-bold">{categoria}</p>
+      <p className="text-4xl mb-8 flex justify-center font-bold">
+        {muebles[0].categoria}
+      </p>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {muebles.map((mueble) => (
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
@@ -33,7 +35,6 @@ const MueblesPorCategoria = ({ categoria, muebles }) => {
 };
 
 MueblesPorCategoria.propTypes = {
-  categoria: PropTypes.string.isRequired,
   muebles: PropTypes.arrayOf(
     PropTypes.shape({
       id_codigo: PropTypes.string.isRequired,
