@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         percheros: [
           {
             id_codigo: "h001",
-            nombre: "Perchero Vertical Carlos",
+            nombre: "Vertical Carlos",
             disponible: true,
             color: "Natural",
             espacio: "dormitorio",
@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h002",
-            nombre: "Perchero Pared Maria",
+            nombre: "Pared Maria",
             disponible: true,
             color: "Blanco",
             espacio: "entrada",
@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h003",
-            nombre: "Perchero de Pie Jose",
+            nombre: "Jose",
             disponible: true,
             color: "Negro",
             espacio: "salón",
@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h004",
-            nombre: "Perchero Clásico Lucia",
+            nombre: "Clásico Lucia",
             disponible: true,
             color: "Marrón",
             espacio: "pasillo",
@@ -57,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h005",
-            nombre: "Perchero Moderno David",
+            nombre: "Moderno David",
             disponible: true,
             color: "Gris",
             espacio: "dormitorio",
@@ -70,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h006",
-            nombre: "Perchero Compacto Laura",
+            nombre: "Compacto Laura",
             disponible: true,
             color: "Azul",
             espacio: "oficina",
@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h007",
-            nombre: "Perchero Estante Antonio",
+            nombre: "Estante Antonio",
             disponible: true,
             color: "Verde",
             espacio: "baño",
@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h008",
-            nombre: "Perchero Vintage Ana",
+            nombre: "Vintage Ana",
             disponible: true,
             color: "Rojo",
             espacio: "salón",
@@ -109,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h009",
-            nombre: "Perchero Ajustable Pedro",
+            nombre: " Ajustable Pedro",
             disponible: true,
             color: "Beige",
             espacio: "dormitorio",
@@ -122,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           {
             id_codigo: "h010",
-            nombre: "Perchero Multiuso Sofia",
+            nombre: " Multiuso Sofia",
             disponible: true,
             color: "Morado",
             espacio: "entrada",
@@ -137,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         camas_cabeceros: [
           {
             id_codigo: "c001",
-            nombre: "Cama Moderna Emma",
+            nombre: " Moderna Emma",
             disponible: true,
             color: "Gris",
             espacio: "dormitorio",

@@ -8,6 +8,7 @@ import DarkButton from "./DarkButton";
 import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
 import Markdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [t, i18n] = useTranslation("global");
@@ -17,10 +18,11 @@ const Navbar = () => {
       <div className=" text-center h-5 bg-abitacoloDarkGrayShadow border-b"></div>
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black dark:border-white">
-          <div>
-            <img src={logoAbitacolo} alt="Logo Abitacolo" />
-          </div>
-
+          <Link to={"/"}>
+            <div>
+              <img src={logoAbitacolo} alt="Logo Abitacolo" />
+            </div>
+          </Link>
           <div className="grid place-self-end max-sm:hidden dark:text-white">
             <ul className="flex items-center space-x-4 text-lg">
               <li className="">

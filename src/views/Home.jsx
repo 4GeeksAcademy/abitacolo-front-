@@ -6,6 +6,7 @@ import CardCategorias from "../components/CardCategorias";
 import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { store } = useContext(Context);
@@ -41,14 +42,18 @@ function Home() {
         </div>
         <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
           {categories.map((category) => (
-            <CardCategorias
+            <Link
               key={category}
-              categoria={muebles[category][0].categoria}
-              recuperados={muebles[category].length}
-              disponibles={
-                muebles[category].filter((item) => item.disponible).length
-              }
-            />
+              to={`/categoria/${muebles[category][0].categoria}`}
+            >
+              <CardCategorias
+                categoria={muebles[category][0].categoria}
+                recuperados={muebles[category].length}
+                disponibles={
+                  muebles[category].filter((item) => item.disponible).length
+                }
+              />
+            </Link>
           ))}
         </div>
       </div>

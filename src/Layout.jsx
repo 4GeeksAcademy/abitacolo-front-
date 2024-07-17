@@ -15,6 +15,7 @@ import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
 import SignUp from "./views/SignUp.jsx";
 import CardCategorias from "./components/CardCategorias.jsx";
+import Categoria from "./views/Categoria.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -39,9 +40,10 @@ const MainContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/categoria/:name" element={<Categoria />} />
         {/* Ruta temporal para ver el componente */}
-        <Route path="/Loguin" element={<LoginForm />} />
-        <Route path="/card" element={<CardCategorias />} />
+        {/* <Route path="/Loguin" element={<LoginForm />} />
+        <Route path="/card" element={<CardCategorias />} /> */}
 
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
