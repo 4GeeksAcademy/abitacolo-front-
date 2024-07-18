@@ -1,19 +1,43 @@
 import React from "react";
-import silla from "../assets/c001.webp";
 import PropTypes from "prop-types";
+import Aparadores from "../assets/ModoClaro/Categorias/Aparadores.png";
+import ArmariosComodas from "../assets/ModoClaro/Categorias/Armarios_comodas.png";
+import CamasCabeceros from "../assets/ModoClaro/Categorias/Camas_cabeceros.png";
+import Estanterias from "../assets/ModoClaro/Categorias/Estanterias.png";
+import Lamparas from "../assets/ModoClaro/Categorias/Lamparas.png";
+import MarcosEspejos from "../assets/ModoClaro/Categorias/Marcos_espejos.png";
+import MesasEscritorios from "../assets/ModoClaro/Categorias/Mesas_escritorios.png";
+import Mesillas from "../assets/ModoClaro/Categorias/Mesillas.png";
+import OtrosObjetos from "../assets/ModoClaro/Categorias/Otros_objetos.png";
+import Percheros from "../assets/ModoClaro/Categorias/Percheros.png";
+import SillasTaburetes from "../assets/ModoClaro/Categorias/Sillas_taburetes.png";
+import SillonesSofas from "../assets/ModoClaro/Categorias/Sillones_sofas.png";
 
-const CardCategorias = ({ categoria, recuperados, disponibles }) => {
-  // Para mostrar una imagen dinámica basada en la categoría:
-  // const imagen = require(`../assets/${categoria}.webp`);
+const images = {
+  percheros: Percheros,
+  aparadores: Aparadores,
+  armarios_comodas: ArmariosComodas,
+  camas_cabeceros: CamasCabeceros,
+  estanterias_baldas: Estanterias,
+  lamparas: Lamparas,
+  marcos_espejos: MarcosEspejos,
+  mesas_escritorios: MesasEscritorios,
+  mesillas: Mesillas,
+  otros: OtrosObjetos,
+  sillas_taburetes: SillasTaburetes,
+  sillones_sofas: SillonesSofas,
+};
+
+const CardCategorias = ({ categoria, recuperados, disponibles, img }) => {
+  const imagen = images[img] || images.otros;
 
   return (
     <div className="p-4 rounded-lg">
-      {/* Para la imagen dinámica */}
-      {/* <img className="w-60 rounded-full" src={imagen} alt={categoria} /> */}
-      {/* Imagen estática para propósitos de ejemplo */}
-      <img className="w-60 rounded-full" src={silla} alt={categoria} />
+      <img className="w-60 rounded-full" src={imagen} alt={categoria} />
       <div className="mt-4">
-        <div className="font-bold">{categoria}</div>
+        <div className="font-bold capitalize">
+          {categoria.replace("_", " ")}
+        </div>
         <div>{recuperados} muebles recuperados</div>
         <div>{disponibles} muebles disponibles</div>
       </div>

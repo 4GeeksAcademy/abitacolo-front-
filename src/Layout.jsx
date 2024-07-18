@@ -1,12 +1,10 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "/src/views/Home.jsx";
 import Navbar from "./components/NavBar.jsx";
 import FooterBody from "./components/FooterBody.jsx";
 import injectContext from "./context/appContext.jsx";
-import LoginForm from "./views/LoginForm.jsx";
 import "./index.css";
 
 import global_en from "./translations/en/global.json";
@@ -14,9 +12,7 @@ import global_es from "./translations/es/global.json";
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
 import SignUp from "./views/SignUp.jsx";
-import CardCategorias from "./components/CardCategorias.jsx";
 import Categoria from "./views/Categoria.jsx";
-import HeaderHome from "./components/HeaderBody.jsx";
 import HeaderBody from "./components/HeaderBody.jsx";
 
 i18next.init({

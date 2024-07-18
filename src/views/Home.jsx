@@ -20,7 +20,7 @@ function Home() {
     "camas_cabeceros",
     "sillas_taburetes",
     "armarios_comodas",
-    "espejos_marcos",
+    "marcos_espejos",
     "lamparas",
     "estanterias_baldas",
     "aparadores",
@@ -46,6 +46,7 @@ function Home() {
             categories.map((category) => (
               <Link key={category} to={`/categoria/${category}`}>
                 <CardCategorias
+                  img={category}
                   categoria={muebles[category][0]?.categoria}
                   recuperados={muebles[category].length}
                   disponibles={

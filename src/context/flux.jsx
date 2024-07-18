@@ -181,7 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             fondo: "60",
           },
         ],
-        espejos_marcos: [
+        marcos_espejos: [
           {
             id_codigo: "em001",
             nombre: "Espejo de Pared Redondo Sofía",
