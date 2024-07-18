@@ -16,6 +16,8 @@ import { I18nextProvider } from "react-i18next";
 import SignUp from "./views/SignUp.jsx";
 import CardCategorias from "./components/CardCategorias.jsx";
 import Categoria from "./views/Categoria.jsx";
+import HeaderHome from "./components/HeaderBody.jsx";
+import HeaderBody from "./components/HeaderBody.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -37,6 +39,7 @@ const MainContent = () => {
   return (
     <>
       {showNavbar && <Navbar />}
+      <HeaderBody />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />

@@ -1,5 +1,5 @@
 import React from "react";
-import flechaLarga from "/src/assets/fecha-larga.png";
+import flechaLarga from "../assets/ModoClaro/Flechas/FlechaLargaNegro.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightLong,

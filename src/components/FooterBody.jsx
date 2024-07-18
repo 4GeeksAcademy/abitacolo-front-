@@ -1,5 +1,5 @@
 import React from "react";
-import abitacolo from "/src/assets/abitacolo.png";
+import abitacolo from "../assets/ModoClaro/Logos/AbitacoloNegro.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -18,7 +18,7 @@ const FooterBody = () => {
   return (
     <div className="px-5 lg:px-20 py-10 max-lg:hidden dark:bg-abitacoloDarkGrayShadow dark:text-abitacoloGray">
       <div className="flex justify-between border-b-2 dark:border-abitacoloGrayShadow border-black">
-        <img src={abitacolo} alt="Abitacolo" />
+        <img className="w-60" src={abitacolo} alt="Abitacolo" />
         <p className="place-self-end text-2xl">MADRID</p>
       </div>
       <div className="flex justify-between mt-10">
