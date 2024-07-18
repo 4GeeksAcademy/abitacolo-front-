@@ -1,23 +1,20 @@
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
+import { Context } from "../context/appContext";
 
 const DarkButton = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
+  const { store, actions } = useContext(Context);
 
   useEffect(() => {
     const classList = document.documentElement.classList;
-    isDarkMode ? classList.add("dark") : classList.remove("dark");
-  }, [isDarkMode]);
+    store.isDarkMode ? classList.add("dark") : classList.remove("dark");
+  }, [store.isDarkMode]);
 
   return (
     <div className="flex justify-center items-center">
-      <button onClick={toggleTheme} className="p-2">
-        <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} size="xl" />
+      <button onClick={actions.toggleDarkMode} className="p-2">
+        <FontAwesomeIcon icon={store.isDarkMode ? faMoon : faSun} size="xl" />
       </button>
     </div>
   );

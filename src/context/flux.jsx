@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      isDarkMode: false,
       muebles: {
         test: [],
         percheros: [
@@ -420,6 +421,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
     actions: {
+      toggleDarkMode: () => {
+        const store = getStore();
+        setStore({ ...store, isDarkMode: !store.isDarkMode });
+      },
       loadSomeData: () => {
         console.log("Testing from flux");
       },
