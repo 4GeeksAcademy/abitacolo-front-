@@ -40,7 +40,7 @@ const Home = () => {
               </Link>
             ))
           ) : (
-            <p>Cargando...</p>
+            <p>No se han encontrado Muebles que cumplan con los filtros.</p>
           )}
         </div>
       </div>

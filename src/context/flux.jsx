@@ -95,13 +95,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         // Filter by price range
         if (filtros.precioDesde || filtros.precioHasta) {
-          const precioDesde = parseFloat(filtros.precioDesde) || 0;
-          const precioHasta = parseFloat(filtros.precioHasta) || Infinity;
-          mueblesFiltrados = mueblesFiltrados.filter(
-            (mueble) =>
-              mueble.precio >= precioDesde && mueble.precio <= precioHasta
-          );
+          const precioDesde = filtros.precioDesde
+            ? parseFloat(filtros.precioDesde)
+            : 0;
+          const precioHasta = filtros.precioHasta
+            ? parseFloat(filtros.precioHasta)
+            : Infinity;
+
+          mueblesFiltrados = mueblesFiltrados.filter((mueble) => {
+            const mueblePrecio = parseFloat(mueble.precio_mes);
+            return mueblePrecio >= precioDesde && mueblePrecio <= precioHasta;
+          });
+
           console.log("After precio filter:", mueblesFiltrados);
+          console.log(
+            "Precio desde:",
+            precioDesde,
+            "Precio hasta:",
+            precioHasta
+          );
         }
 
         // Update the store with filtered furniture
