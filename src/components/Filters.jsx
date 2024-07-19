@@ -4,228 +4,178 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { Context } from "../context/appContext";
+
+const initialFormData = {
+  color: [],
+  estilo: [],
+  precioDesde: "",
+  precioHasta: "",
+  espacio: [],
+  disponible: false,
+};
 
 const Filters = () => {
   const formRef = useRef(null);
+  const [formData, setFormData] = useState(initialFormData);
+  const { store, actions } = useContext(Context);
 
-  const handleClearFilters = () => {
-    const checkboxes = formRef.current.querySelectorAll(
-      'input[type="checkbox"]'
-    );
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-    const textInputs = formRef.current.querySelectorAll('input[type="text"]');
-    textInputs.forEach((input) => {
-      input.value = "";
-    });
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      if (name === "disponibilidad") {
+        setFormData((prevState) => ({ ...prevState, [name]: checked }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: checked
+            ? [...prevState[name], value]
+            : prevState[name].filter((item) => item !== value),
+        }));
+      }
+    } else {
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
+    }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    actions.filtrarMuebles(formData);
+  };
+
+  const handleClearFilters = () => {
+    setFormData(initialFormData);
+    formRef.current.reset();
+    console.log("Filtros reseteados:", initialFormData);
+  };
+
+  const renderCheckboxList = (category, options) => (
+    <div className={`list-${category} mt-10`}>
+      <span className="text-3xl">
+        <strong>{category}</strong>
+      </span>
+      <ul className="list-none mt-5">
+        {options.map((option) => (
+          <li key={option}>
+            <input
+              type="checkbox"
+              id={option}
+              name={category}
+              value={option}
+              checked={formData[category].includes(option)}
+              onChange={handleInputChange}
+              className="mr-2"
+            />
+            <label htmlFor={option}>{option}</label>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
-    <>
-      <div className="mr-20 dark:bg-prueba-color">
-        <span className="text-3xl">
-          <strong>
-            estos filtros te <br />
-            pueden servir
-          </strong>
-        </span>
-        <p className="">
-          <FontAwesomeIcon icon={faSortDown} size="2xl" />
-        </p>
-        {/* Filtros Colores */}
-        <div ref={formRef} className="list-color text-2xl mt-10">
+    <div className="mr-20 dark:bg-prueba-color">
+      <span className="text-3xl">
+        <strong>
+          estos filtros te <br />
+          pueden servir
+        </strong>
+      </span>
+      <p className="">
+        <FontAwesomeIcon icon={faSortDown} size="2xl" />
+      </p>
+
+      <form ref={formRef} onSubmit={handleSubmit} className="text-2xl mt-10">
+        {renderCheckboxList("color", [
+          "Natural",
+          "Blanco / Beige / Gris",
+          "Negro / Gris Oscuro",
+          "Tonos Pastel",
+          "Tonos Vivos",
+          "Dorado / Plateado",
+        ])}
+
+        {renderCheckboxList("estilo", [
+          "Industrial",
+          "Clásico",
+          "Minimalista",
+          "Nórdico",
+          "Rústico",
+          "Vintage / Mid-Century",
+          "Otros",
+        ])}
+
+        <div className="filter-Prize mt-10">
           <span className="text-3xl">
-            <strong>color</strong>
+            <strong>precio(€/mes)</strong>
           </span>
-          <ul className="list-color mt-5">
-            <li>
-              <input
-                id="natural_color"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="natural_color">color natural</label>
-            </li>
-            <li>
-              <input
-                id="blanco/beige/gris"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="blanco/beige/gris">blanco/beige/gris</label>
-            </li>
-            <li>
-              <input
-                id="negro/gris oscuro"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="negro/gris oscuro">negro/gris oscuro</label>
-            </li>
-            <li>
-              <input
-                id="colores pastel"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="colores pastel">colores pastel</label>
-            </li>
-            <li>
-              <input
-                id="colores vivos"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="colores vivos">colores vivos</label>
-            </li>
-            <li>
-              <input
-                id="dorado/plateado"
-                type="checkbox"
-                className="mr-2"
-              ></input>
-              <label htmlFor="dorado/plateado">dorado/plateado</label>
-            </li>
-          </ul>
-          {/* Filtros Estilos */}
-          <div className="list-style  mt-10">
-            <span className="text-3xl">
-              <strong>estilo</strong>
-            </span>
-            <ul className="list-none mt-5">
-              <li>
-                <input id="industrial" type="checkbox" className="mr-2"></input>
-                <label htmlFor="industrial">industrial</label>
-              </li>
-              <li>
-                <input id="clásico" type="checkbox" className="mr-2"></input>
-                <label htmlFor="clásico">clásico</label>
-              </li>
-              <li>
-                <input
-                  id="minimalista"
-                  type="checkbox"
-                  className="mr-2"
-                ></input>
-                <label htmlFor="minimalista">minimalista</label>
-              </li>
-              <li>
-                <input id="nórdico" type="checkbox" className="mr-2"></input>
-                <label htmlFor="nórdico">nórdico</label>
-              </li>
-              <li>
-                <input id="rústico" type="checkbox" className="mr-2"></input>
-                <label htmlFor="rústico">rústico</label>
-              </li>
-              <li>
-                <input
-                  id="vintage/mid-century"
-                  type="checkbox"
-                  className="mr-2"
-                ></input>
-                <label htmlFor="vintage/mid-century">vintage/mid-century</label>
-              </li>
-              <li>
-                <input id="otros" type="checkbox" className="mr-2"></input>
-                <label htmlFor="otros">otros</label>
-              </li>
-            </ul>
-          </div>
-          {/* Filtro Precio */}
-          <div className="filter-Prize mt-10">
-            <div className="">
-              <span className="text-3xl">
-                <strong>precio(€/mes)</strong>
-              </span>
-              <br />
-              <div className="mt-4">
-                <input
-                  type="text"
-                  className="border-2 border-solid border-black rounded w-20"
-                  placeholder="desde"
-                ></input>
-                <input
-                  type="text"
-                  className="border-2 border-solid border-black rounded w-20 ml-5"
-                  placeholder="hasta"
-                ></input>
-              </div>
-            </div>
-          </div>
-          {/* Filtros espacios */}
-          <div className="list-space  mt-10">
-            <span className="text-3xl">
-              <strong>espacios</strong>
-            </span>
-            <ul className="list-none mt-5">
-              <li>
-                <input
-                  id="salón/comedor"
-                  type="checkbox"
-                  className="mr-2"
-                ></input>
-                <label htmlFor="salón/comedor">salón/comedor</label>
-              </li>
-              <li>
-                <input id="dormitorio" type="checkbox" className="mr-2"></input>
-                <label htmlFor="dormitorio">dormitorio</label>
-              </li>
-              <li>
-                <input id="recibidor" type="checkbox" className="mr-2"></input>
-                <label htmlFor="recibidor">recibidor</label>
-              </li>
-              <li>
-                <input
-                  id="zona-de-trabajo"
-                  type="checkbox"
-                  className="mr-2"
-                ></input>
-                <label htmlFor="zona-de-trabajo">zona de trabajo</label>
-              </li>
-              <li>
-                <input id="exterior" type="checkbox" className="mr-2"></input>
-                <label htmlFor="exterior">exterior</label>
-              </li>
-              <li>
-                <input id="otras" type="checkbox" className="mr-2"></input>
-                <label htmlFor="otras">otras</label>
-              </li>
-            </ul>
-          </div>
-
-          {/* Ver disponibilidad */}
-          <div className="inline-block border-y-2 border-solid dark:border-abitacoloGray border-black mt-10 p-1 ">
-            <div className="flex justify-center">
-              <input type="checkbox" id="disponibilidad"></input>
-              <label className="ml-2">
-                <strong>ver solo muebles</strong> <br />
-                <strong> disponibles ahora </strong>
-              </label>
-            </div>
-          </div>
-
-          {/* Boton aplicar filtros */}
-          <div className="grid mt-5">
-            <button className="p-3 border-2 bg-abitacoloGreen dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4">
-              <FontAwesomeIcon icon={faSliders} />
-              <span className="ms-3">aplicar filtros</span>
-            </button>
-          </div>
-          {/* Boton borrar filtros */}
-          <div className="grid mt-5">
-            <button
-              onClick={handleClearFilters}
-              className="p-3 border-2 dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4"
-            >
-              <FontAwesomeIcon icon={faEraser} />
-              <span className="ms-3">borrar filtros</span>
-            </button>
+          <div className="mt-4">
+            <input
+              type="text"
+              name="precioDesde"
+              value={formData.precioDesde}
+              onChange={handleInputChange}
+              className="border-2 border-solid border-black rounded w-20"
+              placeholder="desde"
+            />
+            <input
+              type="text"
+              name="precioHasta"
+              value={formData.precioHasta}
+              onChange={handleInputChange}
+              className="border-2 border-solid border-black rounded w-20 ml-5"
+              placeholder="hasta"
+            />
           </div>
         </div>
-      </div>
-    </>
+
+        {renderCheckboxList("espacio", [
+          "Salón / Comedor",
+          "Dormitorio",
+          "Recibidor",
+          "Zona de Trabajo",
+          "Exterior",
+          "Otras",
+        ])}
+
+        <div className="inline-block border-y-2 border-solid dark:border-abitacoloGray border-black mt-10 p-1">
+          <div className="flex justify-center">
+            <input
+              type="checkbox"
+              id="disponible"
+              name="disponible"
+              checked={formData.disponible}
+              onChange={handleInputChange}
+            />
+            <label className="ml-2" htmlFor="disponible">
+              <strong>ver solo muebles</strong> <br />
+              <strong> disponibles ahora </strong>
+            </label>
+          </div>
+        </div>
+
+        <div className="grid mt-5">
+          <button
+            type="submit"
+            className="p-3 border-2 bg-abitacoloGreen dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4"
+          >
+            <FontAwesomeIcon icon={faSliders} />
+            <span className="ms-3">aplicar filtros</span>
+          </button>
+        </div>
+        <div className="grid mt-5">
+          <button
+            type="button"
+            onClick={handleClearFilters}
+            className="p-3 border-2 dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4"
+          >
+            <FontAwesomeIcon icon={faEraser} />
+            <span className="ms-3">borrar filtros</span>
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

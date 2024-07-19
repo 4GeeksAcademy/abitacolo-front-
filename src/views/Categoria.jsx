@@ -12,7 +12,6 @@ const Categoria = () => {
   const { store } = useContext(Context);
   const { name: categoriaName } = useParams();
 
-  // Encontrar la categoría específica en el array mueblesCategorizados
   const categoriaActual = store.mueblesCategorizados.find(
     (cat) => cat.categoria === categoriaName
   );
