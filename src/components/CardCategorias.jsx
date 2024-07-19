@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import Aparadores from "../assets/ModoClaro/Categorias/Aparadores.png";
 import ArmariosComodas from "../assets/ModoClaro/Categorias/Armarios_comodas.png";
 import CamasCabeceros from "../assets/ModoClaro/Categorias/Camas_cabeceros.png";
@@ -13,37 +14,35 @@ import Percheros from "../assets/ModoClaro/Categorias/Percheros.png";
 import SillasTaburetes from "../assets/ModoClaro/Categorias/Sillas_taburetes.png";
 import SillonesSofas from "../assets/ModoClaro/Categorias/Sillones_sofas.png";
 
-const images = {
-  percheros: Percheros,
-  aparadores: Aparadores,
-  armarios_comodas: ArmariosComodas,
-  camas_cabeceros: CamasCabeceros,
-  estanterias_baldas: Estanterias,
-  lamparas: Lamparas,
-  marcos_espejos: MarcosEspejos,
-  mesas_escritorios: MesasEscritorios,
-  mesillas: Mesillas,
-  otros: OtrosObjetos,
-  sillas_taburetes: SillasTaburetes,
-  sillones_sofas: SillonesSofas,
+const categoryImages = {
+  Percheros,
+  Aparadores,
+  "Armarios y Cómodas": ArmariosComodas,
+  "Camas y Cabeceros": CamasCabeceros,
+  "Estanterias y Baldas": Estanterias,
+  Lámparas: Lamparas,
+  "Marcos y Espejos": MarcosEspejos,
+  "Mesas y Escritorios": MesasEscritorios,
+  Mesillas,
+  Otros: OtrosObjetos,
+  "Sillas y Taburetes": SillasTaburetes,
+  "Sillones y Sofás": SillonesSofas,
 };
 
-const CardCategorias = ({ categoria, recuperados, disponibles, img }) => {
-  const imagen = images[img] || images.otros;
-
-  return (
-    <div className="p-4 rounded-lg">
-      <img className="w-60 rounded-full" src={imagen} alt={categoria} />
-      <div className="mt-4">
-        <div className="font-bold capitalize">
-          {categoria.replace("_", " ")}
-        </div>
-        <div>{recuperados} muebles recuperados</div>
-        <div>{disponibles} muebles disponibles</div>
-      </div>
+const CardCategorias = ({ categoria, recuperados, disponibles }) => (
+  <div className="p-4 rounded-lg">
+    <img
+      className="w-60 rounded-full"
+      src={categoryImages[categoria]}
+      alt={categoria}
+    />
+    <div className="mt-4">
+      <div className="font-bold capitalize">{categoria}</div>
+      <div>{recuperados} muebles recuperados</div>
+      <div>{disponibles} muebles disponibles</div>
     </div>
-  );
-};
+  </div>
+);
 
 CardCategorias.propTypes = {
   categoria: PropTypes.string.isRequired,

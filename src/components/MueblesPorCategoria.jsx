@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import silla from "../assets/c001.webp";
 
-const MueblesPorCategoria = ({ muebles }) => {
-  if (!muebles.length) {
+const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
+  if (!mueblesPorCategorias || mueblesPorCategorias.length === 0) {
     return (
       <p className="text-center text-xl">
         No hay muebles disponibles en esta categoría.
@@ -15,7 +15,7 @@ const MueblesPorCategoria = ({ muebles }) => {
   return (
     <div className="">
       <p className="text-4xl mb-8 flex justify-center font-bold">
-        {muebles[0]?.categoria}
+        {mueblesPorCategorias[0].categoria}
       </p>
       <Link to={"/"}>
         <button
@@ -26,7 +26,7 @@ const MueblesPorCategoria = ({ muebles }) => {
         </button>
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
-        {muebles.map((mueble) => (
+        {mueblesPorCategorias.map((mueble) => (
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
             <img src={silla} alt="" />
             <h3 className="font-semibold">{mueble.nombre}</h3>
@@ -56,19 +56,7 @@ const MueblesPorCategoria = ({ muebles }) => {
 };
 
 MueblesPorCategoria.propTypes = {
-  muebles: PropTypes.arrayOf(
-    PropTypes.shape({
-      id_codigo: PropTypes.string.isRequired,
-      nombre: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
-      estilo: PropTypes.string.isRequired,
-      precio_mes: PropTypes.number.isRequired,
-      ancho: PropTypes.number.isRequired,
-      altura: PropTypes.number.isRequired,
-      fondo: PropTypes.number.isRequired,
-      disponible: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
+  mueblesPorCategorias: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MueblesPorCategoria;

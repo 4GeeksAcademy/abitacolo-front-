@@ -8,25 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-function Home() {
+const Home = () => {
   const { store } = useContext(Context);
-  const { muebles } = store;
+  const { mueblesCategorizados } = store;
 
-  const categories = [
-    "percheros",
-    "mesas_escritorios",
-    "sillones_sofas",
-    "mesillas",
-    "camas_cabeceros",
-    "sillas_taburetes",
-    "armarios_comodas",
-    "marcos_espejos",
-    "lamparas",
-    "estanterias_baldas",
-    "aparadores",
-    "otros",
-    "test",
-  ];
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
       <div className="max-xl:hidden">
@@ -42,15 +27,14 @@ function Home() {
           <Filters />
         </div>
         <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
-          {muebles.test.length > 0 ? (
-            categories.map((category) => (
-              <Link key={category} to={`/categoria/${category}`}>
+          {mueblesCategorizados.length > 0 ? (
+            mueblesCategorizados.map(({ categoria, muebles }) => (
+              <Link key={categoria} to={`/categoria/${categoria}`}>
                 <CardCategorias
-                  img={category}
-                  categoria={muebles[category][0]?.categoria}
-                  recuperados={muebles[category].length}
+                  categoria={categoria}
+                  recuperados={muebles.length}
                   disponibles={
-                    muebles[category].filter((item) => item.disponible).length
+                    muebles.filter((mueble) => mueble.disponible).length
                   }
                 />
               </Link>
@@ -63,6 +47,6 @@ function Home() {
       <FooterHome />
     </div>
   );
-}
+};
 
 export default Home;

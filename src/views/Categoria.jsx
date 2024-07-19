@@ -1,6 +1,6 @@
+// Categorias.jsx
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import HeaderHome from "../components/HeaderHome";
 import FooterHome from "../components/FooterHome";
 import Filters from "../components/Filters";
 import MueblesPorCategoria from "../components/MueblesPorCategoria";
@@ -8,12 +8,14 @@ import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 
-function Home() {
+const Categoria = () => {
   const { store } = useContext(Context);
-  const { muebles } = store;
-  const { name: categoriaMostrar } = useParams();
+  const { name: categoriaName } = useParams();
 
-  const mueblesCategoria = muebles[categoriaMostrar] || [];
+  // Encontrar la categoría específica en el array mueblesCategorizados
+  const categoriaActual = store.mueblesCategorizados.find(
+    (cat) => cat.categoria === categoriaName
+  );
 
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10">
@@ -25,12 +27,18 @@ function Home() {
           <Filters />
         </div>
         <div className="">
-          <MueblesPorCategoria muebles={mueblesCategoria} />
+          {categoriaActual ? (
+            <MueblesPorCategoria
+              mueblesPorCategorias={categoriaActual.muebles}
+            />
+          ) : (
+            <p>Categoría no encontrada</p>
+          )}
         </div>
       </div>
       <FooterHome />
     </div>
   );
-}
+};
 
-export default Home;
+export default Categoria;
