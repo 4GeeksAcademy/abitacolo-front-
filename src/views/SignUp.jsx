@@ -1,155 +1,166 @@
 import React, { useContext, useState } from "react";
-import LoginForm from "./LoginForm";
 import { Context } from "../context/appContext";
 
-
-
 const SignUp = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const {store, actions} = useContext(Context)
-  const [formData, setFormData] = useState({
-    email : "",
-    name : "",
-    password : "",
-    address: "",
-    nacionality:"",
-    birthDate: ""
-  })
+  const { actions } = useContext(Context);
 
-   
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    password: "",
+    address: "",
+    nationality: "",
+    birth_date: "",
+  });
+
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleChange = (e) => {
-    const {name ,value} = e.target
-    setFormData({...formData , [name] : value})
-    console.log(formData)
-  } 
-/*
-  const handlePassword = (e) => {
-    
-      verificationPassword = e.target.value
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const verifiPassword = () => {
-    
-    if (formData.password  === verificationPassword){
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
     }
 
-  }  */
+    actions.registerUser(formData);
+  };
 
-  if (showLogin) {
-    return <LoginForm />;
-  }
   return (
     <div className="font-sans bg-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
       <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
         <div className="relative sm:max-w-sm w-full">
-          <div className="card bg-abitacoloDarkGrayShadow shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
-          <div className="card bg-abitacoloGreen shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
+          <div className="card bg-abitacoloDarkGrayShadow shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6" />
+          <div className="card bg-abitacoloGreen shadow-lg w-full h-full rounded-3xl absolute transform rotate-6" />
           <div className="relative w-full rounded-3xl px-6 py-4 bg-abitacoloGray -100 shadow-md">
-            <label
-              htmlFor=""
-              className="block mt-3 text-sm text-gray-700 text-center font-semibold"
-            >
-              Registrate
-            </label>
-            <form onSubmit={(e) => {
-              e.preventDefault()
-              actions.registerUser(formData)}} className="mt-10">
-              <div>
-                <input onChange={handleChange} value={formData.name} name="name"
-                  type="text"
-                  placeholder="Nombres"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
+            <h2 className="block mt-3 text-2xl text-gray-700 text-center font-semibold">
+              Regístrate
+            </h2>
+            <form onSubmit={handleSubmit} className="mt-10">
+              {[
+                {
+                  name: "name",
+                  type: "text",
+                  placeholder: "Nombres",
+                  autoComplete: "name",
+                },
+                {
+                  name: "birth_date",
+                  type: "date",
+                  placeholder: "Fecha de nacimiento",
+                  autoComplete: "bday",
+                },
+                {
+                  name: "nationality",
+                  type: "text",
+                  placeholder: "Nacionalidad",
+                  autoComplete: "country-name",
+                },
+                {
+                  name: "address",
+                  type: "text",
+                  placeholder: "Dirección",
+                  autoComplete: "street-address",
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Correo electrónico",
+                  autoComplete: "email",
+                },
+                {
+                  name: "password",
+                  type: "password",
+                  placeholder: "Contraseña",
+                  autoComplete: "new-password",
+                },
+              ].map(({ name, type, placeholder, autoComplete }) => (
+                <div className="mt-7" key={name}>
+                  <label
+                    htmlFor={name}
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    {placeholder}
+                    <input
+                      id={name}
+                      onChange={handleChange}
+                      value={formData[name]}
+                      name={name}
+                      type={type}
+                      placeholder={placeholder}
+                      autoComplete={autoComplete}
+                      className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                    />
+                  </label>
+                </div>
+              ))}
               <div className="mt-7">
-                <input 
-                  type="date" onChange={handleChange} value={formData.birthDate} name="birthDate"
-                  placeholder="Fecha de nacimiento"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Confirmar contraseña
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    onChange={handleConfirmPasswordChange}
+                    value={confirmPassword}
+                    name="confirmPassword"
+                    placeholder="Confirmar contraseña"
+                    autoComplete="new-password"
+                    className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                  />
+                </label>
               </div>
-
               <div className="mt-7">
-                <input
-                  type="text" onChange={handleChange} value={formData.nacionality} name="nacionality"
-                  placeholder="Nacionalidad"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
-              <div className="mt-7">
-                <input
-                  type="text" onChange={handleChange} value={formData.address} name="address"
-                  placeholder="Dirección"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
-              <div className="mt-7">
-                <input
-                 type="email" onChange={handleChange} value={formData.email} name="email"
-                  placeholder="Correo electronico"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
-              <div className="mt-7">
-                <input
-                  type="password" onChange={handleChange} value={formData.password} name="password"
-                  placeholder="Contraseña"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
-              <div className="mt-7">
-                <input
-                  type="password" /* onChange={handlePassword} */
-                  placeholder="Confirmar contraseña"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                />
-              </div>
-
-              <div className="mt-7">
-                <button  type="submit" className="bg-abitacoloGreen -500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <button
+                  type="submit"
+                  className="bg-abitacoloGreen -500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                >
                   Registrar
                 </button>
               </div>
-
               <div className="flex mt-7 items-center text-center">
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
-                <label className="block font-medium text-sm text-gray-600 w-full">
-                  Registrate con
-                </label>
+                <span className="block font-medium text-sm text-gray-600 w-full">
+                  Regístrate con
+                </span>
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
               </div>
-
               <div className="flex mt-7 justify-center w-full">
-                <button className="mr-5 bg-abitacoloGreen -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <button
+                  type="button"
+                  className="mr-5 bg-abitacoloGreen -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                >
                   Facebook
                 </button>
-
-                <button className="bg-abitacoloGrayShadow -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <button
+                  type="button"
+                  className="bg-abitacoloGrayShadow -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                >
                   Google
                 </button>
               </div>
-
-              <div className="mt-7">
-                <div className="flex justify-center items-center">
-                  <label className="mr-2">¿Ya tienes una cuenta?</label>
-                  <a
-                    href="#"
-                    className="text-blue-500 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowLogin(true);
-                    }}
-                  >
-                    Iniciar sesión
-                  </a>
-                </div>
+              <div className="mt-7 flex justify-center items-center">
+                <span className="mr-2">¿Ya tienes una cuenta?</span>
+                <a
+                  href="#"
+                  className="text-blue-500 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  Iniciar sesión
+                </a>
               </div>
             </form>
           </div>

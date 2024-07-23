@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      user: {},
       isDarkMode: false,
       muebles: [],
       mueblesFiltrados: [],
@@ -124,42 +125,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         console.log("Final muebles filtrados:", mueblesFiltrados);
       },
-      registerUser: async(body) => {
+      registerUser: async (body) => {
         try {
-          const response = await fetch("http://localhost:3000/register",{
-          method: "POST",
-          headers:{
-            "Content-Type":  "application/json",
-            "mode": "no-cors",
-            "cors":"no-cors"
-          },
-          body: JSON.stringify(body)
-           
-        });
-        const data = await response.json()
-        console.log(data)
-          
+          const response = await fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log(data);
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
-      loginUser: async(formData)=> {
+
+      loginUser: async (formData) => {
+        const store = getStore();
+
         try {
-          const response = await fetch("http://localhost:3000/login",{
+          const response = await fetch("http://localhost:3000/login", {
             method: "POST",
-            headers:{
-              "Content-Type": "application/json"
+            headers: {
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData)
-          })
-          if (!response.ok) throw new Error("Error en la respuesta del servidor")
-          const data = await response.json()
-          console.log(data)
-          return data
+            body: JSON.stringify(formData),
+          });
+          if (!response.ok)
+            throw new Error("Error en la respuesta del servidor");
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            ...store,
+            user: data.user,
+          });
+          console.log(store.user);
+
+          return data;
         } catch (error) {
-          console.error("Error en el login: ", error)
+          console.error("Error en el login: ", error);
         }
-      }
+      },
     },
   };
 };

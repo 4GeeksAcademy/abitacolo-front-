@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import abitacoloMadridNegro from "../assets/ModoClaro/Logos/AbitacoloMadridNegro.png";
 import abitacoloMadridBlanco from "../assets/ModoOscuro/Logos/AbitacoloMadridBlanco.png";
 
@@ -10,14 +10,18 @@ import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
 import { Link } from "react-router-dom";
 import { Context } from "../context/appContext";
+import ModalLogin from "./ModalLogin"; // Asegúrate de tener este componente
 
 const Navbar = () => {
   const [t, i18n] = useTranslation("global");
   const { store } = useContext(Context);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="sticky top-0 bg-white">
-      {/* <div className=" text-center h-5 bg-abitacoloDarkGrayShadow border-b"></div>
-      <div className=" text-center h-5 bg-abitacoloDarkGrayShadow border-b"></div> */}
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black dark:border-white">
           <Link to={"/"}>
@@ -54,14 +58,15 @@ const Navbar = () => {
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
-                <Link to="/Login">
-                  <FontAwesomeIcon icon={faUser} /> {t("navBar.profile")}
-                </Link>
+                <button onClick={openModal} className="flex items-center">
+                  <FontAwesomeIcon icon={faUser} />{" "}
+                  {store.user.nombre ? store.user.nombre : t("navBar.profile")}
+                </button>
+                {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
             </ul>
           </div>
           <div className="sm:hidden">
-            {" "}
             <DropDown />
           </div>
         </nav>
