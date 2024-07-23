@@ -42,7 +42,6 @@ const MainContent = () => {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
         <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
-
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
       <FooterBody />
