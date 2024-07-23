@@ -19,7 +19,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </p>
       <Link to={"/"}>
         <button
-          className="border p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen"
+          className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen"
           aria-label="Volver"
         >
           Volver
@@ -31,10 +31,16 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             <img src={silla} alt="" />
             <h3 className="font-semibold">{mueble.nombre}</h3>
             <p>
+              <strong>Personalidad:</strong> {mueble.personalidad}
+            </p>
+            <p>
               <strong>Color:</strong> {mueble.color}
             </p>
             <p>
               <strong>Estilo:</strong> {mueble.estilo}
+            </p>
+            <p>
+              <strong>Espacio:</strong> {mueble.espacio}
             </p>
             <p>
               <strong>{mueble.precio_mes}€/mes</strong>
