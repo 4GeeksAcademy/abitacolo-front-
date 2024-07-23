@@ -124,6 +124,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         console.log("Final muebles filtrados:", mueblesFiltrados);
       },
+      registerUser: async(body) => {
+        try {
+          const response = await fetch("http://localhost:3000/register",{
+          method: "POST",
+          headers:{
+            "Content-Type":  "application/json",
+            "mode": "no-cors",
+            "cors":"no-cors"
+          },
+          body: JSON.stringify(body)
+           
+        });
+        const data = await response.json()
+        console.log(data)
+          
+        } catch (error) {
+          console.log(error)
+        }
+      },
+      loginUser: async(formData)=> {
+        try {
+          const response = await fetch("http://localhost:3000/login",{
+            method: "POST",
+            headers:{
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+          })
+          if (!response.ok) throw new Error("Error en la respuesta del servidor")
+          const data = await response.json()
+          console.log(data)
+          return data
+        } catch (error) {
+          console.error("Error en el login: ", error)
+        }
+      }
     },
   };
 };

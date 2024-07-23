@@ -1,8 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SignUp from "./SignUp";
+import { Context } from "../context/appContext";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const LoginForm = () => {
   const [showSignUp, setShowSignUp] = useState(false);
+  const {store,actions} = useContext(Context)
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  })
+  const [loginStatus, setLoginStatus] = useState(null)
+  const navigate = useNavigate()
+
+  const handleChange = (event) => {
+    const {value, name} = event.target
+    setFormData({...formData, [name]: value })
+    console.log(value)
+    console.log(formData)
+  }
+
+  const handleSubmit = async(e) => {
+     e.preventDefault()
+     setLoginStatus(null)
+     try {
+      const response = await actions.loginUser(formData)
+      if(response.token){
+        setLoginStatus('Login correcto')
+        alert('Estás logueado')
+        localStorage.setItem('token', response.token)
+        setTimeout(() => navigate('/'))
+      } else if (response.msg === 'No existe el usuario'){
+        setLoginStatus('Usuario no encontrado')
+      } else {
+        setLoginStatus('Error al acceder a la web')
+      }
+     } catch (error) {
+        setLoginStatus('Error en el servidor')
+     }
+  }
+
+
+
 
   if (showSignUp) {
     return <SignUp />;
@@ -16,7 +56,7 @@ const LoginForm = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSubmit } className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     htmlFor="email"
@@ -24,7 +64,7 @@ const LoginForm = () => {
                   >
                     Your email
                   </label>
-                  <input
+                  <input onChange={handleChange} value={formData.email}
                     type="email"
                     name="email"
                     id="email"
@@ -40,7 +80,7 @@ const LoginForm = () => {
                   >
                     Password
                   </label>
-                  <input
+                  <input onChange={handleChange} value={formData.password}
                     type="password"
                     name="password"
                     id="password"
@@ -78,10 +118,13 @@ const LoginForm = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-black hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign in
                 </button>
+                  {loginStatus && (
+                    <p className={loginStatus === 'Usuario Logueado' ? 'text-green-500' : 'text-red-500'}>{loginStatus}</p>
+                  )}
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <a

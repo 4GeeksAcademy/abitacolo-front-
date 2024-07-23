@@ -14,6 +14,7 @@ import { I18nextProvider } from "react-i18next";
 import SignUp from "./views/SignUp.jsx";
 import Categoria from "./views/Categoria.jsx";
 import HeaderBody from "./components/HeaderBody.jsx";
+import LoginForm from "./views/LoginForm.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -41,8 +42,8 @@ const MainContent = () => {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
         {/* Ruta temporal para ver el componente */}
-        {/* <Route path="/Loguin" element={<LoginForm />} />
-        <Route path="/card" element={<CardCategorias />} /> */}
+        { <Route path="/Login" element={<LoginForm />} />}
+      {/*   <Route path="/card" element={<CardCategorias />} />   */}
 
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>

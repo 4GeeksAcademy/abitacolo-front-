@@ -54,9 +54,9 @@ const Navbar = () => {
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
-                <a href="#" className="hover:underline">
+                <Link to="/Login">
                   <FontAwesomeIcon icon={faUser} /> {t("navBar.profile")}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

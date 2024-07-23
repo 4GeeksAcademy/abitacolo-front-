@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [login, setLogin] = useState(false)
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -45,7 +46,8 @@ export default function DropDown() {
         >
           <li>
             <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-              <FontAwesomeIcon icon={faUser} /> mi cuenta
+              <FontAwesomeIcon icon={faUser} /> 
+                mi cuenta
             </a>
           </li>
           <li>
