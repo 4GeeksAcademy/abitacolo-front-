@@ -124,6 +124,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         console.log("Final muebles filtrados:", mueblesFiltrados);
       },
+    
+
     },
   };
 };
