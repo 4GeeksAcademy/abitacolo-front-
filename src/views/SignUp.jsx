@@ -1,8 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoginForm from "./LoginForm";
+import { Context } from "../context/appContext";
+
+
 
 const SignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
+  const {store, actions} = useContext(Context)
+  const [formData, setFormData] = useState({
+    email : "",
+    name : "",
+    password : "",
+    address: "",
+    nacionality:"",
+    birthDate: ""
+  })
+
+   
+
+  const handleChange = (e) => {
+    const {name ,value} = e.target
+    setFormData({...formData , [name] : value})
+    console.log(formData)
+  } 
+/*
+  const handlePassword = (e) => {
+    
+      verificationPassword = e.target.value
+  }
+
+  const verifiPassword = () => {
+    
+    if (formData.password  === verificationPassword){
+
+    }
+
+  }  */
 
   if (showLogin) {
     return <LoginForm />;
@@ -20,9 +53,11 @@ const SignUp = () => {
             >
               Registrate
             </label>
-            <form className="mt-10">
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              actions.registerUser(formData)}} className="mt-10">
               <div>
-                <input
+                <input onChange={handleChange} value={formData.name} name="name"
                   type="text"
                   placeholder="Nombres"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
@@ -30,8 +65,8 @@ const SignUp = () => {
               </div>
 
               <div className="mt-7">
-                <input
-                  type="email"
+                <input 
+                  type="date" onChange={handleChange} value={formData.birthDate} name="birthDate"
                   placeholder="Fecha de nacimiento"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
@@ -39,7 +74,7 @@ const SignUp = () => {
 
               <div className="mt-7">
                 <input
-                  type="email"
+                  type="text" onChange={handleChange} value={formData.nacionality} name="nacionality"
                   placeholder="Nacionalidad"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
@@ -47,7 +82,15 @@ const SignUp = () => {
 
               <div className="mt-7">
                 <input
-                  type="email"
+                  type="text" onChange={handleChange} value={formData.address} name="address"
+                  placeholder="Dirección"
+                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                />
+              </div>
+
+              <div className="mt-7">
+                <input
+                 type="email" onChange={handleChange} value={formData.email} name="email"
                   placeholder="Correo electronico"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
@@ -55,7 +98,7 @@ const SignUp = () => {
 
               <div className="mt-7">
                 <input
-                  type="password"
+                  type="password" onChange={handleChange} value={formData.password} name="password"
                   placeholder="Contraseña"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
@@ -63,14 +106,14 @@ const SignUp = () => {
 
               <div className="mt-7">
                 <input
-                  type="password"
+                  type="password" /* onChange={handlePassword} */
                   placeholder="Confirmar contraseña"
                   className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
               </div>
 
               <div className="mt-7">
-                <button className="bg-abitacoloGreen -500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <button  type="submit" className="bg-abitacoloGreen -500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
                   Registrar
                 </button>
               </div>
