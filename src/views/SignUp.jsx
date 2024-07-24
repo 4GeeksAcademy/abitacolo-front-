@@ -12,7 +12,6 @@ const SignUp = () => {
     password: "",
     address: "",
     nationality: "",
-  º
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");

@@ -128,7 +128,7 @@ const Filters = () => {
                 name={name}
                 value={formData[name]}
                 onChange={handleInputChange}
-                className={`border-2 border-solid border-black rounded w-20 ${
+                className={`border-2 border-solid border-black text-sm rounded p-2 w-20 ${
                   name === "precioHasta" ? "ml-5" : ""
                 }`}
                 placeholder={name === "precioDesde" ? "desde" : "hasta"}

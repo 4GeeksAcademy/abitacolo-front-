@@ -37,7 +37,7 @@ const CardCategorias = ({ categoria, recuperados, disponibles }) => (
       alt={categoria}
     />
     <div className="mt-4">
-      <div className="font-bold capitalize">{categoria}</div>
+      <div className="font-bold">{categoria}</div>
       <div>{recuperados} muebles recuperados</div>
       <div>{disponibles} muebles disponibles</div>
     </div>
