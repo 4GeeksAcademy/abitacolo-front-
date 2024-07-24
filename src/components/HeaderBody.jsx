@@ -1,12 +1,14 @@
 import { faGears, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useContext } from "react";
 import Markdown from "react-markdown";
 import logoMueble from "../assets/ModoClaro/Categorias/Aparadores.png";
 import { useTranslation } from "react-i18next";
+import { Context } from "../context/appContext";
 
 const HeaderBody = () => {
   const [t, i18n] = useTranslation("global");
+  const { store } = useContext(Context);
   return (
     <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow py-8">
       {" "}
@@ -17,8 +19,10 @@ const HeaderBody = () => {
           </Markdown>
 
           <div className="mt-8 text-sm dark:border-abitacoloGray border-b-2 border-black flex justify-between">
-            <p>{t("navBar.until")}</p>
-            <span className="font-bold">{t("navBar.recovered")}</span>
+            <p>{t("navBar.since")}</p>
+            <span className="font-bold">
+              {store.muebles.length} {t("navBar.recovered")}
+            </span>
           </div>
         </div>
         <img

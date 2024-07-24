@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
 const ModalLogin = ({ onClose }) => {
   const { actions } = useContext(Context);
@@ -35,21 +36,22 @@ const ModalLogin = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
       <div className="rounded-lg  max-w-fit max-h-fit mx-auto relative">
-        <section className="bg-abitacoloGray-50 dark:bg-gray-900">
+        <section className="">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
-            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-              <div className="space-y-4 md:space-y-6 sm:p-7">
-                <div className="flex justify-end">
+            <div className="w-full bg-abitacoloGray rounded-lg shadow dark:border  dark:bg-abitacoloGrayShadow">
+              <div className="space-y-4 md:space-y-6 p-7">
+                <div className="flex justify-between">
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Iniciar sesión
+                  </h1>
                   <button
                     onClick={onClose}
-                    className="text-black hover:text-gray-700"
+                    className="text-black hover:text-gray-700 "
                   >
                     <FontAwesomeIcon icon={faCircleXmark} size="xl" />{" "}
                   </button>
                 </div>
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                  Iniciar sesión en su cuenta.
-                </h1>
+
                 <form
                   onSubmit={handleSubmit}
                   className="space-y-4 md:space-y-6"
@@ -57,9 +59,9 @@ const ModalLogin = ({ onClose }) => {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-lg font-medium text-black dark:text-white"
                     >
-                      Su Email
+                      Email
                     </label>
                     <input
                       type="email"
@@ -68,7 +70,7 @@ const ModalLogin = ({ onClose }) => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="name@company.com"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className=" border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-abitacoloDarkGrayShadow dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                       required
                       autoComplete="email"
                     />
@@ -76,7 +78,7 @@ const ModalLogin = ({ onClose }) => {
                   <div>
                     <label
                       htmlFor="password"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                     >
                       Contraseña
                     </label>
@@ -87,7 +89,7 @@ const ModalLogin = ({ onClose }) => {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="••••••••"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className=" border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-abitacoloDarkGrayShadow dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                       required
                       autoComplete="current-password"
                     />
@@ -101,21 +103,21 @@ const ModalLogin = ({ onClose }) => {
                       />
                       <label
                         htmlFor="remember"
-                        className="ml-3 text-sm text-gray-500 dark:text-gray-300"
+                        className="ml-3 text-abitacoloGrayShadow dark:text-gray-300"
                       >
                         Recordarme
                       </label>
                     </div>
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                    >
-                      Olvido su contraseña?
-                    </a>
                   </div>
+                  <a
+                    href="#"
+                    className="text- font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Olvidó su contraseña?
+                  </a>
                   <button
                     type="submit"
-                    className="w-full text-white bg-black hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    className="w-full text-white bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
                   >
                     Entrar en la cuenta
                   </button>
@@ -130,15 +132,20 @@ const ModalLogin = ({ onClose }) => {
                       {loginStatus}
                     </p>
                   )}
-                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                    Aun no tienes cuenta?{" "}
-                    <button
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                      onClick={onClose}
-                    >
-                      Resgistrate
-                    </button>
-                  </p>
+                  <div className="flex justify-between">
+                    {" "}
+                    <p className=" font-light text-abitacoloDarkGrayShadow dark:text-abitacoloGray">
+                      Aún no tienes cuenta?{" "}
+                    </p>{" "}
+                    <Link to={"/SignUp"}>
+                      <button
+                        className="font-medium text-abitacoloDarkGrayShadow hover:underline dark:text-abitacoloGreen"
+                        onClick={onClose}
+                      >
+                        Registrate
+                      </button>
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>

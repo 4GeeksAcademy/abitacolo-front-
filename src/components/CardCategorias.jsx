@@ -30,7 +30,7 @@ const categoryImages = {
 };
 
 const CardCategorias = ({ categoria, recuperados, disponibles }) => (
-  <div className="p-4 rounded-lg">
+  <div className="p-4 rounded-lg h-fit">
     <img
       className="w-60 rounded-full"
       src={categoryImages[categoria]}

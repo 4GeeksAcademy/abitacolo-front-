@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../context/appContext";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const { actions } = useContext(Context);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -24,11 +26,16 @@ const SignUp = () => {
     setConfirmPassword(e.target.value);
   };
 
+  useEffect(() => {
+    setPasswordMismatch(
+      formData.password !== confirmPassword && confirmPassword !== ""
+    );
+  }, [formData.password, confirmPassword]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (formData.password !== confirmPassword) {
-      alert("Las contraseñas no coinciden");
       return;
     }
 
@@ -39,8 +46,8 @@ const SignUp = () => {
     <div className="font-sans bg-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
       <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
         <div className="relative sm:max-w-sm w-full">
-          <div className="card bg-abitacoloDarkGrayShadow shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6" />
-          <div className="card bg-abitacoloGreen shadow-lg w-full h-full rounded-3xl absolute transform rotate-6" />
+          <div className="bg-abitacoloDarkGrayShadow shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6" />
+          <div className="bg-abitacoloGreen shadow-lg w-full h-full rounded-3xl absolute transform rotate-6" />
           <div className="relative w-full rounded-3xl px-6 py-4 bg-abitacoloGray -100 shadow-md">
             <h2 className="block mt-3 text-2xl text-gray-700 text-center font-semibold">
               Regístrate
@@ -50,7 +57,7 @@ const SignUp = () => {
                 {
                   name: "name",
                   type: "text",
-                  placeholder: "Nombres",
+                  placeholder: "Nombre",
                   autoComplete: "name",
                 },
                 {
@@ -98,7 +105,8 @@ const SignUp = () => {
                       type={type}
                       placeholder={placeholder}
                       autoComplete={autoComplete}
-                      className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                      required
+                      className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl p-2.5 shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                     />
                   </label>
                 </div>
@@ -117,14 +125,19 @@ const SignUp = () => {
                     name="confirmPassword"
                     placeholder="Confirmar contraseña"
                     autoComplete="new-password"
-                    className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                    className="mt-1 block w-full p-2.5 border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                   />
                 </label>
+                {passwordMismatch && (
+                  <p className="text-red-500 font-bold mt-4">
+                    Las contraseñas no coinciden.
+                  </p>
+                )}
               </div>
               <div className="mt-7">
                 <button
                   type="submit"
-                  className="bg-abitacoloGreen -500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  className="bg-abitacoloGreen w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Registrar
                 </button>
@@ -139,28 +152,25 @@ const SignUp = () => {
               <div className="flex mt-7 justify-center w-full">
                 <button
                   type="button"
-                  className="mr-5 bg-abitacoloGreen -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  className="mr-5 bg-abitacoloGreen border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Facebook
                 </button>
                 <button
                   type="button"
-                  className="bg-abitacoloGrayShadow -500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  className="bg-abitacoloGrayShadow border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Google
                 </button>
               </div>
+
               <div className="mt-7 flex justify-center items-center">
                 <span className="mr-2">¿Ya tienes una cuenta?</span>
-                <a
-                  href="#"
-                  className="text-blue-500 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  Iniciar sesión
-                </a>
+                <Link to={"/"}>
+                  <button className="text-blue-500 transition duration-500 ease-in-out transform hover:scale-105">
+                    Iniciar sesión
+                  </button>
+                </Link>
               </div>
             </form>
           </div>

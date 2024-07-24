@@ -26,7 +26,7 @@ const Home = () => {
         <div className="max-smartphone:hidden">
           <Filters />
         </div>
-        <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch">
+        <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch h-fit">
           {mueblesCategorizados.length > 0 ? (
             mueblesCategorizados.map(({ categoria, muebles }) => (
               <Link key={categoria} to={`/categoria/${categoria}`}>
