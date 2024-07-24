@@ -24,13 +24,13 @@ const categoryImages = {
   "Marcos y Espejos": MarcosEspejos,
   "Mesas y Escritorios": MesasEscritorios,
   Mesillas,
-  Otros: OtrosObjetos,
+  "Otros Objetos": OtrosObjetos,
   "Sillas y Taburetes": SillasTaburetes,
   "Sillones y Sofás": SillonesSofas,
 };
 
 const CardCategorias = ({ categoria, recuperados, disponibles }) => (
-  <div className="p-4 rounded-lg">
+  <div className="p-4 rounded-lg h-fit">
     <img
       className="w-60 rounded-full"
       src={categoryImages[categoria]}
