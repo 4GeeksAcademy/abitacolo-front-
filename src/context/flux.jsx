@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const actions = getActions();
         console.log("Fetching muebles...");
 
-        fetch("http://localhost:3000/mueble")
+        fetch("https://bookish-space-guacamole-7v7r479j555vfxpjv-3000.app.github.dev/mueble")
           .then((response) => {
             if (!response.ok) {
               throw new Error("Network response was not ok");
