@@ -11,5 +11,8 @@
   "footer": {
     "recycleOne": "did you know that...?",
     "recycleTwo": "we are a company\n\n committed to sustainability,\n\n and therefore, our website\n\n is low in CO2 emissions"
+  },
+  "home": {
+    "noMueble": "vaya... nada por aquí...\n\n No hemos encontrado muebles con\n\n las **caracteristicas** que buscas =(\n\n ¡Pero no te precupes! Sacamos \n\n muebles todas las semanas. Puedes\n\n **suscribete a nuestra newsletter**\n\n para enterarte de las novedaes."
   }
 }

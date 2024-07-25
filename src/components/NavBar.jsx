@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
 import { Link } from "react-router-dom";
 import { Context } from "../context/appContext";
-import ModalLogin from "./ModalLogin"; // Asegúrate de tener este componente
+import ModalLogin from "./ModalLogin";
 
 const Navbar = () => {
   const [t, i18n] = useTranslation("global");
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black dark:border-white">
           <Link to={"/"}>
-            <div className="w-60">
+            <div className="max-laptop:w-40 w-60">
               <img
                 src={
                   store.isDarkMode
@@ -65,7 +65,7 @@ const Navbar = () => {
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
-                <button onClick={openModal} className="flex items-center">
+                <button onClick={openModal} className="items-center">
                   <FontAwesomeIcon icon={faUser} />{" "}
                   {store.user.nombre ? store.user.nombre : t("navBar.profile")}
                 </button>

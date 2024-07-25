@@ -1,12 +1,15 @@
-import React from "react";
-import flechaLarga from "../assets/ModoClaro/Flechas/FlechaLargaNegro.png";
+import React, { useContext } from "react";
+import flechaLargaNegra from "../assets/ModoClaro/Flechas/FlechaLargaNegro.png";
+import flechaLargaBlanca from "../assets/ModoOscuro/Flechas/D_oscuro-09.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightLong,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../context/appContext";
 
 const Header = () => {
+  const { store } = useContext(Context);
   const steps = [
     {
       text: "selecciona tus muebles favoritos y ajusta el alquiler a tu medida",
@@ -52,7 +55,10 @@ const Header = () => {
             </React.Fragment>
           ))}
         </ol>
-        <img className="" src={flechaLarga} alt="fecha" />
+        <img
+          src={store.isDarkMode ? flechaLargaBlanca : flechaLargaNegra}
+          alt="Logo Abitacolo"
+        />
         <div className="grid">
           <p className="w-44 justify-self-end me-56">
             <span className="font-bold">y lo mejor...</span>

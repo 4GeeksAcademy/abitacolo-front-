@@ -44,22 +44,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       categorizarMuebles: (muebles) => {
         const store = getStore();
-        const categorias = {};
 
-        muebles.forEach((mueble) => {
+        const categoriasReducidas = muebles.reduce((acc, mueble) => {
           const { categoria } = mueble;
-          if (!categorias[categoria]) {
-            categorias[categoria] = [];
+          if (!acc[categoria]) {
+            acc[categoria] = [];
           }
-          categorias[categoria].push(mueble);
-        });
+          acc[categoria].push(mueble);
+          return acc;
+        }, {});
 
-        const mueblesCategorizadosArray = Object.entries(categorias).map(
-          ([categoria, muebles]) => ({
-            categoria,
-            muebles,
-          })
-        );
+        const mueblesCategorizadosArray = Object.entries(
+          categoriasReducidas
+        ).map(([categoria, muebles]) => ({
+          categoria,
+          muebles,
+        }));
 
         setStore({ ...store, mueblesCategorizados: mueblesCategorizadosArray });
       },
