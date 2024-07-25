@@ -1,3 +1,5 @@
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -20,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const actions = getActions();
         console.log("Fetching muebles...");
 
-        fetch("http://localhost:3000/mueble")
+        fetch(`${API_BASE_URL}/mueble`)
           .then((response) => {
             if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -34,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               mueblesFiltrados: data,
             });
             actions.categorizarMuebles(data);
-            console.log("Muebles filtrados:", store.mueblesFiltrados);
+            console.log(import.meta.env.VITE_API_URL);
           })
           .catch((error) => {
             console.error("Error fetching muebles:", error);
@@ -127,7 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       registerUser: async (body) => {
         try {
-          const response = await fetch("http://localhost:3000/users", {
+          const response = await fetch(`${API_BASE_URL}/users`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -150,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
 
         try {
-          const response = await fetch("http://localhost:3000/login", {
+          const response = await fetch(`${API_BASE_URL}/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -175,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       registrarNuevoMueble: async (formData) => {
         const actions = getActions();
         try {
-          const response = await fetch("http://localhost:3000/mueble/", {
+          const response = await fetch(`${API_BASE_URL}/mueble`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
