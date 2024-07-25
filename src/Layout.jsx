@@ -17,6 +17,7 @@ import HeaderBody from "./components/HeaderBody.jsx";
 import RegistroNuevoMueble from "./views/RegistroNuevoMueble.jsx";
 import DetalleMueble from "./components/DetalleMueble.jsx";
 import ConfigurarCuenta from "./views/ConfigurarCuenta.jsx";
+import FormPasarela from "./views/FormPasarela.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -33,20 +34,20 @@ i18next.init({
 
 const MainContent = () => {
   const location = useLocation();
-  const showNavbar = location.pathname !== "/SignUp";
+  const showButton = location.pathname == "/FormPasarela";
 
   return (
     <>
-      {showNavbar && <Navbar />}
+      <Navbar />
       <HeaderBody />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
         <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
-        <Route path="/VistaMueble" element={<DetalleMueble />} />
+        <Route path="/mueble/:id" element={<DetalleMueble />} />
         <Route path="/ConfigurarCuenta" element={<ConfigurarCuenta />} />
-
+        <Route path="/FormPasarela" element={<FormPasarela />} />
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
       <FooterBody />

@@ -52,17 +52,18 @@ const Navbar = () => {
               <li className="">
                 <DarkButton />
               </li>
+
               <li className="flex items-center">
                 <SwitchLanguage />
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="flex items-center">
-                <a href="#" className="hover:underline">
+              <li className="flex items-center max-laptop:hidden">
+                <a href="#" className="hover:underline ">
                   FAQ
                 </a>
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center max-laptop:hidden">
                 <a href="#" className="hover:underline">
                   {t("navBar.mision")}
                 </a>
@@ -90,23 +91,6 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-                        <button
-              className="uelz-button uelz-button-styles"
-              id="uelz-button"
-              data-service-name="Conferencias"
-              data-plan-name="Regional"
-              data-plan-description="Descripción del servicio"
-              data-plan-amount="55.50"
-              data-plan-currency="EUR"
-              data-plan-type="Subscription"
-              data-type-subscription="variable"
-              data-future-charge-action="last_charge"
-              data-consume-units="6"
-              data-external-usage-id="abc2sr5tgd"
-              data-plan-frequency="month"
-            >
-              Comprar
-            </button>
           </div>
           <div className="sm:hidden">
             <DropDown />

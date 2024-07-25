@@ -1,11 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEraser,
-  faSliders,
-  faSortDown,
-} from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../context/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEraser, faSliders } from "@fortawesome/free-solid-svg-icons";
 
 const initialFormData = {
   color: [],
@@ -44,7 +40,7 @@ const filterOptions = {
   ],
 };
 
-const Filters = () => {
+const ModalFiltros = ({ onClose }) => {
   const formRef = useRef(null);
   const [formData, setFormData] = useState(initialFormData);
   const { actions } = useContext(Context);
@@ -67,17 +63,23 @@ const Filters = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     actions.filtrarMuebles(formData);
+    {
+      onClose();
+    }
   };
 
   const handleClearFilters = () => {
     setFormData(initialFormData);
     formRef.current.reset();
     actions.filtrarMuebles(initialFormData);
+    {
+      onClose();
+    }
   };
 
   const renderCheckboxList = (category, options) => (
     <div key={category} className={`list-${category} mt-10`}>
-      <span className="text-3xl max-lg:text-xl">
+      <span className="text-3xl">
         <strong>{category}</strong>
       </span>
       <ul className="list-none mt-5">
@@ -85,14 +87,14 @@ const Filters = () => {
           <li key={`${category}-${option}`}>
             <input
               type="checkbox"
-              id={`${category}-${option}`}
+              id={`${category}-${option}-modal`}
               name={category}
               value={option}
               checked={formData[category].includes(option)}
               onChange={handleInputChange}
               className="mr-2"
             />
-            <label htmlFor={`${category}-${option}`}>{option}</label>
+            <label htmlFor={`${category}-${option}-modal`}>{option}</label>
           </li>
         ))}
       </ul>
@@ -100,27 +102,21 @@ const Filters = () => {
   );
 
   return (
-    <div className="mx-14 dark:bg-prueba-color">
-      <span className="text-3xl max-lg:text-xl ">
-        <strong>
-          estos filtros te <br />
-          pueden servir
-        </strong>
-      </span>
-      <p>
-        <FontAwesomeIcon icon={faSortDown} size="2xl" />
-      </p>
-
-      <form ref={formRef} onSubmit={handleSubmit} className="text-2xl mt-10 max-lg:text-xl">
+    <div className="w-full dark:bg-prueba-color p-2">
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className="text-2xl mt-10 grid grid-cols-2 gap-4"
+      >
         {Object.entries(filterOptions).map(([category, options]) =>
           renderCheckboxList(category, options)
         )}
 
         <div className="filter-Prize mt-10">
-          <span className="text-3xl max-lg:text-xl">
-            <strong>precio(€/mes)</strong>
+          <span className="text-3xl">
+            <strong>precio</strong>
           </span>
-          <div className="mt-4 ">
+          <div className="mt-4">
             {["precioDesde", "precioHasta"].map((name) => (
               <input
                 key={name}
@@ -129,24 +125,25 @@ const Filters = () => {
                 value={formData[name]}
                 onChange={handleInputChange}
                 className={`border-2 border-solid border-black text-sm rounded p-2 w-20 ${
-                  name === "precioHasta" ? "ml-5" : ""
+                  name === "precioHasta" ? "sm:ml-5 max-sm:mt-3" : ""
                 }`}
                 placeholder={name === "precioDesde" ? "desde" : "hasta"}
               />
             ))}
           </div>
+          <strong>(€/mes)</strong>
         </div>
 
         <div className="inline-block border-y-2 border-solid dark:border-abitacoloGray border-black mt-10 p-1">
           <div className="flex justify-center">
             <input
               type="checkbox"
-              id="disponible"
+              id="disponible-modal"
               name="disponible"
               checked={formData.disponible}
               onChange={handleInputChange}
             />
-            <label className="ml-2" htmlFor="disponible">
+            <label className="ml-2" htmlFor="disponible-modal">
               <strong>ver solo muebles</strong> <br />
               <strong> disponibles ahora </strong>
             </label>
@@ -154,13 +151,13 @@ const Filters = () => {
         </div>
 
         {["aplicar filtros", "borrar filtros"].map((text, index) => (
-          <div className="grid mt-5" key={text}>
+          <div className="grid mt-5 h-fit" key={text}>
             <button
               type={index === 0 ? "submit" : "button"}
               onClick={index === 1 ? handleClearFilters : undefined}
-              className={`p-3 border-2 w-64  ${
+              className={`p-3 border-2 ${
                 index === 0 ? "bg-abitacoloGreen" : ""
-              } dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4`}
+              } dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-md mt-4`}
             >
               <FontAwesomeIcon icon={index === 0 ? faSliders : faEraser} />
               <span className="ms-3">{text}</span>
@@ -172,4 +169,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default ModalFiltros;

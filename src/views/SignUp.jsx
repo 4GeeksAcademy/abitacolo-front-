@@ -9,11 +9,7 @@ const SignUp = () => {
 
   const [formData, setFormData] = useState({
     email: "",
-    name: "",
     password: "",
-    address: "",
-    nationality: "",
-    birth_date: "",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,12 +36,12 @@ const SignUp = () => {
       return;
     }
 
-    // Crear un nuevo objeto con solo los campos que tienen valor
+    // Crear un nuevo objeto
     const filledFormData = Object.fromEntries(
       Object.entries(formData).filter(([_, value]) => value !== "")
     );
 
-    // Enviar solo los datos con valor
+    // Enviar solo los datos con valores
     actions.registerUser(filledFormData);
     navigate("/");
   };
@@ -62,30 +58,6 @@ const SignUp = () => {
             </h2>
             <form onSubmit={handleSubmit} className="mt-10">
               {[
-                {
-                  name: "name",
-                  type: "text",
-                  placeholder: "Nombre",
-                  autoComplete: "name",
-                },
-                {
-                  name: "birth_date",
-                  type: "date",
-                  placeholder: "Fecha de nacimiento",
-                  autoComplete: "bday",
-                },
-                {
-                  name: "nationality",
-                  type: "text",
-                  placeholder: "Nacionalidad",
-                  autoComplete: "country-name",
-                },
-                {
-                  name: "address",
-                  type: "text",
-                  placeholder: "Dirección",
-                  autoComplete: "street-address",
-                },
                 {
                   name: "email",
                   type: "email",

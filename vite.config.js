@@ -5,5 +5,6 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['fsevents']
-  } 
+  }
+   
 })
