@@ -8,11 +8,13 @@ import DropDown from "./DropDown";
 import DarkButton from "./DarkButton";
 import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [t, i18n] = useTranslation("global");
   const { store } = useContext(Context);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,10 +67,19 @@ const Navbar = () => {
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
-                <button onClick={openModal} className="items-center">
-                  <FontAwesomeIcon icon={faUser} />{" "}
-                  {store.user.nombre ? store.user.nombre : t("navBar.profile")}
-                </button>
+                <FontAwesomeIcon icon={faUser} />{" "}
+                {store.user.email ? (
+                  <button
+                    onClick={() => navigate("/ConfigurarCuenta")}
+                    className="items-center"
+                  >
+                    {store.user.email}
+                  </button>
+                ) : (
+                  <button onClick={openModal} className="items-center">
+                    {t("navBar.profile")}
+                  </button>
+                )}
                 {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
             </ul>

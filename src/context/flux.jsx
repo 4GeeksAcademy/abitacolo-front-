@@ -3,7 +3,14 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user: {},
+      user: {
+        email: "",
+        name: "",
+        password: "",
+        address: "",
+        nationality: "",
+        birth_date: "",
+      },
       isDarkMode: false,
       muebles: [],
       mueblesFiltrados: [],

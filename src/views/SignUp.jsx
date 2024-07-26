@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../context/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { actions } = useContext(Context);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -46,6 +47,7 @@ const SignUp = () => {
 
     // Enviar solo los datos con valor
     actions.registerUser(filledFormData);
+    navigate("/");
   };
 
   return (
@@ -159,12 +161,6 @@ const SignUp = () => {
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
               </div>
               <div className="flex mt-7 justify-center w-full">
-                <button
-                  type="button"
-                  className="mr-5 bg-abitacoloGreen border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
-                >
-                  Facebook
-                </button>
                 <button
                   type="button"
                   className="bg-abitacoloGrayShadow border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
