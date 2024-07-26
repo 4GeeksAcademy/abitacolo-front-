@@ -15,6 +15,7 @@ import SignUp from "./views/SignUp.jsx";
 import Categoria from "./views/Categoria.jsx";
 import HeaderBody from "./components/HeaderBody.jsx";
 import RegistroNuevoMueble from "./views/RegistroNuevoMueble.jsx";
+import DetalleMueble from "./components/DetalleMueble.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -42,6 +43,7 @@ const MainContent = () => {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
         <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
+        <Route path="/VistaMueble" element={<DetalleMueble />} />
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
       <FooterBody />
