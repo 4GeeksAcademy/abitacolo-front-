@@ -49,12 +49,12 @@ const ConfigurarCuenta = () => {
       <form onSubmit={handleSubmit}>
         <fieldset className="">
           <legend>Información personal</legend>
-          <div className="p-10">
-            <label className="p-5 text-lg font-bold" htmlFor="nombre">
+          <div className="flex flex-col p-2 space-y-2" >
+            <label className="text-lg font-bold" htmlFor="nombre">
               Nombre:
             </label>
             <input
-              className="p-2 m-5 rounded-md"
+              className="p-2 ounded-md"
               type="text"
               id="nombre"
               name="name"
@@ -63,7 +63,7 @@ const ConfigurarCuenta = () => {
               value={formData.name}
               onChange={handleChange}
             />
-            <label className="mx-5 text-lg font-bold" htmlFor="contraseña">
+            <label className="text-lg font-bold" htmlFor="contraseña">
               Nueva contraseña:
             </label>
             <input
@@ -77,7 +77,7 @@ const ConfigurarCuenta = () => {
               onChange={handleChange}
             />
             <label
-              className="mx-5 text-lg font-bold"
+              className=" text-lg font-bold"
               htmlFor="confirmarContraseña"
             >
               Confirmar contraseña:
@@ -97,9 +97,9 @@ const ConfigurarCuenta = () => {
                 Las contraseñas no coinciden.
               </p>
             )}{" "}
-          </div>
-          <div className="p-10">
-            <label className="mx-5 text-lg font-bold" htmlFor="email">
+         
+        
+            <label className=" text-lg font-bold" htmlFor="email">
               Email:
             </label>
             <input
@@ -113,7 +113,7 @@ const ConfigurarCuenta = () => {
               onChange={handleChange}
             />
 
-            <label className="mx-5 text-lg font-bold" htmlFor="direccion">
+            <label className=" text-lg font-bold" htmlFor="direccion">
               Dirección:
             </label>
             <input
@@ -126,9 +126,9 @@ const ConfigurarCuenta = () => {
               value={formData.address}
               onChange={handleChange}
             />
-          </div>
-          <div className="p-10">
-            <label className="mx-5 text-lg font-bold" htmlFor="nacionalidad">
+         
+         
+            <label className=" text-lg font-bold" htmlFor="nacionalidad">
               Nacionalidad:
             </label>
             <input
@@ -143,7 +143,7 @@ const ConfigurarCuenta = () => {
             />
 
             <label
-              className="mx-5 text-lg font-bold"
+              className=" text-lg font-bold"
               htmlFor="fecha_nacimiento"
             >
               Fecha de nacimiento:
@@ -157,15 +157,17 @@ const ConfigurarCuenta = () => {
               value={formData.birth_date}
               onChange={handleChange}
             />
-          </div>
+         </div>
         </fieldset>
-
+        <div className="flex justify-center mt-4">
+          
         <button
-          className="bg-abitacoloGreen hover:ring-2 ring-green-900 px-3 py-2 rounded-md"
+          className="bg-abitacoloGreen hover:ring-2 ring-green-900 px-10 py-3 rounded-md text-center"
           type="submit"
         >
           Enviar
         </button>
+          </div>      
       </form>
     </div>
   );
