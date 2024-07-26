@@ -12,6 +12,7 @@ const SignUp = () => {
     password: "",
     address: "",
     nationality: "",
+    birth_date: "",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -38,7 +39,13 @@ const SignUp = () => {
       return;
     }
 
-    actions.registerUser(formData);
+    // Crear un nuevo objeto con solo los campos que tienen valor
+    const filledFormData = Object.fromEntries(
+      Object.entries(formData).filter(([_, value]) => value !== "")
+    );
+
+    // Enviar solo los datos con valor
+    actions.registerUser(filledFormData);
   };
 
   return (
@@ -82,14 +89,16 @@ const SignUp = () => {
                   type: "email",
                   placeholder: "Correo electrónico",
                   autoComplete: "email",
+                  required: true,
                 },
                 {
                   name: "password",
                   type: "password",
                   placeholder: "Contraseña",
                   autoComplete: "new-password",
+                  required: true,
                 },
-              ].map(({ name, type, placeholder, autoComplete }) => (
+              ].map(({ name, type, placeholder, autoComplete, required }) => (
                 <div className="mt-7" key={name}>
                   <label
                     htmlFor={name}
@@ -104,7 +113,7 @@ const SignUp = () => {
                       type={type}
                       placeholder={placeholder}
                       autoComplete={autoComplete}
-                      required
+                      required={required}
                       className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl p-2.5 shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                     />
                   </label>
@@ -124,6 +133,7 @@ const SignUp = () => {
                     name="confirmPassword"
                     placeholder="Confirmar contraseña"
                     autoComplete="new-password"
+                    required
                     className="mt-1 block w-full p-2.5 border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                   />
                 </label>

@@ -192,6 +192,43 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+      editUser: async (formData) => {
+        const store = getStore();
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/users/${store.user.id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                // Consider adding authentication header if required
+                // "Authorization": `Bearer ${store.token}`
+              },
+              body: JSON.stringify(formData),
+            }
+          );
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(
+              errorData.message || `HTTP error! status: ${response.status}`
+            );
+          }
+
+          const data = await response.json();
+          console.log("User updated successfully:", data);
+          setStore({
+            ...store,
+            user: data.user,
+          });
+
+          return data;
+        } catch (error) {
+          console.error("Error updating user:", error.message);
+          // Consider showing an error message to the user
+          // throw error; // Re-throw if you want to handle it in the component
+        }
+      },
     },
   };
 };
