@@ -54,7 +54,7 @@ const ConfigurarCuenta = () => {
               Nombre:
             </label>
             <input
-              className="p-2 ounded-md"
+              className="p-2 rounded-md"
               type="text"
               id="name"
               name="name"

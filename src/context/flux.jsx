@@ -273,6 +273,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ ...store, carrito: updatedCarrito });
       },
+      addFav: async (fav) => {
+        const store = getStore();
+
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/favourite/mueble/${fav}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ user_id: store.user.id }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("Favorito añadido:", data);
+          return { success: true, data };
+        } catch (error) {
+          console.error("Error al añadir favorito:", error.message);
+          return { success: false, error: error.message };
+        }
+      },
+      deleteFav: async (id) => {
+        try {
+          const response = await fetch(`${API_BASE_URL}/favoritos/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            console.log(result.message);
+            // Puedes actualizar el estado o realizar otras acciones aquí
+          } else {
+            const errorData = await response.json();
+            console.error(
+              errorData.description || "Error al eliminar el favorito"
+            );
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      },
     },
   };
 };
