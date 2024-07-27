@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/appContext";
 
 const ConfigurarCuenta = () => {
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    password: "",
-    address: "",
-    nationality: "",
-    birth_date: "",
+    email: store.user?.email || "",
+    name: store.user?.name || "",
+    password: store.user?.password || "",
+    address: store.user?.address || "",
+    nationality: store.user?.nationality || "",
+    birth_date: store.user?.birth_date || "",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -49,14 +49,14 @@ const ConfigurarCuenta = () => {
       <form onSubmit={handleSubmit}>
         <fieldset className="">
           <legend>Información personal</legend>
-          <div className="flex flex-col p-2 space-y-2" >
-            <label className="text-lg font-bold" htmlFor="nombre">
+          <div className="flex flex-col p-2 space-y-2">
+            <label className="text-lg font-bold" htmlFor="name">
               Nombre:
             </label>
             <input
               className="p-2 ounded-md"
               type="text"
-              id="nombre"
+              id="name"
               name="name"
               placeholder="Ingrese su nombre"
               autoComplete="name"
@@ -76,10 +76,7 @@ const ConfigurarCuenta = () => {
               value={formData.password}
               onChange={handleChange}
             />
-            <label
-              className=" text-lg font-bold"
-              htmlFor="confirmarContraseña"
-            >
+            <label className=" text-lg font-bold" htmlFor="confirmarContraseña">
               Confirmar contraseña:
             </label>
             <input
@@ -97,8 +94,6 @@ const ConfigurarCuenta = () => {
                 Las contraseñas no coinciden.
               </p>
             )}{" "}
-         
-        
             <label className=" text-lg font-bold" htmlFor="email">
               Email:
             </label>
@@ -112,7 +107,6 @@ const ConfigurarCuenta = () => {
               value={formData.email}
               onChange={handleChange}
             />
-
             <label className=" text-lg font-bold" htmlFor="direccion">
               Dirección:
             </label>
@@ -126,8 +120,6 @@ const ConfigurarCuenta = () => {
               value={formData.address}
               onChange={handleChange}
             />
-         
-         
             <label className=" text-lg font-bold" htmlFor="nacionalidad">
               Nacionalidad:
             </label>
@@ -141,11 +133,7 @@ const ConfigurarCuenta = () => {
               value={formData.nationality}
               onChange={handleChange}
             />
-
-            <label
-              className=" text-lg font-bold"
-              htmlFor="fecha_nacimiento"
-            >
+            <label className=" text-lg font-bold" htmlFor="fecha_nacimiento">
               Fecha de nacimiento:
             </label>
             <input
@@ -157,17 +145,16 @@ const ConfigurarCuenta = () => {
               value={formData.birth_date}
               onChange={handleChange}
             />
-         </div>
+          </div>
         </fieldset>
         <div className="flex justify-center mt-4">
-          
-        <button
-          className="bg-abitacoloGreen hover:ring-2 ring-green-900 px-10 py-3 rounded-md text-center"
-          type="submit"
-        >
-          Enviar
-        </button>
-          </div>      
+          <button
+            className="bg-abitacoloGreen hover:ring-2 ring-green-900 px-10 py-3 rounded-md text-center"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
       </form>
     </div>
   );

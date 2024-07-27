@@ -100,7 +100,7 @@ const Filters = () => {
   );
 
   return (
-    <div className="mr-20 dark:bg-prueba-color">
+    <div className="mr-20 w-full dark:bg-prueba-color">
       <span className="text-3xl">
         <strong>
           estos filtros te <br />

@@ -29,7 +29,7 @@ const categoryImages = {
   "Sillones y Sofás": SillonesSofas,
 };
 
-const CardCategorias = ({ categoria, recuperados, disponibles }) => (
+const CardCategorias = ({ categoria, recuperados = 0, disponibles = 0 }) => (
   <div className="p-4 rounded-lg h-fit">
     <img
       className="w-60 rounded-full"
@@ -45,9 +45,9 @@ const CardCategorias = ({ categoria, recuperados, disponibles }) => (
 );
 
 CardCategorias.propTypes = {
-  categoria: PropTypes.string.isRequired,
-  recuperados: PropTypes.number.isRequired,
-  disponibles: PropTypes.number.isRequired,
+  categoria: PropTypes.oneOf(Object.keys(categoryImages)).isRequired,
+  recuperados: PropTypes.number,
+  disponibles: PropTypes.number,
 };
 
 export default CardCategorias;

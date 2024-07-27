@@ -11,6 +11,7 @@ import SwitchLanguage from "./SwitchLanguage";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
+import Carrito from "./Carrito";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -40,12 +41,13 @@ const Navbar = () => {
           </Link>
           <div className="grid place-self-end max-sm:hidden dark:text-white">
             <ul className="flex items-center space-x-4 text-lg">
-              <Link to={"/NuevoMueble"}>
-                {" "}
-                <li className="">
-                  <p>Crear Mueble</p>
-                </li>
-              </Link>
+              {store.user.email && (
+                <Link to="/NuevoMueble">
+                  <li className="">
+                    <p>Crear Mueble</p>
+                  </li>
+                </Link>
+              )}
 
               <li className="">
                 <DarkButton />
@@ -82,6 +84,11 @@ const Navbar = () => {
                 )}
                 {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
+              {store.user.email && (
+                <li className="flex items-center">
+                  <Carrito />
+                </li>
+              )}
             </ul>
           </div>
           <div className="sm:hidden">

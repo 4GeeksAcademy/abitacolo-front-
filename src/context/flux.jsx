@@ -1,3 +1,5 @@
+import { Context } from "./appContext";
+
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -11,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         nationality: "",
         birth_date: "",
       },
+      carrito: [],
       isDarkMode: false,
       muebles: [],
       mueblesFiltrados: [],
@@ -235,6 +238,40 @@ const getState = ({ getStore, getActions, setStore }) => {
           // Consider showing an error message to the user
           // throw error; // Re-throw if you want to handle it in the component
         }
+      },
+      addMuebleToCarrito: (mueble) => {
+        const store = getStore();
+        const updatedCarrito = [...store.carrito];
+        const muebleIndex = updatedCarrito.findIndex(
+          (item) => item.id_codigo === mueble.id_codigo
+        );
+
+        if (muebleIndex !== -1) {
+          updatedCarrito[muebleIndex].quantity += 1;
+        } else {
+          updatedCarrito.push({ ...mueble, quantity: 1 });
+        }
+
+        setStore({ ...store, carrito: updatedCarrito });
+      },
+      removeMuebleFromCarrito: (muebleId) => {
+        const store = getStore();
+        let updatedCarrito = [...store.carrito];
+        const muebleIndex = updatedCarrito.findIndex(
+          (item) => item.id_codigo === muebleId
+        );
+
+        if (muebleIndex !== -1) {
+          if (updatedCarrito[muebleIndex].quantity > 1) {
+            updatedCarrito[muebleIndex].quantity -= 1;
+          } else {
+            updatedCarrito = updatedCarrito.filter(
+              (item) => item.id_codigo !== muebleId
+            );
+          }
+        }
+
+        setStore({ ...store, carrito: updatedCarrito });
       },
     },
   };
