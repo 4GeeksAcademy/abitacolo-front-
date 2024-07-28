@@ -27,39 +27,33 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadSomeData: () => {
         console.log("Testing from flux");
       },
-      getMuebles: () => {
+      getMuebles: async () => {
         const store = getStore();
         const actions = getActions();
         console.log("Fetching muebles...");
 
-        fetch(`${API_BASE_URL}/mueble`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            setStore({
-              ...store,
-              muebles: data,
-              mueblesFiltrados: data,
-            });
-            actions.categorizarMuebles(data);
-            console.log(import.meta.env.VITE_API_URL);
-          })
-          .catch((error) => {
-            console.error("Error fetching muebles:", error);
+        try {
+          const response = await fetch(`${API_BASE_URL}/mueble`);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          setStore({
+            ...store,
+            muebles: data,
+            mueblesFiltrados: data,
           });
+          actions.categorizarMuebles(data);
+          console.log(API_BASE_URL);
+        } catch (error) {
+          console.error("Error fetching muebles:", error);
+        }
       },
       categorizarMuebles: (muebles) => {
         const store = getStore();
-
         const categoriasReducidas = muebles.reduce((acc, mueble) => {
           const { categoria } = mueble;
-          if (!acc[categoria]) {
-            acc[categoria] = [];
-          }
+          if (!acc[categoria]) acc[categoria] = [];
           acc[categoria].push(mueble);
           return acc;
         }, {});
@@ -78,8 +72,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const actions = getActions();
 
         console.log("Applied filters:", filtros);
-
-        // Check if there's initial data to filter
         if (store.muebles.length === 0) {
           console.log("No initial muebles data to filter");
           return;
@@ -88,7 +80,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         let mueblesFiltrados = store.muebles;
         console.log("Initial muebles:", mueblesFiltrados);
 
-        // Filter by availability
         if (filtros.disponible) {
           mueblesFiltrados = mueblesFiltrados.filter(
             (mueble) => mueble.disponible
@@ -96,9 +87,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("After disponibilidad filter:", mueblesFiltrados);
         }
 
-        // Filter by categories (color, estilo, espacio)
         ["color", "estilo", "espacio"].forEach((category) => {
-          if (filtros[category] && filtros[category].length > 0) {
+          if (filtros[category]?.length > 0) {
             mueblesFiltrados = mueblesFiltrados.filter((mueble) =>
               filtros[category].includes(mueble[category])
             );
@@ -106,20 +96,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         });
 
-        // Filter by price range
         if (filtros.precioDesde || filtros.precioHasta) {
-          const precioDesde = filtros.precioDesde
-            ? parseFloat(filtros.precioDesde)
-            : 0;
-          const precioHasta = filtros.precioHasta
-            ? parseFloat(filtros.precioHasta)
-            : Infinity;
-
+          const precioDesde = parseFloat(filtros.precioDesde) || 0;
+          const precioHasta = parseFloat(filtros.precioHasta) || Infinity;
           mueblesFiltrados = mueblesFiltrados.filter((mueble) => {
             const mueblePrecio = parseFloat(mueble.precio_mes);
             return mueblePrecio >= precioDesde && mueblePrecio <= precioHasta;
           });
-
           console.log("After precio filter:", mueblesFiltrados);
           console.log(
             "Precio desde:",
@@ -129,12 +112,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
         }
 
-        // Update the store with filtered furniture
-        setStore({ ...store, mueblesFiltrados: mueblesFiltrados });
-
-        // Recategorize the filtered furniture
+        setStore({ ...store, mueblesFiltrados });
         actions.categorizarMuebles(mueblesFiltrados);
-
         console.log("Final muebles filtrados:", mueblesFiltrados);
       },
       registerUser: async (body) => {
@@ -146,21 +125,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             body: JSON.stringify(body),
           });
-
-          if (!response.ok) {
+          if (!response.ok)
             throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
           const data = await response.json();
           console.log(data);
         } catch (error) {
           console.log(error);
         }
       },
-
       loginUser: async (formData) => {
         const store = getStore();
-
         try {
           const response = await fetch(`${API_BASE_URL}/login`, {
             method: "POST",
@@ -177,8 +151,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             ...store,
             user: data.user,
           });
-          console.log(store.user);
-
           return data;
         } catch (error) {
           console.error("Error en el login: ", error);
@@ -194,7 +166,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             body: JSON.stringify(formData),
           });
-
           const data = await response.json();
           console.log(data);
           actions.getMuebles();
@@ -211,32 +182,25 @@ const getState = ({ getStore, getActions, setStore }) => {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
-                // Consider adding authentication header if required
-                // "Authorization": `Bearer ${store.token}`
               },
               body: JSON.stringify(formData),
             }
           );
-
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(
               errorData.message || `HTTP error! status: ${response.status}`
             );
           }
-
           const data = await response.json();
           console.log("User updated successfully:", data);
           setStore({
             ...store,
             user: data.user,
           });
-
           return data;
         } catch (error) {
           console.error("Error updating user:", error.message);
-          // Consider showing an error message to the user
-          // throw error; // Re-throw if you want to handle it in the component
         }
       },
       addMuebleToCarrito: (mueble) => {
@@ -275,6 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       addFav: async (fav) => {
         const store = getStore();
+        const actions = getActions();
 
         try {
           const response = await fetch(
@@ -287,13 +252,11 @@ const getState = ({ getStore, getActions, setStore }) => {
               body: JSON.stringify({ user_id: store.user.id }),
             }
           );
-
-          if (!response.ok) {
+          if (!response.ok)
             throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
           const data = await response.json();
           console.log("Favorito añadido:", data);
+          actions.getUser();
           return { success: true, data };
         } catch (error) {
           console.error("Error al añadir favorito:", error.message);
@@ -305,11 +268,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(`${API_BASE_URL}/favoritos/${id}`, {
             method: "DELETE",
           });
-
           if (response.ok) {
             const result = await response.json();
             console.log(result.message);
-            // Puedes actualizar el estado o realizar otras acciones aquí
           } else {
             const errorData = await response.json();
             console.error(
@@ -319,6 +280,35 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error("Error:", error);
         }
+      },
+      getUser: () => {
+        return new Promise((resolve, reject) => {
+          const store = getStore();
+          if (!store.user || !store.user.id) {
+            reject(new Error("User ID not found in store"));
+            return;
+          }
+
+          console.log("Fetching user...");
+          fetch(`${API_BASE_URL}/users/${store.user.id}`)
+            .then((response) => {
+              if (!response.ok)
+                throw new Error(`HTTP error! status: ${response.status}`);
+              return response.json();
+            })
+            .then((data) => {
+              setStore({
+                ...store,
+                user: data,
+              });
+              console.log("User data fetched successfully:", data);
+              resolve(data);
+            })
+            .catch((error) => {
+              console.error("Error fetching user:", error.message);
+              reject(error);
+            });
+        });
       },
     },
   };

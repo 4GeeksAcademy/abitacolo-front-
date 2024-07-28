@@ -84,7 +84,7 @@ const Navbar = () => {
                 )}
                 {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
-              {store.user.email && (
+              {store.user.email && store.carrito.length > 0 && (
                 <li className="flex items-center">
                   <Carrito />
                 </li>

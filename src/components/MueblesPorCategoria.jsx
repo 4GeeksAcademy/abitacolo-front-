@@ -27,9 +27,7 @@ import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
 import { Context } from "../context/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
+import FavButton from "./FavButton";
 
 const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
   const { actions, store } = useContext(Context);
@@ -122,17 +120,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
                 >
                   Añadir al carrito
                 </button>
-                {store.user.favourites.some(
-                  (fav) => fav.mueble_id === mueble.id_codigo
-                ) ? (
-                  <button onClick={() => console.log("remove")}>
-                    <FontAwesomeIcon icon={faHeartCrack} />
-                  </button>
-                ) : (
-                  <button onClick={() => actions.addFav(mueble.id_codigo)}>
-                    <FontAwesomeIcon icon={faHeart} />
-                  </button>
-                )}
+                <FavButton mueble={mueble} />
               </div>
             )}
           </div>
