@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         nationality: "",
         birth_date: "",
       },
+      external_customer_id: "",
       carrito: [],
       isDarkMode: false,
       muebles: [],
@@ -28,23 +29,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Testing from flux");
       },
       getMuebles: async () => {
-        const store = getStore();
-        const actions = getActions();
         console.log("Fetching muebles...");
-
         try {
           const response = await fetch(`${API_BASE_URL}/mueble`);
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
+          if (!response.ok) throw new Error("Network response was not ok");
           const data = await response.json();
-          setStore({
+
+          setStore((store) => ({
             ...store,
             muebles: data,
             mueblesFiltrados: data,
-          });
-          actions.categorizarMuebles(data);
-          console.log(API_BASE_URL);
+          }));
+
+          getActions().categorizarMuebles(data);
         } catch (error) {
           console.error("Error fetching muebles:", error);
         }
@@ -150,6 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             ...store,
             user: data.user,
+            external_customer_id: data.user.id,
           });
           return data;
         } catch (error) {
@@ -238,8 +236,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ ...store, carrito: updatedCarrito });
       },
       addFav: async (fav) => {
-        const store = getStore();
-        const actions = getActions();
+        const { user } = getStore();
+        const { getUser } = getActions();
+
+        if (!user || !user.id) {
+          console.error("Usuario no autenticado.");
+          return { success: false, error: "Usuario no autenticado" };
+        }
 
         try {
           const response = await fetch(
@@ -249,20 +252,32 @@ const getState = ({ getStore, getActions, setStore }) => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ user_id: store.user.id }),
+              body: JSON.stringify({ user_id: user.id }),
             }
           );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
+
+          if (!response.ok) {
+            let errorMessage = `HTTP error! status: ${response.status}`;
+            try {
+              const errorData = await response.json();
+              errorMessage = errorData.message || errorMessage;
+            } catch (jsonError) {
+              // Fall back to the original message if JSON parsing fails
+            }
+            throw new Error(errorMessage);
+          }
+
           const data = await response.json();
           console.log("Favorito añadido:", data);
-          actions.getUser();
+
+          await getUser();
           return { success: true, data };
         } catch (error) {
           console.error("Error al añadir favorito:", error.message);
           return { success: false, error: error.message };
         }
       },
+
       deleteFav: async (id) => {
         const actions = getActions();
 
