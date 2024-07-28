@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import otros from "../assets/ModoClaro/Categorias/Otros_objetos.png";
@@ -26,8 +26,12 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
+import { Context } from "../context/appContext";
+import FavButton from "./FavButton";
 
 const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
+  const { actions, store } = useContext(Context);
+
   if (!mueblesPorCategorias || mueblesPorCategorias.length === 0) {
     return (
       <p className="text-center text-xl">
@@ -108,6 +112,17 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             <p>
               <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
             </p>
+            {store.user.email && (
+              <div className="flex justify-between">
+                <button
+                  className="p-2 bg-abitacoloGreen rounded-md mt-3"
+                  onClick={() => actions.addMuebleToCarrito(mueble)}
+                >
+                  Añadir al carrito
+                </button>
+                <FavButton mueble={mueble} />
+              </div>
+            )}
           </div>
         ))}
       </div>

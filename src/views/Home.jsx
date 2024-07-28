@@ -7,10 +7,15 @@ import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import abitacoloNadaAquiBlanco from "../assets/ModoOscuro/Especiales/D_oscuro-06.png";
+import abitacoloNadaAquidNegro from "../assets/ModoClaro/Especiales/D_claro-06.png";
+import Markdown from "react-markdown";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { store } = useContext(Context);
   const { mueblesCategorizados } = store;
+  const [t, i18n] = useTranslation("global");
 
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
@@ -26,9 +31,9 @@ const Home = () => {
         <div className="max-smartphone:hidden">
           <Filters />
         </div>
-        <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch h-fit">
-          {mueblesCategorizados.length > 0 ? (
-            mueblesCategorizados.map(({ categoria, muebles }) => (
+        {mueblesCategorizados.length > 0 ? (
+          <div className="grid w-full max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch h-fit">
+            {mueblesCategorizados.map(({ categoria, muebles }) => (
               <Link key={categoria} to={`/categoria/${categoria}`}>
                 <CardCategorias
                   categoria={categoria}
@@ -38,11 +43,24 @@ const Home = () => {
                   }
                 />
               </Link>
-            ))
-          ) : (
-            <p>No se han encontrado Muebles que cumplan con los filtros.</p>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="">
+            <img
+              className=""
+              src={
+                store.isDarkMode
+                  ? abitacoloNadaAquiBlanco
+                  : abitacoloNadaAquidNegro
+              }
+              alt="Logo Abitacolo"
+            />
+            <Markdown className="mt-4 text-3xl text-left">
+              {t("home.noMueble")}
+            </Markdown>
+          </div>
+        )}
       </div>
       <FooterHome />
     </div>

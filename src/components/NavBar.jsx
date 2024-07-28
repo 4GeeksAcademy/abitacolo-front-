@@ -8,11 +8,14 @@ import DropDown from "./DropDown";
 import DarkButton from "./DarkButton";
 import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
-import ModalLogin from "./ModalLogin"; // Asegúrate de tener este componente
+import ModalLogin from "./ModalLogin";
+import Carrito from "./Carrito";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [t, i18n] = useTranslation("global");
   const { store } = useContext(Context);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +28,7 @@ const Navbar = () => {
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
         <nav className="flex justify-between items-center py-4 border-b-4 border-black dark:border-white">
           <Link to={"/"}>
-            <div className="w-60">
+            <div className="max-laptop:w-40 w-60">
               <img
                 src={
                   store.isDarkMode
@@ -38,12 +41,13 @@ const Navbar = () => {
           </Link>
           <div className="grid place-self-end max-sm:hidden dark:text-white">
             <ul className="flex items-center space-x-4 text-lg">
-              <Link to={"/NuevoMueble"}>
-                {" "}
-                <li className="">
-                  <p>Crear Mueble</p>
-                </li>
-              </Link>
+              {store.user.email && (
+                <Link to="/NuevoMueble">
+                  <li className="">
+                    <p>Crear Mueble</p>
+                  </li>
+                </Link>
+              )}
 
               <li className="">
                 <DarkButton />
@@ -65,12 +69,26 @@ const Navbar = () => {
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
               <li className="relative">
-                <button onClick={openModal} className="flex items-center">
-                  <FontAwesomeIcon icon={faUser} />{" "}
-                  {store.user.nombre ? store.user.nombre : t("navBar.profile")}
-                </button>
+                <FontAwesomeIcon icon={faUser} />{" "}
+                {store.user.email ? (
+                  <button
+                    onClick={() => navigate("/ConfigurarCuenta")}
+                    className="items-center"
+                  >
+                    {store.user.email}
+                  </button>
+                ) : (
+                  <button onClick={openModal} className="items-center">
+                    {t("navBar.profile")}
+                  </button>
+                )}
                 {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
+              {store.user.email && store.carrito.length > 0 && (
+                <li className="flex items-center">
+                  <Carrito />
+                </li>
+              )}
             </ul>
           </div>
           <div className="sm:hidden">
