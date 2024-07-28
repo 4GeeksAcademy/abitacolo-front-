@@ -87,11 +87,27 @@ const Carrito = () => {
           </ul>
           {store.carrito && store.carrito.length > 0 && (
             <div className="border-t border-gray-200 py-2 px-4">
-              <button
+              {/* <button
                 className="w-full bg-abitacoloGray text-white rounded-md py-2 hover:bg-abitacoloGreen transition duration-300"
                 onClick={() => ""}
               >
                 Adquirir
+              </button> */}
+              <button
+                className="uelz-button uelz-button-styles"
+                id="uelz-button"
+                data-service-name="Conferencias"
+                data-plan-name="Regional"
+                data-plan-description="Descripción del servicio"
+                data-plan-amount="55.50"
+                data-plan-currency="EUR"
+                data-plan-type="Subscription"
+                data-type-subscription="variable"
+                data-future-charge-action="last_charge"
+                data-consume-units="6"
+                data-external-usage-id="abc2sr5tgd"
+              >
+                Comprar
               </button>
             </div>
           )}
