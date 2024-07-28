@@ -6,12 +6,14 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       user: {
-        email: "",
-        name: "",
-        password: "",
-        address: "",
-        nationality: "",
-        birth_date: "",
+        "address": null,
+    "birth_date": null,
+    "email": "qwe@qwe.com",
+    "favourites": [],
+    "id": 3,
+    "is_active": true,
+    "name": null,
+    "nationality": null
       },
       external_customer_id: "",
       carrito: [],
