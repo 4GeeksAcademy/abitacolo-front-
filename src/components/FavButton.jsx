@@ -8,9 +8,13 @@ const FavButton = ({ mueble }) => {
   const isFav = store.user.favourites.some(
     (fav) => fav.mueble_id === mueble.id_codigo
   );
+  const deleteFav = store.user.favourites.find(
+    (fav) => fav.mueble_id === mueble.id_codigo
+  );
+
   const handleFavClick = () => {
     if (isFav) {
-      console.log(mueble.id_codigo);
+      actions.deleteFav(deleteFav.id);
     } else {
       actions.addFav(mueble.id_codigo);
     }

@@ -264,6 +264,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       deleteFav: async (id) => {
+        const actions = getActions();
+
         try {
           const response = await fetch(`${API_BASE_URL}/favoritos/${id}`, {
             method: "DELETE",
@@ -271,6 +273,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             const result = await response.json();
             console.log(result.message);
+            actions.getUser();
           } else {
             const errorData = await response.json();
             console.error(
