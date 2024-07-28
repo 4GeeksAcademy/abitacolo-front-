@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     "name": null,
     "nationality": null
       },
-      external_customer_id: "",
+      external_customer_id: "3",
       carrito: [],
       isDarkMode: false,
       muebles: [],
