@@ -330,7 +330,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
-    postPlan: () => {
+      postPlan: () => {
         console.log("postPlan");
         fetch("https://papi.app.uelzpay.com/plans", {
           method: "POST",
