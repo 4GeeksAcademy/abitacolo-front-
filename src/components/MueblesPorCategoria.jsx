@@ -80,13 +80,15 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
+          
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
+            <Link to={"/VistaMueble"}>
             <img
               src={
                 imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros
               }
               alt={mueble.id_codigo}
-            />
+            /></Link>
             <h3 className="font-semibold">{mueble.nombre}</h3>
             <p>
               <strong>Personalidad:</strong> {mueble.personalidad}
