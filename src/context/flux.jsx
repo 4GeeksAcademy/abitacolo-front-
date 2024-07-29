@@ -354,9 +354,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
           redirect: "follow",
         })
-          .then((response) => response.text())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Network response was not ok " + response.statusText
+              );
+            }
+            return response.json(); // assuming the response is JSON
+          })
           .then((result) => console.log(result))
-          .catch((error) => console.error(error));
+          .catch((error) =>
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            )
+          );
       },
     },
   };
