@@ -52,25 +52,25 @@ const Navbar = () => {
               <li className="">
                 <DarkButton />
               </li>
-{/*               <button
-            className="uelz-button uelz-button-styles"
-            id="uelz-button"
-            data-service-name="Conferencias"
-            data-plan-name="Regional"
-            data-plan-description="Descripción del servicio"
-            data-plan-amount="55.50"
-            data-plan-currency="EUR"
-            data-plan-type="Subscription"
-            data-plan-frequency="month"
-            data-plan-billing-cycles="2"
-            data-plan-payment-day="25"
-            data-type-subscription="variable"
-            data-future-charge-action="last_charge"
-            data-consume-units="6"
-            data-external-usage-id="abc2sr5tgd"
-          >
-            Comprar
-          </button> */}
+              <button
+                className="uelz-button uelz-button-styles"
+                id="uelz-button"
+                data-service-name="Conferencias"
+                data-plan-name="Regional"
+                data-plan-description="Descripción del servicio"
+                data-plan-amount="55.50"
+                data-plan-currency="EUR"
+                data-plan-type="Subscription"
+                data-plan-frequency="month"
+                data-plan-billing-cycles="2"
+                data-plan-payment-day="25"
+                data-type-subscription="variable"
+                data-future-charge-action="last_charge"
+                data-consume-units="6"
+                data-external-usage-id="abc2sr5tgd"
+              >
+                Comprar
+              </button>
               <li className="flex items-center">
                 <SwitchLanguage />
                 <span className="ms-3 text-xs leading-none"> ● </span>
