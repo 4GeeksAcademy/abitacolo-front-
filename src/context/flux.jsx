@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       external_customer_id: "",
       carrito: [],
+      precioCarrito: "",
       isDarkMode: false,
       muebles: [],
       mueblesFiltrados: [],
@@ -215,6 +216,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         setStore({ ...store, carrito: updatedCarrito });
+        setStore({
+          ...store,
+          precioCarrito: store.carrito.reduce(
+            (total, mueble) => total + mueble.precio_mes,
+            0
+          ),
+        });
       },
       removeMuebleFromCarrito: (muebleId) => {
         const store = getStore();
@@ -234,6 +242,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         setStore({ ...store, carrito: updatedCarrito });
+        setStore({
+          ...store,
+          precioCarrito: store.carrito.reduce(
+            (total, mueble) => total + mueble.precio_mes,
+            0
+          ),
+        });
       },
       addFav: async (fav) => {
         const { user } = getStore();
@@ -328,9 +343,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
-      postPlan: () => {
-        console.log("postPlan");
-        fetch("https://papi.app.uelzpay.com/plans", {
+      /*  postPlan: () => {
+        try {
+          console.log("postPlan");
+        fetch("/vite.config.js/api", {
           method: "POST",
           headers: {
             "organization-id": "clz2mw6li000nq9016nm5bk0q",
@@ -340,7 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             external_plan_id: "123456789",
             service_id: "clwytfa9o00015dqd4ormlnh7",
-            plan_name: "Plan subscription variable con 4 ciclos, no charge",
+            plan_name: "Plan subscription",
             plan_description:
               "Plan subscription variable con 4 ciclos, no charge",
             plan_type: "subscription",
@@ -363,13 +379,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json(); // assuming the response is JSON
           })
           .then((result) => console.log(result))
-          .catch((error) =>
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
-            )
-          );
-      },
+          .catch((error) => console.error(error));
+          
+        } catch (error) {
+          console.log(error)
+        } */
     },
   };
 };
