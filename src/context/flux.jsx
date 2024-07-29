@@ -328,6 +328,36 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
+      postPlan: () => {
+        console.log("postPlan");
+        fetch("https://papi.app.uelzpay.com/plans", {
+          method: "POST",
+          headers: {
+            "organization-id": "clz2mw6li000nq9016nm5bk0q",
+            "api-key": "b9fc35b5-5b04-4a21-82a3-95cd23c57eab",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            external_plan_id: "123456789",
+            service_id: "clwytfa9o00015dqd4ormlnh7",
+            plan_name: "Plan subscription variable con 4 ciclos, no charge",
+            plan_description:
+              "Plan subscription variable con 4 ciclos, no charge",
+            plan_type: "subscription",
+            plan_amount: 1,
+            plan_currency: "EUR",
+            subscription_type: "variable",
+            future_charge_action: "no_charge",
+            frequency: "month",
+            billing_cycles: 4,
+            payment_day: 7,
+          }),
+          redirect: "follow",
+        })
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.error(error));
+      },
     },
   };
 };
