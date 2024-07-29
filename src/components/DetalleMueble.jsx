@@ -1,9 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import otros from "../assets/ModoClaro/Categorias/Otros_objetos.png";
 import a001 from "../assets/Muebles/a001.webp";
+import { Context } from "../context/appContext";
 
 const DetalleMueble = () => {
+  const { actions, store } = useContext(Context);
+
+  if (!DetalleMueble || DetalleMueble.length === 0) {
+    return (
+      <p className="text-center text-xl">
+        No hay muebles disponibles en esta categoría.
+      </p>
+    );
+  }
+  const imageMap = {
+    a001,
+    b001,
+    b002,
+    c001,
+    c002,
+    c003,
+    d001,
+    d002,
+    f001,
+    h001,
+    l001,
+    n001,
+    n002,
+    n003,
+    n004,
+    n005,
+    o001,
+    r001,
+    r002,
+    r003,
+    s001,
+    s002,
+    t001,
+    t002,
+  };
   const mueble = {
     id_codigo: "a001",
     nombre: "Sillón Acogedor",
@@ -16,18 +52,12 @@ const DetalleMueble = () => {
     fondo: 75,
     altura: 90,
     disponible: true,
-    categoria: "Sillones"
-  };
-
-  const imageMap = {
-    a001,
+    categoria: "Sillones",
   };
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-4xl mb-8 font-bold">
-        {mueble.categoria}
-      </p>
+      <p className="text-4xl mb-8 font-bold">{mueble.categoria}</p>
       <div className="w-full flex justify-start pl-20 mb-3">
         <Link to={"/"}>
           <button
@@ -62,8 +92,7 @@ const DetalleMueble = () => {
         </p>
         <p>
           <strong>
-            {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}cm
-            (H)
+            {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}cm (H)
           </strong>
         </p>
         <p>

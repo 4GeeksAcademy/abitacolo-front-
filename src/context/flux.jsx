@@ -6,14 +6,16 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       user: {
-        email: "",
-        name: "",
-        password: "",
-        address: "",
-        nationality: "",
-        birth_date: "",
+        "address": null,
+    "birth_date": null,
+    "email": "qwe@qwe.com",
+    "favourites": [],
+    "id": 3,
+    "is_active": true,
+    "name": null,
+    "nationality": null
       },
-      external_customer_id: "",
+      external_customer_id: "3",
       carrito: [],
       isDarkMode: false,
       muebles: [],
@@ -356,7 +358,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
           redirect: "follow",
         })
-          .then((response) => response.text())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Network response was not ok " + response.statusText
+              );
+            }
+            return response.json(); // assuming the response is JSON
+          })
           .then((result) => console.log(result))
           .catch((error) => console.error(error));
           
