@@ -52,7 +52,7 @@ const Navbar = () => {
               <li className="">
                 <DarkButton />
               </li>
-              <button
+{/*               <button
             className="uelz-button uelz-button-styles"
             id="uelz-button"
             data-service-name="Conferencias"
@@ -70,7 +70,7 @@ const Navbar = () => {
             data-external-usage-id="abc2sr5tgd"
           >
             Comprar
-          </button>
+          </button> */}
               <li className="flex items-center">
                 <SwitchLanguage />
                 <span className="ms-3 text-xs leading-none"> ● </span>
