@@ -15,6 +15,7 @@ const FormPasarela = () => {
         console.log(value)
         setFormUel(prevState => {
             const newState = {...prevState , [name]: value}
+            console.log(newState)
             return newState
         })
         console.log(formUel)
@@ -76,12 +77,12 @@ const FormPasarela = () => {
               
             >
               <option value="">Selecciona tu plan</option>
-              <option value="1 mes">1 mes</option>
-              <option value="3 meses">
-               3 meses
+              <option value="day">day</option>
+              <option value="week">
+               week
               </option>
-              <option value="6 meses">6 meses</option>
-              <option value="12 meses">12 meses</option>
+              <option value="month">month</option>
+              <option value="year">year</option>
       
             </select>
           </div>
