@@ -5,12 +5,15 @@ import { useTranslation } from "react-i18next";
 import { Context } from "../context/appContext";
 import { Link } from "react-router-dom";
 
-
 const Carrito = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const { store, actions } = useContext(Context);
   const { t } = useTranslation("global");
+  const totalPrecio = store.carrito.reduce(
+    (total, mueble) => total + mueble.precio_mes,
+    0
+  );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -88,16 +91,14 @@ const Carrito = () => {
             )}
           </ul>
           {store.carrito && store.carrito.length > 0 && (
-            <div className="border-t border-gray-200 py-2 px-4">
-              {/* <button
-                className="w-full bg-abitacoloGray text-white rounded-md py-2 hover:bg-abitacoloGreen transition duration-300"
-                onClick={() => ""}
-              >
-                Adquirir
-              </button> */}
+            <div className="border-t border-gray-200 py-2 px-4 flex justify-between">
+              <span>
+                <span>Total: {store.precioCarrito}€</span>
+              </span>
               <Link to={"/FormPasarela"}>
-              <button>Crear plan</button>
-
+                <button className="bg-abitacoloGreen rounded-md p-2">
+                  Completar
+                </button>
               </Link>
             </div>
           )}

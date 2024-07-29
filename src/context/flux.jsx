@@ -6,22 +6,20 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       user: {
-        "address": null,
-    "birth_date": null,
-    "email": "qwe@qwe.com",
-    "favourites": [],
-    "id": 3,
-    "is_active": true,
-    "name": null,
-    "nationality": null
+        email: "",
+        name: "",
+        password: "",
+        address: "",
+        nationality: "",
+        birth_date: "",
       },
-      external_customer_id: "3",
+      external_customer_id: "",
       carrito: [],
+      precioCarrito: "",
       isDarkMode: false,
       muebles: [],
       mueblesFiltrados: [],
       mueblesCategorizados: [],
-      
     },
     actions: {
       toggleDarkMode: () => {
@@ -218,6 +216,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         setStore({ ...store, carrito: updatedCarrito });
+        setStore({
+          ...store,
+          precioCarrito: store.carrito.reduce(
+            (total, mueble) => total + mueble.precio_mes,
+            0
+          ),
+        });
       },
       removeMuebleFromCarrito: (muebleId) => {
         const store = getStore();
@@ -237,6 +242,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         setStore({ ...store, carrito: updatedCarrito });
+        setStore({
+          ...store,
+          precioCarrito: store.carrito.reduce(
+            (total, mueble) => total + mueble.precio_mes,
+            0
+          ),
+        });
       },
       addFav: async (fav) => {
         const { user } = getStore();
@@ -331,7 +343,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
-     /*  postPlan: () => {
+      /*  postPlan: () => {
         try {
           console.log("postPlan");
         fetch("/vite.config.js/api", {
@@ -372,8 +384,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.log(error)
         } */
-        
-      
     },
   };
 };
