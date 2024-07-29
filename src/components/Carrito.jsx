@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Context } from "../context/appContext";
+import { Link } from "react-router-dom";
+
 
 const Carrito = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +95,10 @@ const Carrito = () => {
               >
                 Adquirir
               </button> */}
-              <button onClick={() => actions.postPlan()}>Crear plan</button>
+              <Link to={"/FormPasarela"}>
+              <button>Crear plan</button>
+
+              </Link>
             </div>
           )}
         </div>

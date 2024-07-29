@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       muebles: [],
       mueblesFiltrados: [],
       mueblesCategorizados: [],
+      
     },
     actions: {
       toggleDarkMode: () => {
@@ -328,9 +329,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
-      postPlan: () => {
-        console.log("postPlan");
-        fetch("https://papi.app.uelzpay.com/plans", {
+     /*  postPlan: () => {
+        try {
+          console.log("postPlan");
+        fetch("/vite.config.js/api", {
           method: "POST",
           headers: {
             "organization-id": "clz2mw6li000nq9016nm5bk0q",
@@ -340,7 +342,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             external_plan_id: "123456789",
             service_id: "clwytfa9o00015dqd4ormlnh7",
-            plan_name: "Plan subscription variable con 4 ciclos, no charge",
+            plan_name: "Plan subscription",
             plan_description:
               "Plan subscription variable con 4 ciclos, no charge",
             plan_type: "subscription",
@@ -357,7 +359,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.error(error));
-      },
+          
+        } catch (error) {
+          console.log(error)
+        } */
+        
+      
     },
   };
 };
