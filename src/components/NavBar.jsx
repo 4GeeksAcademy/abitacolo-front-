@@ -90,7 +90,7 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-            <button
+                        <button
               className="uelz-button uelz-button-styles"
               id="uelz-button"
               data-service-name="Conferencias"
@@ -103,6 +103,7 @@ const Navbar = () => {
               data-future-charge-action="last_charge"
               data-consume-units="6"
               data-external-usage-id="abc2sr5tgd"
+              data-plan-frequency="month"
             >
               Comprar
             </button>
