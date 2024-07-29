@@ -90,7 +90,7 @@ const FormPasarela = () => {
         </div>
 
         <div className="boton flex justify-center">
-          <button
+{/*           <button
             className="uelz-button uelz-button-styles"
             id="uelz-button"
             data-service-name={formUel.name}
@@ -107,7 +107,7 @@ const FormPasarela = () => {
             data-plan-payment-day={formUel.pay_day}
           >
             Comprar
-          </button>
+          </button> */}
         </div>
       </form>
                    <button
