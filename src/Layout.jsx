@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "/src/views/Home.jsx";
@@ -36,22 +36,10 @@ i18next.init({
 const MainContent = () => {
   const location = useLocation();
   const showNavbar = location.pathname !== "/SignUp";
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <>
       {showNavbar && <Navbar />}
-      <BotonUelz />
-
       <HeaderBody />
       <Routes>
         <Route path="/" element={<Home />} />

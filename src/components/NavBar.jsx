@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
 import Carrito from "./Carrito";
-import BotonUelz from "./BotonUelz";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -91,7 +90,6 @@ const Navbar = () => {
                   <Carrito />
                 </li>
               )}
-              <BotonUelz />
             </ul>
           </div>
           <div className="sm:hidden">

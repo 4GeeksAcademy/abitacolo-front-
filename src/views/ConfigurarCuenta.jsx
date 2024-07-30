@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/appContext";
-import BotonUelz from "../components/BotonUelz";
 
 const ConfigurarCuenta = () => {
   const { store, actions } = useContext(Context);
@@ -157,7 +156,6 @@ const ConfigurarCuenta = () => {
           </button>
         </div>
       </form>
-      <BotonUelz />
     </div>
   );
 };

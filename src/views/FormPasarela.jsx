@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
 import { Context } from "../context/appContext";
-import BotonUelz from "../components/BotonUelz";
 
 const FormPasarela = () => {
   const { store } = useContext(Context);
@@ -89,29 +88,7 @@ const FormPasarela = () => {
             />
           </div>
         </div>
-
-        <div className="boton flex justify-center">
-          {/*           <button
-            className="uelz-button uelz-button-styles"
-            id="uelz-button"
-            data-service-name={formUel.name}
-            data-plan-name="Regional"
-            data-plan-description="Descripción del servicio"
-            data-plan-amount={store.precioCarrito}
-            data-plan-currency="EUR"
-            data-plan-type="Subscription"
-            data-type-subscription="variable"
-            data-future-charge-action="last_charge"
-            data-consume-units="1"
-            data-external-usage-id="abc2sr5tgd"
-            data-plan-frequency={formUel.plan_time}
-            data-plan-payment-day={formUel.pay_day}
-          >
-            Comprar
-          </button> */}
-        </div>
       </form>
-      <BotonUelz />
     </div>
   );
 };
