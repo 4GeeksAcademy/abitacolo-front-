@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
 import Carrito from "./Carrito";
+import BotonUelz from "./BotonUelz";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -90,25 +91,7 @@ const Navbar = () => {
                   <Carrito />
                 </li>
               )}
-              <button
-                className="uelz-button uelz-button-styles"
-                id="uelz-button"
-                data-service-name="Conferencias"
-                data-plan-name="Regional"
-                data-plan-description="Descripción del servicio"
-                data-plan-amount="55.50"
-                data-plan-currency="EUR"
-                data-plan-type="Subscription"
-                data-plan-frequency="month"
-                data-plan-billing-cycles="2"
-                data-plan-payment-day="25"
-                data-type-subscription="variable"
-                data-future-charge-action="last_charge"
-                data-consume-units="6"
-                data-external-usage-id="abc2sr5tgd"
-              >
-                Comprar
-              </button>
+              <BotonUelz />
             </ul>
           </div>
           <div className="sm:hidden">
