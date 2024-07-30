@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
 import Carrito from "./Carrito";
-import BotonUelz from "./BotonUelz";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -53,7 +52,7 @@ const Navbar = () => {
               <li className="">
                 <DarkButton />
               </li>
-              <BotonUelz />
+
               <li className="flex items-center">
                 <SwitchLanguage />
                 <span className="ms-3 text-xs leading-none"> ● </span>
@@ -93,7 +92,6 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-
           <div className="sm:hidden">
             <DropDown />
           </div>

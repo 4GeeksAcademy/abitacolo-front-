@@ -1,5 +1,3 @@
-import { Context } from "./appContext";
-
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -14,9 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         birth_date: "",
       },
       payment_data: {
-        type_sub: "", 
-        time_sub:"",
-        payment_day:"",
+        type_sub: "",
+        time_sub: "",
+        payment_day: "",
         finish_contract: "",
         frecuency: "",
       },
@@ -37,18 +35,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Testing from flux");
       },
       getMuebles: async () => {
+        const store = getStore();
+
         console.log("Fetching muebles...");
         try {
           const response = await fetch(`${API_BASE_URL}/mueble`);
           if (!response.ok) throw new Error("Network response was not ok");
           const data = await response.json();
-
-          setStore((store) => ({
-            ...store,
-            muebles: data,
-            mueblesFiltrados: data,
-          }));
-
+          setStore({ ...store, muebles: data, mueblesFiltrados: data });
           getActions().categorizarMuebles(data);
         } catch (error) {
           console.error("Error fetching muebles:", error);
@@ -350,47 +344,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         });
       },
-      /*  postPlan: () => {
-        try {
-          console.log("postPlan");
-        fetch("/vite.config.js/api", {
-          method: "POST",
-          headers: {
-            "organization-id": "clz2mw6li000nq9016nm5bk0q",
-            "api-key": "b9fc35b5-5b04-4a21-82a3-95cd23c57eab",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            external_plan_id: "123456789",
-            service_id: "clwytfa9o00015dqd4ormlnh7",
-            plan_name: "Plan subscription",
-            plan_description:
-              "Plan subscription variable con 4 ciclos, no charge",
-            plan_type: "subscription",
-            plan_amount: 1,
-            plan_currency: "EUR",
-            subscription_type: "variable",
-            future_charge_action: "no_charge",
-            frequency: "month",
-            billing_cycles: 4,
-            payment_day: 7,
-          }),
-          redirect: "follow",
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(
-                "Network response was not ok " + response.statusText
-              );
-            }
-            return response.json(); // assuming the response is JSON
-          })
-          .then((result) => console.log(result))
-          .catch((error) => console.error(error));
-          
-        } catch (error) {
-          console.log(error)
-        } */
     },
   };
 };
