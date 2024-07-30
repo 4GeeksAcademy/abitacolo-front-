@@ -3,21 +3,8 @@ import React from "react";
 const BotonUelz = () => {
   return (
     <button
-      className="uelz-button uelz-button-styles"
-      id="uelz-button"
-      data-service-name="Conferencias"
-      data-plan-name="Regional"
-      data-plan-description="Descripción del servicio"
-      data-plan-amount="55.50"
-      data-plan-currency="EUR"
-      data-plan-type="Subscription"
-      data-plan-frequency="month"
-      data-plan-billing-cycles="2"
-      data-plan-payment-day="25"
-      data-type-subscription="variable"
-      data-future-charge-action="last_charge"
-      data-consume-units="6"
-      data-external-usage-id="abc2sr5tgd"
+      class="uelz-button uelz-button-styles"
+      data-service-id="clz8bmabl0033q90105zjnj3z"
     >
       Comprar
     </button>
