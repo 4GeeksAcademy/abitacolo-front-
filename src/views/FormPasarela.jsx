@@ -2,12 +2,13 @@ import React, { useCallback, useContext, useState } from "react";
 import { Context } from "../context/appContext";
 
 const FormPasarela = () => {
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const [formUel, setFormUel] = useState({
     name: "",
     plan_time: "",
     pay_day: "",
+    subcription_type:"",
   });
 
   const handleChange = useCallback((e) => {
@@ -54,6 +55,25 @@ const FormPasarela = () => {
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="w-full mb-5 group">
             <label htmlFor="floating_color" className="dark:text-white">
+              Tipo de Suscripción
+            </label>
+            <select
+              name="subcription_type"
+              id="floating_subcription_type"
+              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              required
+              value={formUel.subcription_type}
+              onChange={handleChange}
+            >
+              <option value="">Selecciona tu plan</option>
+              <option value="Pago Único">Pago Único</option>
+              <option value="Subscripción Fija">Subscripción Fija</option>
+              <option value="Subscripción Variable">Subscripción Variable</option>
+              
+            </select>
+          </div>
+          <div className="w-full mb-5 group">
+            <label htmlFor="floating_color" className="dark:text-white">
               Tiempo del plan
             </label>
             <select
@@ -65,10 +85,8 @@ const FormPasarela = () => {
               onChange={handleChange}
             >
               <option value="">Selecciona tu plan</option>
-              <option value="day">day</option>
-              <option value="week">week</option>
-              <option value="month">month</option>
-              <option value="year">year</option>
+              <option value="6 meses"> 6 meses</option>
+              <option value="1 año"> 1 año</option>
             </select>
           </div>
           <div className="w-full mb-5 group">
