@@ -51,7 +51,8 @@ const MainContent = () => {
         <Route path="/FormPasarela" element={<FormPasarela />} />
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
-      {showButton && <BotonUelz />}
+      {/* {showButton && <BotonUelz />} */}
+      <BotonUelz />
       <FooterBody />
     </>
   );
