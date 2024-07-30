@@ -13,6 +13,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         nationality: "",
         birth_date: "",
       },
+      payment_data: {
+        type_sub: "", 
+        time_sub:"",
+        payment_day:"",
+        finish_contract: "",
+        frecuency: "",
+      },
       external_customer_id: "",
       carrito: [],
       precioCarrito: "",
