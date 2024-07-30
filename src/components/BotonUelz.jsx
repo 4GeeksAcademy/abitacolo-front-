@@ -20,6 +20,7 @@ const BotonUelz = () => {
       data-future-charge-action="last_charge"
       data-consume-units="1"
       data-external-usage-id="abc2sr5tgd"
+      data-customer-email={store.user.email}
     >
       Comprar
     </button>
