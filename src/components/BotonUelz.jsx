@@ -18,7 +18,7 @@ const BotonUelz = () => {
       data-plan-payment-day="25"
       data-type-subscription="variable"
       data-future-charge-action="last_charge"
-      data-consume-units="6"
+      data-consume-units="1"
       data-external-usage-id="abc2sr5tgd"
     >
       Comprar
