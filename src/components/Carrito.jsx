@@ -10,10 +10,6 @@ const Carrito = () => {
   const dropdownRef = useRef(null);
   const { store, actions } = useContext(Context);
   const { t } = useTranslation("global");
-  const totalPrecio = store.carrito.reduce(
-    (total, mueble) => total + mueble.precio_mes,
-    0
-  );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
