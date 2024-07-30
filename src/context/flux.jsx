@@ -151,6 +151,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             user: data.user,
             external_customer_id: data.user.id,
           });
+          localStorage.setItem("external_customer_id", data.user.id);
+
           return data;
         } catch (error) {
           console.error("Error en el login: ", error);
