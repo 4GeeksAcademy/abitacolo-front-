@@ -8,7 +8,7 @@ import DropDown from "./DropDown";
 import DarkButton from "./DarkButton";
 import { useTranslation } from "react-i18next";
 import SwitchLanguage from "./SwitchLanguage";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../context/appContext";
 import ModalLogin from "./ModalLogin";
 import Carrito from "./Carrito";
@@ -23,6 +23,9 @@ const Navbar = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const location = useLocation();
+  const showButton = location.pathname == "/FormPasarela";
 
   return (
     <div className="sticky top-0 bg-white">
@@ -91,7 +94,7 @@ const Navbar = () => {
                   <Carrito />
                 </li>
               )}
-              <BotonUelz />
+              {showButton && <BotonUelz />}
             </ul>
           </div>
           <div className="sm:hidden">
