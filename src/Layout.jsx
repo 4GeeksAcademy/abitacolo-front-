@@ -18,6 +18,7 @@ import RegistroNuevoMueble from "./views/RegistroNuevoMueble.jsx";
 import DetalleMueble from "./components/DetalleMueble.jsx";
 import ConfigurarCuenta from "./views/ConfigurarCuenta.jsx";
 import FormPasarela from "./views/FormPasarela.jsx";
+import BotonUelz from "./components/BotonUelz.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -39,6 +40,8 @@ const MainContent = () => {
   return (
     <>
       {showNavbar && <Navbar />}
+      <BotonUelz />
+
       <HeaderBody />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -47,9 +50,10 @@ const MainContent = () => {
         <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
         <Route path="/VistaMueble" element={<DetalleMueble />} />
         <Route path="/ConfigurarCuenta" element={<ConfigurarCuenta />} />
-        <Route path="/FormPasarela" element={<FormPasarela/>} />
+        <Route path="/FormPasarela" element={<FormPasarela />} />
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
+      <BotonUelz />
       <FooterBody />
     </>
   );

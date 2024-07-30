@@ -91,7 +91,6 @@ const FooterBody = () => {
           © {new Date().getFullYear()} Abitacolo. Todos los derechos reservados.
         </p>
       </div>
-      <BotonUelz />
     </div>
   );
 };
