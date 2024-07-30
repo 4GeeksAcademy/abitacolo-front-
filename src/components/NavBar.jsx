@@ -24,6 +24,9 @@ const Navbar = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const location = useLocation();
+  const showButton = location.pathname == "/FormPasarela";
+
   return (
     <div className="sticky top-0 bg-white">
       <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
@@ -91,7 +94,7 @@ const Navbar = () => {
                   <Carrito />
                 </li>
               )}
-              <BotonUelz />
+              {showButton && <BotonUelz />}
             </ul>
           </div>
           <div className="sm:hidden">
