@@ -32,19 +32,20 @@ i18next.init({
     },
   },
 });
-useEffect(() => {
-  const script = document.createElement("script");
-  script.src =
-    "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
-  script.async = true;
-  document.body.appendChild(script);
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
+
 const MainContent = () => {
   const location = useLocation();
   const showNavbar = location.pathname !== "/SignUp";
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>
