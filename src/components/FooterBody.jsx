@@ -11,6 +11,7 @@ import { faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import SwitchLanguage from "./SwitchLanguage";
+import BotonUelz from "./BotonUelz";
 
 const FooterBody = () => {
   const [t] = useTranslation("global");
@@ -90,6 +91,7 @@ const FooterBody = () => {
           © {new Date().getFullYear()} Abitacolo. Todos los derechos reservados.
         </p>
       </div>
+      <BotonUelz />
     </div>
   );
 };
