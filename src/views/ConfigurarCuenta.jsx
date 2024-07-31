@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/appContext";
+import ModalFavoritos from "../components/ModalFavoritos";
 
 const ConfigurarCuenta = () => {
   const { store, actions } = useContext(Context);
@@ -46,6 +47,11 @@ const ConfigurarCuenta = () => {
   return (
     <div className="px-20 py-5 bg-abitacoloGray">
       <p className="text-2xl py-5">Configurar cuenta:</p>
+      <p className="p-2 text-xl">Mis favoritos:</p>
+      <div className="flex justify-between px-5 my-5">
+        <ModalFavoritos />
+      </div>
+
       <form onSubmit={handleSubmit}>
         <fieldset className="">
           <legend>Información personal</legend>

@@ -57,8 +57,8 @@ const Navbar = () => {
                 <SwitchLanguage />
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="flex items-center">
-                <a href="#" className="hover:underline">
+              <li className="flex items-center max-laptop:hidden">
+                <a href="#" className="hover:underline ">
                   FAQ
                 </a>
                 <span className="ms-3 text-xs leading-none"> ● </span>
