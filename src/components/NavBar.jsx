@@ -63,7 +63,7 @@ const Navbar = () => {
                 </a>
                 <span className="ms-3 text-xs leading-none"> ● </span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center max-laptop:hidden">
                 <a href="#" className="hover:underline">
                   {t("navBar.mision")}
                 </a>

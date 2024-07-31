@@ -1,11 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { Context } from "../context/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEraser,
-  faSliders,
-  faSortDown,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faSliders } from "@fortawesome/free-solid-svg-icons";
 
 const initialFormData = {
   color: [],
@@ -91,14 +87,14 @@ const ModalFiltros = ({ onClose }) => {
           <li key={`${category}-${option}`}>
             <input
               type="checkbox"
-              id={`${category}-${option}`}
+              id={`${category}-${option}-modal`}
               name={category}
               value={option}
               checked={formData[category].includes(option)}
               onChange={handleInputChange}
               className="mr-2"
             />
-            <label htmlFor={`${category}-${option}`}>{option}</label>
+            <label htmlFor={`${category}-${option}-modal`}>{option}</label>
           </li>
         ))}
       </ul>
@@ -107,16 +103,6 @@ const ModalFiltros = ({ onClose }) => {
 
   return (
     <div className="w-full dark:bg-prueba-color p-2">
-      <span className="text-3xl">
-        <strong>
-          estos filtros te <br />
-          pueden servir
-        </strong>
-      </span>
-      <p>
-        <FontAwesomeIcon icon={faSortDown} size="2xl" />
-      </p>
-
       <form
         ref={formRef}
         onSubmit={handleSubmit}
@@ -152,12 +138,12 @@ const ModalFiltros = ({ onClose }) => {
           <div className="flex justify-center">
             <input
               type="checkbox"
-              id="disponible"
+              id="disponible-modal"
               name="disponible"
               checked={formData.disponible}
               onChange={handleInputChange}
             />
-            <label className="ml-2" htmlFor="disponible">
+            <label className="ml-2" htmlFor="disponible-modal">
               <strong>ver solo muebles</strong> <br />
               <strong> disponibles ahora </strong>
             </label>
@@ -165,7 +151,7 @@ const ModalFiltros = ({ onClose }) => {
         </div>
 
         {["aplicar filtros", "borrar filtros"].map((text, index) => (
-          <div className="grid mt-5" key={text}>
+          <div className="grid mt-5 h-fit" key={text}>
             <button
               type={index === 0 ? "submit" : "button"}
               onClick={index === 1 ? handleClearFilters : undefined}
