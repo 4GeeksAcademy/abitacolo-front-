@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import HeaderHome from "../components/HeaderHome";
 import FooterHome from "../components/FooterHome";
 import Filters from "../components/Filters";
@@ -11,21 +11,31 @@ import abitacoloNadaAquiBlanco from "../assets/ModoOscuro/Especiales/D_oscuro-06
 import abitacoloNadaAquidNegro from "../assets/ModoClaro/Especiales/D_claro-06.png";
 import Markdown from "react-markdown";
 import { useTranslation } from "react-i18next";
+import ModalFiltros from "../components/ModalFiltros";
 
 const Home = () => {
   const { store } = useContext(Context);
   const { mueblesCategorizados } = store;
   const [t, i18n] = useTranslation("global");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
       <div className="max-xl:hidden">
         <HeaderHome />
       </div>
-      <div className="xl:hidden">
-        <button className="bg-gray-400 p-2 rounded text-2xl">
+      <div className="smartphone:hidden">
+        <button
+          onClick={isModalOpen ? closeModal : openModal}
+          className="bg-gray-400 p-2 rounded text-2xl"
+        >
           <FontAwesomeIcon icon={faSliders} /> Filtros
         </button>
+        {isModalOpen && <ModalFiltros onClose={closeModal} />}
       </div>
       <div className="flex mt-14 max-xl:justify-center">
         <div className="max-smartphone:hidden">
