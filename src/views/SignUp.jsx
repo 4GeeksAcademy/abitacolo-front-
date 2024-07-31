@@ -40,7 +40,7 @@ const SignUp = () => {
       return;
     }
 
-    // Crear un nuevo objeto con solo los campos que tienen valor
+    // Crear un nuevo objeto 
     const filledFormData = Object.fromEntries(
       Object.entries(formData).filter(([_, value]) => value !== "")
     );
