@@ -80,15 +80,17 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
-          
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
             <Link to={"/VistaMueble"}>
-            <img
-              src={
-                imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros
-              }
-              alt={mueble.id_codigo}
-            /></Link>
+              <img
+                src={
+                  imageMap[mueble.id_codigo]
+                    ? imageMap[mueble.id_codigo]
+                    : otros
+                }
+                alt={mueble.id_codigo}
+              />
+            </Link>
             <h3 className="font-semibold">{mueble.nombre}</h3>
             <p>
               <strong>Personalidad:</strong> {mueble.personalidad}
@@ -116,12 +118,16 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             </p>
             {store.user.email && (
               <div className="flex justify-between">
-                <button
-                  className="p-2 bg-abitacoloGreen rounded-md mt-3"
-                  onClick={() => actions.addMuebleToCarrito(mueble)}
-                >
-                  Añadir al carrito
-                </button>
+                {mueble.disponible ? (
+                  <button
+                    className="p-2 bg-abitacoloGreen rounded-md mt-3"
+                    onClick={() => actions.addMuebleToCarrito(mueble)}
+                  >
+                    Añadir al carrito
+                  </button>
+                ) : (
+                  <span></span>
+                )}
                 <FavButton mueble={mueble} />
               </div>
             )}
