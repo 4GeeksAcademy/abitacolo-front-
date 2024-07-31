@@ -100,7 +100,7 @@ const Filters = () => {
   );
 
   return (
-    <div className="mr-20 w-full dark:bg-prueba-color">
+    <div className="mx-14 dark:bg-prueba-color">
       <span className="text-3xl">
         <strong>
           estos filtros te <br />
@@ -158,7 +158,7 @@ const Filters = () => {
             <button
               type={index === 0 ? "submit" : "button"}
               onClick={index === 1 ? handleClearFilters : undefined}
-              className={`p-3 border-2 ${
+              className={`p-3 border-2 w-64  ${
                 index === 0 ? "bg-abitacoloGreen" : ""
               } dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4`}
             >
