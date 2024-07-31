@@ -40,12 +40,12 @@ const SignUp = () => {
       return;
     }
 
-    // Crear un nuevo objeto 
+    // Crear un nuevo objeto
     const filledFormData = Object.fromEntries(
       Object.entries(formData).filter(([_, value]) => value !== "")
     );
 
-    // Enviar solo los datos con valor
+    // Enviar solo los datos con valores
     actions.registerUser(filledFormData);
     navigate("/");
   };
