@@ -39,13 +39,13 @@ function RegistroNuevoMueble() {
 
   return (
     <div className="dark:bg-abitacoloGrayShadow">
-      <form
-        className="max-w-md mx-auto rounded border-solid border-2 p-3"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
-          Cargar nuevo mueble
-        </h1>
+    <form 
+      className="max-w-md mx-auto rounded border-solid border-2 p-3"
+      onSubmit={handleSubmit}
+    >
+      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
+        Cargar nuevo mueble
+      </h1>
         <div className="w-full mb-5 group">
           <label htmlFor="floating_nombre" className="dark:text-white">
             Nombre del mueble
@@ -201,8 +201,7 @@ function RegistroNuevoMueble() {
             Precio por mes
           </label>
         </div>
-      </div>
-
+     
       <div className="relative  w-full mb-5 group">
         <input
           type="number"
@@ -222,7 +221,7 @@ function RegistroNuevoMueble() {
         </label>
       </div>
 
-      {/* <div className="grid md:grid-cols-2 md:gap-6">
+       <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative  w-full mb-5 group">
           <input
             type="date"
@@ -232,6 +231,7 @@ function RegistroNuevoMueble() {
             value={formData.fecha_entrega}
             onChange={handleChange}
           />
+        </div>
         </div>
 
         <div className="grid md:grid-cols-3 md:gap-6">
