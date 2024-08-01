@@ -1,18 +1,45 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { Context } from "../context/appContext";
+import BotonUelz from "../components/BotonUelz";
 
 const FormPasarela = () => {
-  const [name, setName] = useState("");
-  const [planTime, setPlanTime] = useState("");
-  const [payDay, setPayDay] = useState("");
+  const { store } = useContext(Context);
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      // Implement form submission logic here
-      console.log({ name, planTime, payDay });
-    },
-    [name, planTime, payDay]
-  );
+  const [formUel, setFormUel] = useState({
+    name: "",
+    plan_time: "",
+    pay_day: "",
+  });
+
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setFormUel((prevState) => {
+      const newState = { ...prevState, [name]: value };
+      console.log(newState);
+      return newState;
+    });
+    console.log(formUel);
+  }, []);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+
+    // Aquí puedes manejar el envío del formulario
+  }, []);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="dark:bg-abitacoloGrayShadow">
@@ -24,37 +51,33 @@ const FormPasarela = () => {
           Crear Plan
         </h1>
         <div className="w-full mb-5 group">
-          <label htmlFor="name" className="dark:text-white">
+          <label htmlFor="floating_name" className="dark:text-white">
             Nombre del Cliente
           </label>
           <input
             type="text"
-            id="name"
             name="name"
+            id="floating_name"
             className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             placeholder="Nombre del Cliente"
             required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            aria-label="Nombre del Cliente"
-            autoComplete="name"
+            value={formUel.name}
+            onChange={handleChange}
           />
         </div>
 
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="w-full mb-5 group">
-            <label htmlFor="plan_time" className="dark:text-white">
+            <label htmlFor="floating_color" className="dark:text-white">
               Tiempo del plan
             </label>
             <select
-              id="plan_time"
               name="plan_time"
+              id="floating_plan_time"
               className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
-              value={planTime}
-              onChange={(e) => setPlanTime(e.target.value)}
-              aria-label="Tiempo del plan"
-              autoComplete="off"
+              value={formUel.plan_time}
+              onChange={handleChange}
             >
               <option value="">Selecciona tu plan</option>
               <option value="day">day</option>
@@ -64,32 +87,24 @@ const FormPasarela = () => {
             </select>
           </div>
           <div className="w-full mb-5 group">
-            <label htmlFor="pay_day" className="dark:text-white">
+            <label htmlFor="floating_dia_cobro" className="dark:text-white">
               Día de Cobro
             </label>
             <input
               type="number"
-              id="pay_day"
               name="pay_day"
+              id="floating_pay_day"
               className="py-2.5 w-full text-md bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               placeholder="día"
               required
-              min="1"
-              max="31"
-              value={payDay}
-              onChange={(e) => setPayDay(e.target.value)}
-              aria-label="Día de Cobro"
-              autoComplete="off"
+              min="0"
+              value={formUel.pay_day}
+              onChange={handleChange}
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-abitacoloGreen text-white py-2 px-4 rounded"
-        >
-          Enviar
-        </button>
       </form>
+      <BotonUelz />
     </div>
   );
 };
