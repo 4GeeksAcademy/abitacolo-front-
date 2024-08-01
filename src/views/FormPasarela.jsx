@@ -1,5 +1,6 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "../context/appContext";
+import BotonUelz from "../components/BotonUelz";
 
 const FormPasarela = () => {
   const { store } = useContext(Context);
@@ -26,6 +27,20 @@ const FormPasarela = () => {
 
     // Aquí puedes manejar el envío del formulario
   }, []);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="dark:bg-abitacoloGrayShadow">
       <form
@@ -89,6 +104,7 @@ const FormPasarela = () => {
           </div>
         </div>
       </form>
+      <BotonUelz />
     </div>
   );
 };

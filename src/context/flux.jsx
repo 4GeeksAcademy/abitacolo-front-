@@ -18,7 +18,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         finish_contract: "",
         frecuency: "",
       },
-      external_customer_id: "",
       carrito: [],
       precioCarrito: "",
       isDarkMode: false,
@@ -149,7 +148,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             ...store,
             user: data.user,
-            external_customer_id: data.user.id,
           });
           localStorage.setItem(
             "external_customer_id",

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../context/appContext";
 
 const BotonUelz = () => {
   const { store } = useContext(Context);
+
   return (
-    <span>
+    <div className="flex justify-center">
       {" "}
       <button
         className="uelz-button uelz-button-styles"
@@ -25,7 +26,7 @@ const BotonUelz = () => {
       >
         Comprar
       </button>
-    </span>
+    </div>
   );
 };
 
