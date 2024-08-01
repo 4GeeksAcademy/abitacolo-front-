@@ -168,6 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           const data = await response.json();
           console.log(data);
+
           actions.getMuebles();
         } catch (error) {
           console.log(error);
