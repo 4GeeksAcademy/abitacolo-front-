@@ -30,13 +30,13 @@ const categoryImages = {
 };
 
 const CardCategorias = ({ categoria, recuperados = 0, disponibles = 0 }) => (
-  <div className="p-10 rounded-lg">
+  <div className="flex flex-col items-center justify-center rounded-lg max-lg:p-2" >
     <img
-      className="w-60 rounded-full"
+      className=" rounded-full h-full w-full object-cover "
       src={categoryImages[categoria]}
       alt={categoria}
     />
-    <div className="mt-4">
+    <div className="mt-4 max-lg:text-center">
       <div className="font-bold">{categoria}</div>
       <div>{recuperados} muebles recuperados</div>
       <div>{disponibles} muebles disponibles</div>
