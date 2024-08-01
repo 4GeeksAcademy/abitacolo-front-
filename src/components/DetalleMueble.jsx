@@ -66,21 +66,21 @@ const DetalleMueble = () => {
 
   return (
    
-<div className="container mx-auto p-4">
+<div className="container mx-auto p-4 inline-block pt-0 md:pt-4">
   <Link to="/" className="mb-4 inline-block">
     <button className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
       Volver
     </button>
   </Link>
-  <div className="flex flex-col md:flex-row md:items-start md:space-x-8">
-    <div className="md:w-1/2 mb-4 md:mb-0">
+  <div className="flex flex-col md:flex-row md:items-start md:space-x-8 -mt-4 md:mt-0">
+  <div className="md:w-1/2 mb-4 md:mb-0 pb-0 md:pb-10">
       <img
         src={imageMap[mueble.id_codigo] || otros}
         alt={mueble.nombre}
         className="w-full h-auto object-cover rounded-lg"
       />
     </div>
-    <div className="md:w-1/2">
+    <div className="md:w-1/2 pt-0 md:pt-10">
       <h1 className="text-3xl font-bold mb-4">{mueble.nombre}</h1>
       <div className="space-y-2">
         <p><strong>Personalidad:</strong> {mueble.personalidad}</p>
@@ -99,6 +99,7 @@ const DetalleMueble = () => {
           >
             Añadir al carrito
           </button>
+          
           <FavButton mueble={mueble} />
         </div>
       )}
