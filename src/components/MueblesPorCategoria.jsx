@@ -81,7 +81,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
-            <Link to={"/VistaMueble"}>
+            <Link to={`/mueble/${mueble.id_codigo}`}>
               <img
                 src={
                   imageMap[mueble.id_codigo]
