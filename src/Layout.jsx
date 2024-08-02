@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "/src/views/Home.jsx";
 import Navbar from "./components/NavBar.jsx";
 import FooterBody from "./components/FooterBody.jsx";
-import injectContext from "./context/appContext.jsx";
+import injectContext, { Context } from "./context/appContext.jsx";
 import "./index.css";
 
 import global_en from "./translations/en/global.json";
@@ -18,6 +18,7 @@ import RegistroNuevoMueble from "./views/RegistroNuevoMueble.jsx";
 import DetalleMueble from "./components/DetalleMueble.jsx";
 import ConfigurarCuenta from "./views/ConfigurarCuenta.jsx";
 import FormPasarela from "./views/FormPasarela.jsx";
+import ProtectedRoutes  from "./components/ProtectedRoutes.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -36,6 +37,8 @@ const MainContent = () => {
   const location = useLocation();
   const showButton = location.pathname == "/FormPasarela";
 
+  const {store, actions} = useContext(Context)
+
   return (
     <>
       <Navbar />
@@ -44,7 +47,11 @@ const MainContent = () => {
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
-        <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
+        <Route path="/NuevoMueble" element={
+         <ProtectedRoutes user={store.user}>
+            <RegistroNuevoMueble/>
+          </ProtectedRoutes> 
+        } />
         <Route path="/mueble/:id" element={<DetalleMueble />} />
         <Route path="/ConfigurarCuenta" element={<ConfigurarCuenta />} />
         <Route path="/FormPasarela" element={<FormPasarela />} />
