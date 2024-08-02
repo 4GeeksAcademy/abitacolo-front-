@@ -100,7 +100,7 @@ const Filters = () => {
   );
 
   return (
-    <div className="mx-14 dark:bg-prueba-color">
+    <div className="me-8 dark:bg-prueba-color">
       <span className="text-3xl max-lg:text-xl ">
         <strong>
           estos filtros te <br />
@@ -111,7 +111,11 @@ const Filters = () => {
         <FontAwesomeIcon icon={faSortDown} size="2xl" />
       </p>
 
-      <form ref={formRef} onSubmit={handleSubmit} className="text-2xl mt-10 max-lg:text-xl">
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className="text-2xl mt-10 max-lg:text-xl"
+      >
         {Object.entries(filterOptions).map(([category, options]) =>
           renderCheckboxList(category, options)
         )}
@@ -158,7 +162,7 @@ const Filters = () => {
             <button
               type={index === 0 ? "submit" : "button"}
               onClick={index === 1 ? handleClearFilters : undefined}
-              className={`p-3 border-2 w-64  ${
+              className={`p-1 border-2 w-48  ${
                 index === 0 ? "bg-abitacoloGreen" : ""
               } dark:text-white dark:bg-abitacoloGrayShadow border-solid border-black dark:border-white rounded-full mt-4`}
             >
