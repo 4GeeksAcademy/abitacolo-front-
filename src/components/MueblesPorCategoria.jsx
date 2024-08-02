@@ -97,7 +97,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
               <p>
                 <strong>Color:</strong> {mueble.color}
               </p>
-              <p>
+              {/* <p>
                 <strong>Estilo:</strong> {mueble.estilo}
               </p>
               <p>
@@ -111,7 +111,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
                   {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}
                   cm (H)
                 </strong>
-              </p>
+              </p> */}
               <p>
                 <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
               </p>
@@ -119,16 +119,18 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
 
             {store.user.email && (
               <div className="flex justify-between">
-                {mueble.disponible ? (
-                  <button
-                    className="p-2 bg-abitacoloGreen rounded-md mt-3"
-                    onClick={() => actions.addMuebleToCarrito(mueble)}
-                  >
-                    Añadir al carrito
+                <button
+                  className="p-2 bg-abitacoloGreen rounded-md mt-3"
+                  onClick={() => actions.addMuebleToCarrito(mueble)}
+                >
+                  Añadir al carrito
+                </button>
+
+                <Link to={`/mueble/${mueble.id_codigo}`}>
+                  <button className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
+                    Detalles
                   </button>
-                ) : (
-                  <span></span>
-                )}
+                </Link>
                 <FavButton mueble={mueble} />
               </div>
             )}
