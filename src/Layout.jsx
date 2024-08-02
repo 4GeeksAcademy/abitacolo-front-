@@ -33,8 +33,8 @@ i18next.init({
 });
 
 const MainContent = () => {
-  const location = useLocation();
-  const showButton = location.pathname == "/FormPasarela";
+  //const location = useLocation();
+  //const showButton = location.pathname == "/FormPasarela";
 
   return (
     <>
