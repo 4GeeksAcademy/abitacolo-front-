@@ -92,14 +92,13 @@ const DetalleMueble = () => {
         <p><strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}</p>
       </div>
       {store.user.email && (
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-4 py-5">
           <button
-            className="p-2 bg-abitacoloGreen rounded-md"
+            className="p-2 bg-abitacoloGreen rounded-md focus:ring-4 focus:outline-none"
             onClick={() => actions.addMuebleToCarrito(mueble)}
           >
             Añadir al carrito
           </button>
-          
           <FavButton mueble={mueble} />
         </div>
       )}
