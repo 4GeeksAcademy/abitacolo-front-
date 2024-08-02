@@ -44,7 +44,7 @@ const Navbar = () => {
           </Link>
           <div className="grid place-self-end max-sm:hidden dark:text-white">
             <ul className="flex items-center space-x-4 text-lg">
-              {store.user.email && (
+              {store.user.email === "xaby1993@gmail.com" && (
                 <Link to="/NuevoMueble">
                   <li className="">
                     <p>Crear Mueble</p>
