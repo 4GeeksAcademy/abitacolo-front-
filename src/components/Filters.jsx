@@ -77,7 +77,7 @@ const Filters = () => {
 
   const renderCheckboxList = (category, options) => (
     <div key={category} className={`list-${category} mt-10`}>
-      <span className="text-3xl max-lg:text-xl">
+      <span className="text-2xl">
         <strong>{category}</strong>
       </span>
       <ul className="list-none mt-5">
@@ -114,14 +114,14 @@ const Filters = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="text-2xl mt-10 max-lg:text-xl"
+        className="text-md mt-10"
       >
         {Object.entries(filterOptions).map(([category, options]) =>
           renderCheckboxList(category, options)
         )}
 
         <div className="filter-Prize mt-10">
-          <span className="text-3xl max-lg:text-xl">
+          <span className="text-2xl max-lg:text-2xl">
             <strong>precio(€/mes)</strong>
           </span>
           <div className="mt-4 ">
