@@ -33,8 +33,8 @@ i18next.init({
 });
 
 const MainContent = () => {
-  //const location = useLocation();
-  //const showButton = location.pathname == "/FormPasarela";
+  const location = useLocation();
+  const showButton = location.pathname == "/FormPasarela";
 
   return (
     <>
@@ -45,7 +45,7 @@ const MainContent = () => {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
         <Route path="/NuevoMueble" element={<RegistroNuevoMueble />} />
-        <Route path="/mueble/:id" element={<DetalleMueble />} />
+        <Route path="/VistaMueble" element={<DetalleMueble />} />
         <Route path="/ConfigurarCuenta" element={<ConfigurarCuenta />} />
         <Route path="/FormPasarela" element={<FormPasarela />} />
         <Route path="*" element={<h1>Not found!</h1>} />
