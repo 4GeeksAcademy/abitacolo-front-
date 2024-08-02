@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import getState from "./flux";
+import DetalleMueble from "../components/DetalleMueble";
 
 export const Context = React.createContext(null);
 
