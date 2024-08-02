@@ -39,13 +39,13 @@ function RegistroNuevoMueble() {
 
   return (
     <div className="dark:bg-abitacoloGrayShadow">
-      <form
-        className="max-w-md mx-auto rounded border-solid border-2 p-3"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
-          Cargar nuevo mueble
-        </h1>
+    <form 
+      className="max-w-md mx-auto rounded border-solid border-2 p-3"
+      onSubmit={handleSubmit}
+    >
+      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
+        Cargar nuevo mueble
+      </h1>
         <div className="w-full mb-5 group">
           <label htmlFor="floating_nombre" className="dark:text-white">
             Nombre del mueble
@@ -201,25 +201,39 @@ function RegistroNuevoMueble() {
             Precio por mes
           </label>
         </div>
+     
+      <div className="relative  w-full mb-5 group">
+        <input
+          type="number"
+          name="precio_mes"
+          id="floating_precio_mes"
+          className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-abitacoloGreen -500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+          value={formData.precio_mes}
+          onChange={handleChange}
+        />
+        <label
+          htmlFor="floating_precio_mes"
+          className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-abitacoloGreen -600 peer-focus:dark:text-abitacoloGreen -500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >
+          Precio por mes
+        </label>
+      </div>
 
+       <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative  w-full mb-5 group">
           <input
-            type="number"
-            name="precio_mes"
-            id="floating_precio_mes"
-            className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-abitacoloGreen -500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-            value={formData.precio_mes}
+            type="date"
+            name="fecha_entrega"
+            id="floating_fecha_entrega"
+            className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            value={formData.fecha_entrega}
             onChange={handleChange}
           />
-          <label
-            htmlFor="floating_precio_mes"
-            className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-abitacoloGreen -600 peer-focus:dark:text-abitacoloGreen -500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Precio por mes
-          </label>
         </div>
+        </div>
+
         <div className="grid md:grid-cols-3 md:gap-6">
           <div className="w-full mb-5 group">
             <label htmlFor="floating_ancho" className="dark:text-white">
