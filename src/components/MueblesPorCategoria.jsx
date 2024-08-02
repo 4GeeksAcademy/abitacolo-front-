@@ -119,18 +119,21 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
 
             {store.user.email && (
               <div className="flex justify-between">
-                <button
-                  className="p-2 bg-abitacoloGreen rounded-md mt-3"
-                  onClick={() => actions.addMuebleToCarrito(mueble)}
-                >
-                  Añadir al carrito
-                </button>
-
-                <Link to={`/mueble/${mueble.id_codigo}`}>
-                  <button className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
-                    Detalles
+                <div>
+                  <button
+                    className="p-2 bg-abitacoloGreen rounded-md mt-3"
+                    onClick={() => actions.addMuebleToCarrito(mueble)}
+                  >
+                    Añadir al carrito
                   </button>
-                </Link>
+
+                  <Link to={`/mueble/${mueble.id_codigo}`}>
+                    <button className="p-2 text-white ms-2 bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
+                      Detalles
+                    </button>
+                  </Link>
+                </div>
+
                 <FavButton mueble={mueble} />
               </div>
             )}
