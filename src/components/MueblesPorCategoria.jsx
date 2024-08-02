@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import otros from "../assets/ModoClaro/Categorias/Otros_objetos.png";
@@ -26,8 +26,12 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
+import { Context } from "../context/appContext";
+import FavButton from "./FavButton";
 
 const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
+  const { actions, store } = useContext(Context);
+
   if (!mueblesPorCategorias || mueblesPorCategorias.length === 0) {
     return (
       <p className="text-center text-xl">
@@ -76,13 +80,13 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
+
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
-            <img
-              src={
-                imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros
-              }
-              alt={mueble.id_codigo}
-            />
+              <img
+                src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
+                alt={mueble.id_codigo}
+              />
+          
             <h3 className="font-semibold">{mueble.nombre}</h3>
             <p>
               <strong>Personalidad:</strong> {mueble.personalidad}
@@ -90,7 +94,8 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             <p>
               <strong>Color:</strong> {mueble.color}
             </p>
-            <p>
+
+            {/* <p>
               <strong>Estilo:</strong> {mueble.estilo}
             </p>
             <p>
@@ -107,19 +112,23 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             </p>
             <p>
               <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
-            </p>
+            </p> */}
             {store.user.email && (
               <div className="flex justify-between">
-                {mueble.disponible ? (
-                  <button
-                    className="p-2 bg-abitacoloGreen rounded-md mt-3"
-                    onClick={() => actions.addMuebleToCarrito(mueble)}
-                  >
-                    Añadir al carrito
-                  </button>
-                ) : (
-                  <span></span>
-                )}
+                <button
+                  className="p-2 bg-abitacoloGreen rounded-md mt-3"
+                  onClick={() => actions.addMuebleToCarrito(mueble)}
+                >
+                  Añadir al carrito
+                </button>
+
+                <Link to={`/mueble/${mueble.id_codigo}`}>
+                <button
+                  className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
+                >
+                  Detalles
+                </button>
+                </Link>
                 <FavButton mueble={mueble} />
               </div>
             )}
