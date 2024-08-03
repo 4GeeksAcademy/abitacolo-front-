@@ -57,7 +57,7 @@ export default function DropDown() {
               className="block px-4 py-2  w-full hover:bg-gray-100 "
             >
               <FontAwesomeIcon icon={faUser} />{" "}
-              {store.user.nombre ? store.user.nombre : t("navBar.profile")}
+              {store.user?.nombre ? store.user.nombre : t("navBar.profile")}
             </button>
             {isModalOpen && <ModalLogin onClose={closeModal} />}
           </li>

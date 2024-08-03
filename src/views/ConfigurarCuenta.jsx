@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/appContext";
 import ModalFavoritos from "../components/ModalFavoritos";
+import { useNavigate } from "react-router-dom";
 
 const ConfigurarCuenta = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -16,6 +18,11 @@ const ConfigurarCuenta = () => {
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleLogout = () => {
+    actions.logout();
+    navigate("/");
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +53,15 @@ const ConfigurarCuenta = () => {
 
   return (
     <div className="px-20 py-5 bg-abitacoloGray">
-      <p className="text-2xl py-5">Configurar cuenta:</p>
+      <div className="flex justify-between">
+        <p className="text-2xl py-5">Configurar cuenta:</p>
+        <button
+          className="bg-abitacoloGreen h-fit rounded-md p-2"
+          onClick={handleLogout}
+        >
+          Cerrar sesión
+        </button>
+      </div>
       <p className="p-2 text-xl">Mis favoritos:</p>
       <div className="flex justify-between px-5 my-5">
         <ModalFavoritos />
@@ -99,7 +114,7 @@ const ConfigurarCuenta = () => {
               <p className="text-red-500 font-bold mt-4">
                 Las contraseñas no coinciden.
               </p>
-            )}{" "}
+            )}
             <label className=" text-lg font-bold" htmlFor="email">
               Email:
             </label>

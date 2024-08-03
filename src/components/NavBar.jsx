@@ -41,7 +41,7 @@ const Navbar = () => {
           </Link>
           <div className="grid place-self-end max-sm:hidden dark:text-white">
             <ul className="flex items-center space-x-4 text-lg">
-              {store.user.email === "xaby1993@gmail.com" && (
+              {store.user && store.user.email === "asd@asd.com" && (
                 <Link to="/NuevoMueble">
                   <li className="">
                     <p>Crear Mueble</p>
@@ -71,12 +71,12 @@ const Navbar = () => {
               </li>
               <li className="relative">
                 <FontAwesomeIcon icon={faUser} />{" "}
-                {store.user.email ? (
+                {store.user ? (
                   <button
                     onClick={() => navigate("/ConfigurarCuenta")}
                     className="items-center"
                   >
-                    {store.user.email}
+                    {store.user?.name ? store.user.name : store.user.email}
                   </button>
                 ) : (
                   <button onClick={openModal} className="items-center">
@@ -85,7 +85,7 @@ const Navbar = () => {
                 )}
                 {isModalOpen && <ModalLogin onClose={closeModal} />}
               </li>
-              {store.user.email && store.carrito.length > 0 && (
+              {store.user && store.carrito.length > 0 && (
                 <li className="flex items-center">
                   <Carrito />
                 </li>
