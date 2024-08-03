@@ -13,6 +13,8 @@ import OtrosObjetos from "../assets/ModoClaro/Categorias/Otros_objetos.png";
 import Percheros from "../assets/ModoClaro/Categorias/Percheros.png";
 import SillasTaburetes from "../assets/ModoClaro/Categorias/Sillas_taburetes.png";
 import SillonesSofas from "../assets/ModoClaro/Categorias/Sillones_sofas.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 
 const categoryImages = {
   Percheros,
@@ -69,7 +71,7 @@ const Carrusel = () => {
   return (
     <div className=" w-fit h-fit max-w-sm mx-auto">
       <div className="overflow-hidden ">
-        <div className=" h-64">
+        <div className="h-fit w-full">
           <h2 className=" top-4 left-4 text-2xl dark:text-white font-bold text-gray-800">
             {cardsData[currentIndex]?.nombre || "Sin nombre"}
           </h2>
@@ -78,51 +80,26 @@ const Carrusel = () => {
             src={categoryImages[cardsData[currentIndex]?.categoria]}
             alt={cardsData[currentIndex]?.categoria}
           />
-          <p className=" bottom-4 left-4 right-4 text-gray-600">
-            {cardsData[currentIndex]?.disponible
-              ? "Disponible"
-              : "No disponible"}
+          <p className="bottom-4 left-4 right-4 text-gray-600">
+            {cardsData[currentIndex]?.novedad && "Novedad"}
           </p>
         </div>
       </div>
-      <button
-        onClick={prevCard}
-        className=" bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
-      >
-        <svg
-          className="w-6 h-6 text-gray-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="mt-3">
+        {" "}
+        <button
+          onClick={prevCard}
+          className="p-2 rounded-full hover:bg-gray-100"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-      <button
-        onClick={nextCard}
-        className=" bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
-      >
-        <svg
-          className="w-6 h-6 text-gray-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+          <FontAwesomeIcon icon={faBackward} size="xl" />{" "}
+        </button>
+        <button
+          onClick={nextCard}
+          className="p-2 rounded-full hover:bg-gray-100"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+          <FontAwesomeIcon icon={faForward} size="xl" />
+        </button>
+      </div>
     </div>
   );
 };

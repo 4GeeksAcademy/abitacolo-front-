@@ -26,7 +26,7 @@ function RegistroNuevoMueble() {
     setFormData((prevState) => ({
       ...prevState,
       [name]:
-        type === "select-one" && name === "disponible"
+        type === "select-one" && (name === "disponible" || name === "novedad")
           ? value === "true"
           : value,
     }));
