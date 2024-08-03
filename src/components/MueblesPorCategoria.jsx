@@ -80,9 +80,22 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
-          <div key={mueble.id_codigo} className="p-4 rounded-lg">
+          <div
+            key={mueble.id_codigo}
+            className="p-4 rounded-lg grid place-content-center"
+          >
             <Link key={mueble.id_codigo} to={`/mueble/${mueble.id_codigo}`}>
+              <div className="flex justify-end">
+                {mueble.novedad && (
+                  <span className="bg-abitacoloGreen w-fit font-bold dark:text-white rounded-lg text-black py-1 px-2">
+                    {" "}
+                    Novedad
+                  </span>
+                )}
+              </div>
+
               <img
+                className="rounded-full h-fit w-fit object-cover"
                 src={
                   imageMap[mueble.id_codigo]
                     ? imageMap[mueble.id_codigo]
@@ -130,7 +143,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
                   )}
 
                   <Link to={`/mueble/${mueble.id_codigo}`}>
-                    <button className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
+                    <button className="p-2 text-black bg-abitacoloGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
                       Detalles
                     </button>
                   </Link>

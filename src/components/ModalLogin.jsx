@@ -103,7 +103,7 @@ const ModalLogin = ({ onClose }) => {
                   </a>
                   <button
                     type="submit"
-                    className="w-full text-white bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
+                    className="w-full text-black bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
                   >
                     Entrar en la cuenta
                   </button>

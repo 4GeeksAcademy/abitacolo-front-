@@ -15,6 +15,7 @@ import SillasTaburetes from "../assets/ModoClaro/Categorias/Sillas_taburetes.png
 import SillonesSofas from "../assets/ModoClaro/Categorias/Sillones_sofas.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const categoryImages = {
   Percheros,
@@ -71,18 +72,25 @@ const Carrusel = () => {
   return (
     <div className=" w-fit h-fit max-w-sm mx-auto">
       <div className="overflow-hidden ">
-        <div className="h-fit w-full">
-          <h2 className=" top-4 left-4 text-2xl dark:text-white font-bold text-gray-800">
-            {cardsData[currentIndex]?.nombre || "Sin nombre"}
-          </h2>
-          <img
-            className=" rounded-full h-full w-full object-cover "
-            src={categoryImages[cardsData[currentIndex]?.categoria]}
-            alt={cardsData[currentIndex]?.categoria}
-          />
-          <p className="bottom-4 left-4 right-4 text-gray-600">
-            {cardsData[currentIndex]?.novedad && "Novedad"}
-          </p>
+        <div className="h-fit w-full grid">
+          <Link to={`/mueble/${cardsData[currentIndex]?.id_codigo}`}>
+            <h2 className=" top-4 left-4 text-2xl dark:text-white font-bold text-gray-800">
+              {cardsData[currentIndex]?.nombre || "Sin nombre"}
+            </h2>
+            <img
+              className=" rounded-full h-full w-full object-cover "
+              src={categoryImages[cardsData[currentIndex]?.categoria]}
+              alt={cardsData[currentIndex]?.categoria}
+            />
+          </Link>
+          {cardsData[currentIndex]?.novedad ? (
+            <p className=" bg-abitacoloGreen w-fit dark:text-white rounded-lg text-black py-1 px-2  place-self-center">
+              {" "}
+              Novedades
+            </p>
+          ) : (
+            <p className="py-1 invisible"> 1</p>
+          )}
         </div>
       </div>
       <div className="mt-3">

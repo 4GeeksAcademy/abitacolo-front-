@@ -97,7 +97,7 @@ const DetalleMueble = () => {
           <img
             src={imageMap[mueble.id_codigo] || otros}
             alt={mueble.nombre}
-            className="w-full h-auto object-cover rounded-lg"
+            className="w-max h-auto object-cover rounded-lg"
           />
         </div>
         <div className="md:w-1/2 md:pt-10">

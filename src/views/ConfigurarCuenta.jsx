@@ -52,7 +52,7 @@ const ConfigurarCuenta = () => {
   };
 
   return (
-    <div className="px-20 py-5 bg-abitacoloGray">
+    <div className="px-20 py-5 bg-abitacoloGray dark:bg-abitacoloDarkGrayShadow dark:text-white">
       <div className="flex justify-between">
         <p className="text-2xl py-5">Configurar cuenta:</p>
         <button
@@ -62,10 +62,17 @@ const ConfigurarCuenta = () => {
           Cerrar sesión
         </button>
       </div>
-      <p className="p-2 text-xl">Mis favoritos:</p>
-      <div className="flex justify-between px-5 my-5">
-        <ModalFavoritos />
-      </div>
+
+      {store.user &&
+        store.user.favourites &&
+        store.user.favourites.length > 0 && (
+          <>
+            <p className="p-2 text-xl">Mis favoritos:</p>
+            <div className="flex justify-between px-5 my-5">
+              <ModalFavoritos />
+            </div>
+          </>
+        )}
 
       <form onSubmit={handleSubmit}>
         <fieldset className="">
@@ -162,6 +169,7 @@ const ConfigurarCuenta = () => {
               type="date"
               id="fecha_nacimiento"
               name="birth_date"
+              placeholder="Ingrese su fecha de nacimiento"
               autoComplete="bday"
               value={formData.birth_date}
               onChange={handleChange}

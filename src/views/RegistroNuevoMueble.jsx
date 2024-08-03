@@ -310,7 +310,7 @@ function RegistroNuevoMueble() {
         <div className="boton flex justify-center">
           <button
             type="submit"
-            className="text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
+            className="text-black bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
           >
             Nuevo mueble
           </button>
