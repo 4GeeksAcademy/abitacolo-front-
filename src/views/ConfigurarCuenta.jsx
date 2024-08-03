@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const ConfigurarCuenta = () => {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate(); // Mueve useNavigate fuera de handleLogout
+  const navigate = useNavigate();
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const ConfigurarCuenta = () => {
 
   const handleLogout = () => {
     actions.logout();
-    navigate("/"); // Navega a la ruta raíz
+    navigate("/");
   };
 
   const handleChange = (e) => {
