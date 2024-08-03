@@ -3,14 +3,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user: {
-        email: "",
-        name: "",
-        password: "",
-        address: "",
-        nationality: "",
-        birth_date: "",
-      },
+      user: null,
       payment_data: {
         type_sub: "",
         time_sub: "",
@@ -25,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       muebles: [],
       mueblesFiltrados: [],
       mueblesCategorizados: [],
+      token: null,
     },
     actions: {
       toggleDarkMode: () => {
@@ -142,30 +136,87 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             body: JSON.stringify(formData),
           });
-          if (!response.ok)
+
+          if (!response.ok) {
             throw new Error("Error en la respuesta del servidor");
+          }
+
           const data = await response.json();
           console.log(data);
+
+          // Guardar el token en localStorage
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+          }
+
           setStore({
             ...store,
             user: data.user,
             external_customer_id: data.user.id,
+            token: data.token,
           });
+
           return data;
         } catch (error) {
           console.error("Error en el login: ", error);
+          throw error;
         }
+      },
+      checkAuthStatus: async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          try {
+            const response = await fetch(`${API_BASE_URL}/verify-token`, {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            if (!response.ok) {
+              throw new Error("Token inválido");
+            }
+
+            const data = await response.json();
+            if (data.valid) {
+              setStore({
+                ...getStore(),
+                user: data.user,
+                external_customer_id: data.user.id,
+                token: token,
+              });
+            } else {
+              getActions().logout();
+            }
+          } catch (error) {
+            console.error("Error al verificar el token: ", error);
+            getActions().logout();
+          }
+        }
+      },
+      logout: () => {
+        localStorage.removeItem("token");
+        setStore({
+          ...getStore(),
+          user: null,
+          external_customer_id: null,
+          token: null,
+        });
       },
       registrarNuevoMueble: async (formData) => {
         const actions = getActions();
+        const token = localStorage.getItem("token");
         try {
           const response = await fetch(`${API_BASE_URL}/mueble`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(formData),
           });
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
           const data = await response.json();
           console.log(data);
           actions.getMuebles();
@@ -175,6 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       editUser: async (formData) => {
         const store = getStore();
+        const token = localStorage.getItem("token");
         try {
           const response = await fetch(
             `${API_BASE_URL}/users/${store.user.id}`,
@@ -182,6 +234,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify(formData),
             }
@@ -254,8 +307,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       addFav: async (fav) => {
         const { user } = getStore();
         const { getUser } = getActions();
+        const token = localStorage.getItem("token");
 
-        if (!user || !user.id) {
+        if (!user || !token) {
           console.error("Usuario no autenticado.");
           return { success: false, error: "Usuario no autenticado" };
         }
@@ -267,8 +321,9 @@ const getState = ({ getStore, getActions, setStore }) => {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
-              body: JSON.stringify({ user_id: user.id }),
+              body: JSON.stringify({}),
             }
           );
 
@@ -293,13 +348,16 @@ const getState = ({ getStore, getActions, setStore }) => {
           return { success: false, error: error.message };
         }
       },
-
       deleteFav: async (id) => {
         const actions = getActions();
+        const token = localStorage.getItem("token");
 
         try {
           const response = await fetch(`${API_BASE_URL}/favoritos/${id}`, {
             method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           });
           if (response.ok) {
             const result = await response.json();
@@ -315,34 +373,40 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error:", error);
         }
       },
-      getUser: () => {
-        return new Promise((resolve, reject) => {
-          const store = getStore();
-          if (!store.user || !store.user.id) {
-            reject(new Error("User ID not found in store"));
-            return;
+      getUser: async () => {
+        const store = getStore();
+        const token = localStorage.getItem("token");
+
+        if (!store.user || !store.user.id || !token) {
+          throw new Error("User ID not found in store or token missing");
+        }
+
+        console.log("Fetching user...");
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/users/${store.user.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
           }
 
-          console.log("Fetching user...");
-          fetch(`${API_BASE_URL}/users/${store.user.id}`)
-            .then((response) => {
-              if (!response.ok)
-                throw new Error(`HTTP error! status: ${response.status}`);
-              return response.json();
-            })
-            .then((data) => {
-              setStore({
-                ...store,
-                user: data,
-              });
-              console.log("User data fetched successfully:", data);
-              resolve(data);
-            })
-            .catch((error) => {
-              console.error("Error fetching user:", error.message);
-              reject(error);
-            });
-        });
+          const data = await response.json();
+          setStore({
+            ...store,
+            user: data,
+          });
+          console.log("User data fetched successfully:", data);
+          return data;
+        } catch (error) {
+          console.error("Error fetching user:", error.message);
+          throw error;
+        }
       },
     },
   };

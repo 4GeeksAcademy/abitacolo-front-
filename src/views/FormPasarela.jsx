@@ -29,16 +29,21 @@ const FormPasarela = () => {
   }, []);
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
-    script.async = true;
+    if (!document.querySelector("#uelz_test")) {
+      console.log("condicion");
+      const script = document.createElement("script");
+      script.id = "uelz_test";
+      script.src =
+        "https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clz33572s0011q9012o9abjif&uelz-api-url=https://widget.demo.uelzpay.com";
+      // script.async = true;
 
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+      document.body.appendChild(script);
+    }
+    console.log("FormPasarela");
+    // return () => {
+    //   document.querySelector("#uelz_test")?.remove();
+    //   console.log("remove");
+    // };
   }, []);
 
   return (

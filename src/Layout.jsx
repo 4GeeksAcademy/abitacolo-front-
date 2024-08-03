@@ -18,7 +18,7 @@ import RegistroNuevoMueble from "./views/RegistroNuevoMueble.jsx";
 import DetalleMueble from "./components/DetalleMueble.jsx";
 import ConfigurarCuenta from "./views/ConfigurarCuenta.jsx";
 import FormPasarela from "./views/FormPasarela.jsx";
-import ProtectedRoutes  from "./components/ProtectedRoutes.jsx";
+import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -37,7 +37,7 @@ const MainContent = () => {
   const location = useLocation();
   const showButton = location.pathname == "/FormPasarela";
 
-  const {store, actions} = useContext(Context)
+  const { store, actions } = useContext(Context);
 
   return (
     <>
@@ -47,11 +47,14 @@ const MainContent = () => {
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/categoria/:name" element={<Categoria />} />
-        <Route path="/NuevoMueble" element={
-         <ProtectedRoutes user={store.user}>
-            <RegistroNuevoMueble/>
-          </ProtectedRoutes> 
-        } />
+        <Route
+          path="/NuevoMueble"
+          element={
+            <ProtectedRoutes user={store.user}>
+              <RegistroNuevoMueble />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="/mueble/:id" element={<DetalleMueble />} />
         <Route path="/ConfigurarCuenta" element={<ConfigurarCuenta />} />
         <Route path="/FormPasarela" element={<FormPasarela />} />
@@ -64,15 +67,13 @@ const MainContent = () => {
 
 const Layout = () => {
   return (
-    <React.StrictMode>
-      <I18nextProvider i18n={i18next}>
-        <BrowserRouter>
-          <ScrollToTop>
-            <MainContent />
-          </ScrollToTop>
-        </BrowserRouter>
-      </I18nextProvider>
-    </React.StrictMode>
+    <I18nextProvider i18n={i18next}>
+      <BrowserRouter>
+        <ScrollToTop>
+          <MainContent />
+        </ScrollToTop>
+      </BrowserRouter>
+    </I18nextProvider>
   );
 };
 
