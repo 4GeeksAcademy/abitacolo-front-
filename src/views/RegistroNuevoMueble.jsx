@@ -7,6 +7,7 @@ function RegistroNuevoMueble() {
     nombre: "",
     id_codigo: "",
     disponible: true,
+    novedad: false,
     color: "",
     espacio: "",
     estilo: "",
@@ -92,6 +93,22 @@ function RegistroNuevoMueble() {
           >
             <option value="true">Disponible</option>
             <option value="false">No disponible</option>
+          </select>
+        </div>
+        <div className="w-full mb-5 group">
+          <label htmlFor="floating_novedad" className="dark:text-white">
+            Novedad
+          </label>
+          <select
+            name="novedad"
+            id="floating_novedad"
+            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            required
+            value={formData.novedad.toString()}
+            onChange={handleChange}
+          >
+            <option value="true">Es novedad</option>
+            <option value="false">No es novedad</option>
           </select>
         </div>
 

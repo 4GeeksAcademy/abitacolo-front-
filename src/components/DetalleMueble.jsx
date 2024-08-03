@@ -27,7 +27,6 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
-import { data } from "autoprefixer";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const DetalleMueble = () => {
@@ -87,9 +86,9 @@ const DetalleMueble = () => {
   };
 
   return (
-    <div className="mx-auto p-4 pt-0 md:pt-4 bg-abitacoloGray">
+    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray">
       <Link to="/" className="mb-4">
-        <button className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
+        <button className="border  dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
           Volver
         </button>
       </Link>
@@ -127,14 +126,16 @@ const DetalleMueble = () => {
               <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
             </p>
           </div>
-          {store.user.email && (
+          {store.user?.email && (
             <div className="flex justify-between items-center mt-4">
-              <button
-                className="p-2 bg-abitacoloGreen rounded-md"
-                onClick={() => actions.addMuebleToCarrito(mueble)}
-              >
-                Añadir al carrito
-              </button>
+              {mueble.disponible && (
+                <button
+                  className="p-2 bg-abitacoloGreen rounded-md me-3 mt-3"
+                  onClick={() => actions.addMuebleToCarrito(mueble)}
+                >
+                  Añadir al carrito
+                </button>
+              )}
 
               <FavButton mueble={mueble} />
             </div>

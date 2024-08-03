@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import logoMueble from "../assets/ModoClaro/Categorias/Aparadores.png";
 import { useTranslation } from "react-i18next";
 import { Context } from "../context/appContext";
+import Carrusel from "./Carrusel";
 
 const HeaderBody = () => {
   const [t, i18n] = useTranslation("global");
@@ -25,11 +26,7 @@ const HeaderBody = () => {
             </span>
           </div>
         </div>
-        <img
-          src={logoMueble}
-          alt="Mueble Abitacolo"
-          className="mt-4 md:mt-0 w-full md:w-auto"
-        />
+        <Carrusel />
       </header>
       <div className="mt-10 pb-5 flex justify-between max-sm:hidden">
         <a href="#" className="font-bold text-lg">
