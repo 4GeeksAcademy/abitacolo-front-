@@ -38,6 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           setStore({ ...store, muebles: data, mueblesFiltrados: data });
           getActions().categorizarMuebles(data);
+          console.log(store.muebles);
         } catch (error) {
           console.error("Error fetching muebles:", error);
         }
@@ -219,7 +220,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw new Error(`HTTP error! status: ${response.status}`);
           const data = await response.json();
           console.log(data);
-
           actions.getMuebles();
         } catch (error) {
           console.log(error);
