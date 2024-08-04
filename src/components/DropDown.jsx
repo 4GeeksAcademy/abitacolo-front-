@@ -4,6 +4,8 @@ import React, { useContext, useState } from "react";
 import ModalLogin from "./ModalLogin";
 import { Context } from "../context/appContext";
 import { useTranslation } from "react-i18next";
+import Carrito from "./Carrito";
+
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +16,7 @@ export default function DropDown() {
   const closeModal = () => setIsModalOpen(false);
   const { store } = useContext(Context);
   const [t, i18n] = useTranslation("global");
+
 
   return (
     <>
@@ -60,6 +63,11 @@ export default function DropDown() {
               {store.user?.nombre ? store.user.nombre : t("navBar.profile")}
             </button>
             {isModalOpen && <ModalLogin onClose={closeModal} />}
+          </li>
+          <li>
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+              <Carrito/>
+            </a>
           </li>
           <li>
             <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
