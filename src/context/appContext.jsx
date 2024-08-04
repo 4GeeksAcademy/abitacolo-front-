@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import getState from "./flux";
-import DetalleMueble from "../components/DetalleMueble";
 
 export const Context = React.createContext(null);
 
@@ -21,6 +20,7 @@ const injectContext = (PassedComponent) => {
     useEffect(() => {
       state.actions.loadSomeData();
       state.actions.getMuebles();
+      state.actions.checkAuthStatus();
     }, []);
 
     return (

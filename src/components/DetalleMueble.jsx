@@ -27,7 +27,6 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
-import { data } from "autoprefixer";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const DetalleMueble = () => {
@@ -65,47 +64,63 @@ const DetalleMueble = () => {
   };
 
   return (
-   
-<div className="container mx-auto p-4 inline-block pt-0 md:pt-4">
-  <Link to="/" className="mb-4 inline-block">
-    <button className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
-      Volver
-    </button>
-  </Link>
-  <div className="flex flex-col md:flex-row md:items-start md:space-x-8 -mt-4 md:mt-0">
-  <div className="md:w-1/2 mb-4 md:mb-0 pb-0 md:pb-10">
-      <img
-        src={imageMap[mueble.id_codigo] || otros}
-        alt={mueble.nombre}
-        className="w-full h-auto object-cover rounded-lg"
-      />
-    </div>
-    <div className="md:w-1/2 pt-0 md:pt-10">
-      <h1 className="text-3xl font-bold mb-4">{mueble.nombre}</h1>
-      <div className="space-y-2">
-        <p><strong>Personalidad:</strong> {mueble.personalidad}</p>
-        <p><strong>Color:</strong> {mueble.color}</p>
-        <p><strong>Estilo:</strong> {mueble.estilo}</p>
-        <p><strong>Espacio:</strong> {mueble.espacio}</p>
-        <p><strong>Precio:</strong> {mueble.precio_mes}€/mes</p>
-        <p><strong>Dimensiones:</strong> {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}cm (H)</p>
-        <p><strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}</p>
-      </div>
-      {store.user.email && (
-        <div className="flex justify-between items-center mt-4 py-5">
-          <button
-            className="p-2 bg-abitacoloGreen rounded-md focus:ring-4 focus:outline-none"
-            onClick={() => actions.addMuebleToCarrito(mueble)}
-          >
-            Añadir al carrito
-          </button>
-          <FavButton mueble={mueble} />
+    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray">
+      <Link to="/" className="mb-4">
+        <button className="border  dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
+          Volver
+        </button>
+      </Link>
+      <div className="flex flex-col md:flex-row md:items-start md:space-x-8 mt-4 md:mt-0">
+        <div className="md:w-1/2 mb-4 md:mb-0 pb-0 md:pb-10">
+          <img
+            src={imageMap[mueble.id_codigo] || otros}
+            alt={mueble.nombre}
+            className="w-max h-auto object-cover rounded-lg"
+          />
         </div>
-      )}
+        <div className="md:w-1/2 md:pt-10">
+          <h1 className="text-3xl font-bold mb-4">{mueble.nombre}</h1>
+          <div className="space-y-2">
+            <p>
+              <strong>Personalidad:</strong> {mueble.personalidad}
+            </p>
+            <p>
+              <strong>Color:</strong> {mueble.color}
+            </p>
+            <p>
+              <strong>Estilo:</strong> {mueble.estilo}
+            </p>
+            <p>
+              <strong>Espacio:</strong> {mueble.espacio}
+            </p>
+            <p>
+              <strong>Precio:</strong> {mueble.precio_mes}€/mes
+            </p>
+            <p>
+              <strong>Dimensiones:</strong> {mueble.ancho}cm (A) x{" "}
+              {mueble.fondo}cm (F) x {mueble.altura}cm (H)
+            </p>
+            <p>
+              <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
+            </p>
+          </div>
+          {store.user?.email && (
+            <div className="flex justify-between items-center mt-4">
+              {mueble.disponible && (
+                <button
+                  className="p-2 bg-abitacoloGreen rounded-md me-3 mt-3"
+                  onClick={() => actions.addMuebleToCarrito(mueble)}
+                >
+                  Añadir al carrito
+                </button>
+              )}
+
+              <FavButton mueble={mueble} />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
-  </div>
-</div>  
-    
   );
   
 };

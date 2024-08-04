@@ -80,55 +80,75 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
+          <div
+            key={mueble.id_codigo}
+            className="p-4 rounded-lg grid place-content-center"
+          >
+            <Link key={mueble.id_codigo} to={`/mueble/${mueble.id_codigo}`}>
+              <div className="flex justify-end">
+                {mueble.novedad && (
+                  <span className="bg-abitacoloGreen w-fit font-bold dark:text-white rounded-lg text-black py-1 px-2">
+                    {" "}
+                    Novedad
+                  </span>
+                )}
+              </div>
 
-          <div key={mueble.id_codigo} className="p-4 rounded-lg">
               <img
-                src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
+                className="rounded-full h-fit w-fit object-cover"
+                src={
+                  imageMap[mueble.id_codigo]
+                    ? imageMap[mueble.id_codigo]
+                    : otros
+                }
                 alt={mueble.id_codigo}
               />
-          
-            <h3 className="font-semibold">{mueble.nombre}</h3>
-            <p>
-              <strong>Personalidad:</strong> {mueble.personalidad}
-            </p>
-            <p>
-              <strong>Color:</strong> {mueble.color}
-            </p>
+              <h3 className="font-semibold">{mueble.nombre}</h3>
+              <p>
+                <strong>Personalidad:</strong> {mueble.personalidad}
+              </p>
+              <p>
+                <strong>Color:</strong> {mueble.color}
+              </p>
+              {/* <p>
+                <strong>Estilo:</strong> {mueble.estilo}
+              </p>
+              <p>
+                <strong>Espacio:</strong> {mueble.espacio}
+              </p>
+              <p>
+                <strong>{mueble.precio_mes}€/mes</strong>
+              </p>
+              <p>
+                <strong>
+                  {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}
+                  cm (H)
+                </strong>
+              </p> */}
+              <p>
+                <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
+              </p>
+            </Link>
 
-            {/* <p>
-              <strong>Estilo:</strong> {mueble.estilo}
-            </p>
-            <p>
-              <strong>Espacio:</strong> {mueble.espacio}
-            </p>
-            <p>
-              <strong>{mueble.precio_mes}€/mes</strong>
-            </p>
-            <p>
-              <strong>
-                {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}cm
-                (H)
-              </strong>
-            </p>
-            <p>
-              <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
-            </p> */}
-            {store.user.email && (
+            {store.user?.email && (
               <div className="flex justify-between">
-                <button
-                  className="p-2 bg-abitacoloGreen  focus:ring-4 focus:outline-none rounded-md mt-3"
-                  onClick={() => actions.addMuebleToCarrito(mueble)}
-                >
-                  Añadir al carrito
-                </button>
+                <div>
+                  {mueble.disponible && (
+                    <button
+                      className="p-2 dark:text-white bg-abitacoloGreen rounded-md me-3 mt-3"
+                      onClick={() => actions.addMuebleToCarrito(mueble)}
+                    >
+                      Añadir al carrito
+                    </button>
+                  )}
 
-                <Link to={`/mueble/${mueble.id_codigo}`}>
-                <button
-                  className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
-                >
-                  Detalles
-                </button>
-                </Link>
+                  <Link to={`/mueble/${mueble.id_codigo}`}>
+                    <button className="p-2 text-black bg-abitacoloGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
+                      Detalles
+                    </button>
+                  </Link>
+                </div>
+
                 <FavButton mueble={mueble} />
               </div>
             )}

@@ -120,7 +120,7 @@ const SignUp = () => {
               <div className="mt-7">
                 <button
                   type="submit"
-                  className="bg-abitacoloGreen w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  className="bg-abitacoloGreen w-full py-3 rounded-xl text-black shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Registrar
                 </button>
@@ -135,7 +135,7 @@ const SignUp = () => {
               <div className="flex mt-7 justify-center w-full">
                 <button
                   type="button"
-                  className="bg-abitacoloGrayShadow border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  className="bg-abitacoloGrayShadow border-none px-4 py-2 rounded-xl cursor-pointer text-black shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Google
                 </button>
