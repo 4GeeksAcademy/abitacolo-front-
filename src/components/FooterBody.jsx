@@ -12,35 +12,38 @@ import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import SwitchLanguage from "./SwitchLanguage";
 
-const FooterBody = () => {
+const FooterBody = ({ isModal = false }) => {
   const [t] = useTranslation("global");
 
+  const containerClass = isModal
+    ? "px-4 py-6 overflow-y-auto max-h-[80vh]"
+    : "px-5 lg:px-20 py-10 max-lg:hidden";
+
+  const contentClass = isModal
+    ? "grid grid-cols-1 sm:grid-cols-2 gap-6"
+    : "flex justify-between mt-10";
+
   return (
-    <div className="px-5 lg:px-20 py-10 max-lg:hidden dark:bg-abitacoloDarkGrayShadow dark:text-abitacoloGray">
-      <div className="flex justify-between border-b-2 dark:border-abitacoloGrayShadow border-black">
-        <img className="w-60" src={abitacolo} alt="Abitacolo" />
-        <p className="place-self-end text-2xl">MADRID</p>
+    <div className={`${containerClass} dark:bg-abitacoloDarkGrayShadow dark:text-abitacoloGray`}>
+      <div className="flex justify-between border-b-2 dark:border-abitacoloGrayShadow border-black mb-6">
+        <img className="w-40 sm:w-60" src={abitacolo} alt="Abitacolo" />
+        <p className="place-self-end text-xl sm:text-2xl">MADRID</p>
       </div>
-      <div className="flex justify-between mt-10">
-        <div className="flex flex-col items-center text-sm text-center dark:bg-abitacoloGrayShadow bg-abitacoloGray pt-8 px-2 dark:text-wh">
+      <div className={contentClass}>
+        <div className="flex flex-col items-center text-sm text-center dark:bg-abitacoloGrayShadow bg-abitacoloGray pt-4 px-2 dark:text-white">
           <FontAwesomeIcon icon={faRecycle} size="2xl" className="mb-2" />
           <span className="font-bold mb-1">{t("footer.recycleOne")}</span>
           <Markdown>{t("footer.recycleTwo")}</Markdown>
         </div>
         <div>
-          <p className="font-bold mb-5 text-3xl">muebles</p>
-          <ul>
+          <p className="font-bold mb-2 text-xl sm:text-2xl">muebles</p>
+          <ul className="text-sm">
             <li>armarios y cómodas</li>
             <li>estanterías</li>
             <li>mesas y escritorios</li>
             <li>mesillas</li>
             <li>aparadores</li>
             <li>camas y cabeceros</li>
-          </ul>
-        </div>
-        <div>
-          <p className="font-bold text-3xl invisible mb-5">muebles</p>
-          <ul>
             <li>percheros</li>
             <li>sillas y taburetes</li>
             <li>sillones y sofás</li>
@@ -50,19 +53,18 @@ const FooterBody = () => {
           </ul>
         </div>
         <div>
-          <p className="font-bold mb-5 text-3xl">nosotros</p>
-          <ul>
+          <p className="font-bold mb-2 text-xl sm:text-2xl">nosotros</p>
+          <ul className="text-sm">
             <li>nuestra misión</li>
             <li>contacto</li>
             <li>trabaja con nosotros</li>
             <li>danos tu opinión</li>
-            <li>suscríbete a</li>
-            <li>nuestra newsletter</li>
+            <li>suscríbete a nuestra newsletter</li>
           </ul>
         </div>
         <div>
-          <p className="font-bold mb-5 text-3xl">ayuda</p>
-          <ul>
+          <p className="font-bold mb-2 text-xl sm:text-2xl">ayuda</p>
+          <ul className="text-sm">
             <li>¿necesitas ayuda?</li>
             <li>FAQ</li>
             <li>aviso legal</li>
@@ -72,20 +74,20 @@ const FooterBody = () => {
           </ul>
         </div>
         <div>
-          <p className="font-bold mb-5 text-3xl">idioma</p>
+          <p className="font-bold mb-2 text-xl sm:text-2xl">idioma</p>
           <SwitchLanguage />
         </div>
         <div>
-          <p className="font-bold mb-5 text-3xl">¡síguenos en redes!</p>
-          <div className="flex justify-between mt-11">
-            <FontAwesomeIcon icon={faLinkedin} size="2xl" />
-            <FontAwesomeIcon icon={faFacebook} size="2xl" />
-            <FontAwesomeIcon icon={faInstagram} size="2xl" />
-            <FontAwesomeIcon icon={faSquareXTwitter} size="2xl" />
+          <p className="font-bold mb-2 text-xl sm:text-2xl">¡síguenos en redes!</p>
+          <div className="flex justify-between mt-2">
+            <FontAwesomeIcon icon={faLinkedin} size="lg" />
+            <FontAwesomeIcon icon={faFacebook} size="lg" />
+            <FontAwesomeIcon icon={faInstagram} size="lg" />
+            <FontAwesomeIcon icon={faSquareXTwitter} size="lg" />
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-6 text-sm">
         <p>
           © {new Date().getFullYear()} Abitacolo. Todos los derechos reservados.
         </p>

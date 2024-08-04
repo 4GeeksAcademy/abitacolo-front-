@@ -82,11 +82,11 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
         {mueblesPorCategorias.map((mueble) => (
 
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
-              <img
-                src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
-                alt={mueble.id_codigo}
-              />
-          
+            <img
+              src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
+              alt={mueble.id_codigo}
+            />
+
             <h3 className="font-semibold">{mueble.nombre}</h3>
             <p>
               <strong>Personalidad:</strong> {mueble.personalidad}
@@ -110,28 +110,35 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
                 (H)
               </strong>
             </p>
+
             <p>
               <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
             </p> */}
-            {store.user.email && (
-              <div className="flex justify-between">
-                <button
-                  className="p-2 bg-abitacoloGreen  focus:ring-4 focus:outline-none rounded-md mt-3"
-                  onClick={() => actions.addMuebleToCarrito(mueble)}
-                >
-                  Añadir al carrito
-                </button>
 
-                <Link to={`/mueble/${mueble.id_codigo}`}>
+            <p>
+              <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
+            </p>
+            <div className="flex justify-between">
+            <Link to={`/mueble/${mueble.id_codigo}`}>
                 <button
                   className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
                 >
                   Detalles
                 </button>
-                </Link>
-                <FavButton mueble={mueble} />
-              </div>
-            )}
+              </Link>
+              {store.user.email && (
+                <>
+                  <button
+                    className="p-2 bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
+                    onClick={() => actions.addMuebleToCarrito(mueble)}
+                  >
+                    Añadir al carrito
+                  </button>
+                  <FavButton mueble={mueble} />
+                </>
+              )}
+              
+            </div>
           </div>
         ))}
       </div>
