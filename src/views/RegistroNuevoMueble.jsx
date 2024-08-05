@@ -39,14 +39,14 @@ function RegistroNuevoMueble() {
   };
 
   return (
-    <div className="dark:bg-abitacoloGrayShadow">
-    <form 
-      className="max-w-md mx-auto rounded border-solid border-2 p-3"
-      onSubmit={handleSubmit}
-    >
-      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
-        Cargar nuevo mueble
-      </h1>
+    <div className="dark:bg-abitacoloDarkGrayShadow py-12 dark:text-white">
+      <form
+        className="max-w-md mx-auto rounded border-solid border-2 p-3"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
+          Cargar nuevo mueble
+        </h1>
         <div className="w-full mb-5 group">
           <label htmlFor="floating_nombre" className="dark:text-white">
             Nombre del mueble
@@ -167,7 +167,7 @@ function RegistroNuevoMueble() {
             <select
               name="estilo"
               id="floating_estilo"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none  focus:ring-0"
               required
               value={formData.estilo}
               onChange={handleChange}
@@ -324,7 +324,7 @@ function RegistroNuevoMueble() {
         <div className="boton flex justify-center">
           <button
             type="submit"
-            className="text-black bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
+            className=" bg-abitacoloGray dark:bg-abitacoloGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
           >
             Nuevo mueble
           </button>

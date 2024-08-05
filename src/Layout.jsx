@@ -35,14 +35,15 @@ i18next.init({
 
 const MainContent = () => {
   const location = useLocation();
-  const showButton = location.pathname == "/FormPasarela";
-
   const { store, actions } = useContext(Context);
+
+  // Comprueba si la ruta actual es "/NuevoMueble"
+  const showHeader = location.pathname !== "/NuevoMueble";
 
   return (
     <>
       <Navbar />
-      <HeaderBody />
+      {showHeader && <HeaderBody />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />

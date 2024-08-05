@@ -56,7 +56,7 @@ const Carrito = () => {
       {isOpen && (
         <div
           id="dropdownMenu"
-          className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+          className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 dark:bg-abitacoloGray"
         >
           <ul
             className="py-2 text-gray-700 font-bold text-xl max-h-60 overflow-y-auto"
@@ -87,7 +87,7 @@ const Carrito = () => {
             )}
           </ul>
           {store.carrito && store.carrito.length > 0 && (
-            <div className="border-t border-gray-200 py-2 px-4 flex justify-between">
+            <div className="border-gray-200 py-2 px-4 flex justify-between">
               <span>
                 <span>Total: {store.precioCarrito}€</span>
               </span>
