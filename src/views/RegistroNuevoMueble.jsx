@@ -86,7 +86,7 @@ function RegistroNuevoMueble() {
           <select
             name="disponible"
             id="floating_disponible"
-            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            className="py-2.5 w-full bg-transparent border-b-2 dark:bg-abitacoloDarkGrayShadow border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             required
             value={formData.disponible.toString()}
             onChange={handleChange}
@@ -102,7 +102,7 @@ function RegistroNuevoMueble() {
           <select
             name="novedad"
             id="floating_novedad"
-            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             required
             value={formData.novedad.toString()}
             onChange={handleChange}
@@ -112,7 +112,7 @@ function RegistroNuevoMueble() {
           </select>
         </div>
 
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <div className="grid md:grid-cols-2 md:gap-6 ">
           <div className="w-full mb-5 group">
             <label htmlFor="floating_color" className="dark:text-white">
               Color
@@ -120,7 +120,7 @@ function RegistroNuevoMueble() {
             <select
               name="color"
               id="floating_color"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow  border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.color}
               onChange={handleChange}
@@ -143,7 +143,7 @@ function RegistroNuevoMueble() {
             <select
               name="espacio"
               id="floating_espacio"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent border-b-2 dark:bg-abitacoloDarkGrayShadow border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.espacio}
               onChange={handleChange}
@@ -167,7 +167,7 @@ function RegistroNuevoMueble() {
             <select
               name="estilo"
               id="floating_estilo"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none  focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none  focus:ring-0"
               required
               value={formData.estilo}
               onChange={handleChange}
@@ -191,7 +191,7 @@ function RegistroNuevoMueble() {
             <select
               name="categoria"
               id="floating_categoria"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.categoria}
               onChange={handleChange}
@@ -218,37 +218,31 @@ function RegistroNuevoMueble() {
             Precio por mes
           </label>
         </div>
-     
-      <div className="relative  w-full mb-5 group">
-        <input
-          type="number"
-          name="precio_mes"
-          id="floating_precio_mes"
-          className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-abitacoloGreen -500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-          placeholder=" "
-          required
-          value={formData.precio_mes}
-          onChange={handleChange}
-        />
-        <label
-          htmlFor="floating_precio_mes"
-          className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-abitacoloGreen -600 peer-focus:dark:text-abitacoloGreen -500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >
-          Precio por mes
-        </label>
-      </div>
 
-       <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative  w-full mb-5 group">
+        <div className="w-full mb-5 group">
           <input
-            type="date"
-            name="fecha_entrega"
-            id="floating_fecha_entrega"
-            className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            value={formData.fecha_entrega}
+            type="number"
+            name="precio_mes"
+            id="floating_precio_mes"
+            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            placeholder="€/mes"
+            required
+            value={formData.precio_mes}
             onChange={handleChange}
           />
         </div>
+
+        <div className="grid md:grid-cols-2 md:gap-6">
+          <div className="w-full mb-5 group">
+            <input
+              type="date"
+              name="fecha_entrega"
+              id="floating_fecha_entrega"
+              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              value={formData.fecha_entrega}
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 md:gap-6">
@@ -314,7 +308,7 @@ function RegistroNuevoMueble() {
             type="text"
             name="personalidad"
             id="floating_personalidad"
-            className="py-2.5 w-full text-md bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            className="py-2.5 w-full text-md bg-transparent  border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             placeholder="Personalidad"
             required
             value={formData.personalidad}

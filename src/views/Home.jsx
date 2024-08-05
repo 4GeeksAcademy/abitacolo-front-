@@ -24,14 +24,14 @@ const Home = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 max-lg:px-0 lg:px-20 py-10 dark:bg-prueba-color">
+    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
       <div className="max-xl:hidden">
         <HeaderHome />
       </div>
       <div className="smartphone:hidden">
         <button
           onClick={isModalOpen ? closeModal : openModal}
-          className="bg-gray-400 p-2 rounded text-2xl"
+          className="bg-gray-400 dark:text-white p-2 rounded text-2xl"
         >
           <FontAwesomeIcon icon={faSliders} /> Filtros
         </button>

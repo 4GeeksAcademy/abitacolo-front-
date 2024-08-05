@@ -6,6 +6,7 @@ import { Context } from "../context/appContext";
 import { useTranslation } from "react-i18next";
 import Carrito from "./Carrito";
 import { Navigate, useNavigate } from "react-router-dom";
+import DarkButton from "./DarkButton";
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +55,7 @@ export default function DropDown() {
           className="py-2 text-gray-700 font-bold text-xl"
           aria-labelledby="dropdownButton "
         >
-          <li className="block px-4 py-2 hover:bg-gray-100 ">
+          <li className="block flex px-4 py-2 hover:bg-gray-100 ">
             {store.user ? (
               <button
                 onClick={() => navigate("/ConfigurarCuenta")}
@@ -69,7 +70,7 @@ export default function DropDown() {
                 {t("navBar.profile")}
               </button>
             )}
-
+            <DarkButton />
             {isModalOpen && <ModalLogin onClose={closeModal} />}
           </li>
           <li>
@@ -77,6 +78,7 @@ export default function DropDown() {
               <Carrito />
             </a>
           </li>
+          <li className="block px-4 py-2 hover:bg-gray-100 "></li>
           <li>
             <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
               FAQ

@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="w-full py-2 bg-abitacoloGray  text-sm flex items-center justify-center hover:bg-abitacoloGreen -80 transition-all duration-300"
+          className="w-full py-2 bg-abitacoloGray dark:bg-abitacoloGrayShadow  text-sm flex items-center justify-center hover:bg-abitacoloGreen -80 transition-all duration-300"
         >
           Más información...
           <FontAwesomeIcon icon={faChevronDown} size="lg" />

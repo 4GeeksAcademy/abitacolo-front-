@@ -10,7 +10,7 @@ const FooterModal = ({ isOpen, onClose }) => {
         <div className="bg-white dark:bg-abitacoloDarkGrayShadow w-full max-w-2xl rounded-lg relative grid">
           <button
             onClick={onClose}
-            className="top-2 right-2 text-2xl font-bold place-self-end p-2"
+            className="top-2 dark:text-white right-2 text-2xl font-bold place-self-end p-2"
           >
             Cerrar
           </button>

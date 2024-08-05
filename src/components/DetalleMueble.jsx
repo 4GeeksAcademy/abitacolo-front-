@@ -86,14 +86,14 @@ const DetalleMueble = () => {
   };
 
   return (
-    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray">
+    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray min-h-screen">
       <Link to="/" className="mb-4">
         <button className="border  dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
           Volver
         </button>
       </Link>
       <div className="flex flex-col md:flex-row md:items-start md:space-x-8 mt-4 md:mt-0">
-        <div className="md:w-1/2 mb-4 md:mb-0 pb-0 md:pb-10">
+        <div className="md:w-1/2 mb-4  md:pb-10">
           <img
             src={imageMap[mueble.id_codigo] || otros}
             alt={mueble.nombre}

@@ -20,7 +20,7 @@ const FooterBody = ({ isModal = false }) => {
     : "px-5 lg:px-20 py-10 max-lg:hidden";
 
   const contentClass = isModal
-    ? "grid grid-cols-1 sm:grid-cols-2 gap-6"
+    ? "grid grid-cols-2 gap-6"
     : "flex justify-between mt-10";
 
   return (
