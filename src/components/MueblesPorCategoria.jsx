@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import otros from "../assets/ModoClaro/Categorias/Otros_objetos.png";
@@ -26,12 +26,8 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
-import { Context } from "../context/appContext";
-import FavButton from "./FavButton";
 
 const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
-  const { actions, store } = useContext(Context);
-
   if (!mueblesPorCategorias || mueblesPorCategorias.length === 0) {
     return (
       <p className="text-center text-xl">
@@ -72,7 +68,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </p>
       <Link to={"/"}>
         <button
-          className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen focus:ring-4 focus:outline-none"
+          className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen"
           aria-label="Volver"
         >
           Volver
@@ -80,7 +76,6 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
-
           <div key={mueble.id_codigo} className="p-4 rounded-lg">
             <img
               src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
@@ -94,8 +89,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
             <p>
               <strong>Color:</strong> {mueble.color}
             </p>
-
-            {/* <p>
+            <p>
               <strong>Estilo:</strong> {mueble.estilo}
             </p>
             <p>
@@ -113,32 +107,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
 
             <p>
               <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
-            </p> */}
-
-            <p>
-              <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
             </p>
-            <div className="flex justify-between">
-            <Link to={`/mueble/${mueble.id_codigo}`}>
-                <button
-                  className="p-2 text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
-                >
-                  Detalles
-                </button>
-              </Link>
-              {store.user.email && (
-                <>
-                  <button
-                    className="p-2 bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3"
-                    onClick={() => actions.addMuebleToCarrito(mueble)}
-                  >
-                    Añadir al carrito
-                  </button>
-                  <FavButton mueble={mueble} />
-                </>
-              )}
-              
-            </div>
           </div>
         ))}
       </div>

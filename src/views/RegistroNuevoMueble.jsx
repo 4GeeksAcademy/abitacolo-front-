@@ -7,6 +7,7 @@ function RegistroNuevoMueble() {
     nombre: "",
     id_codigo: "",
     disponible: true,
+    novedad: false,
     color: "",
     espacio: "",
     estilo: "",
@@ -25,7 +26,7 @@ function RegistroNuevoMueble() {
     setFormData((prevState) => ({
       ...prevState,
       [name]:
-        type === "select-one" && name === "disponible"
+        type === "select-one" && (name === "disponible" || name === "novedad")
           ? value === "true"
           : value,
     }));
@@ -38,14 +39,14 @@ function RegistroNuevoMueble() {
   };
 
   return (
-    <div className="dark:bg-abitacoloGrayShadow">
-    <form 
-      className="max-w-md mx-auto rounded border-solid border-2 p-3"
-      onSubmit={handleSubmit}
-    >
-      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
-        Cargar nuevo mueble
-      </h1>
+    <div className="dark:bg-abitacoloDarkGrayShadow py-12 dark:text-white">
+      <form
+        className="max-w-md mx-auto rounded border-solid border-2 p-3"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center my-3 dark:text-white">
+          Cargar nuevo mueble
+        </h1>
         <div className="w-full mb-5 group">
           <label htmlFor="floating_nombre" className="dark:text-white">
             Nombre del mueble
@@ -85,7 +86,7 @@ function RegistroNuevoMueble() {
           <select
             name="disponible"
             id="floating_disponible"
-            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            className="py-2.5 w-full bg-transparent border-b-2 dark:bg-abitacoloDarkGrayShadow border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             required
             value={formData.disponible.toString()}
             onChange={handleChange}
@@ -94,8 +95,24 @@ function RegistroNuevoMueble() {
             <option value="false">No disponible</option>
           </select>
         </div>
+        <div className="w-full mb-5 group">
+          <label htmlFor="floating_novedad" className="dark:text-white">
+            Novedad
+          </label>
+          <select
+            name="novedad"
+            id="floating_novedad"
+            className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            required
+            value={formData.novedad.toString()}
+            onChange={handleChange}
+          >
+            <option value="true">Es novedad</option>
+            <option value="false">No es novedad</option>
+          </select>
+        </div>
 
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <div className="grid md:grid-cols-2 md:gap-6 ">
           <div className="w-full mb-5 group">
             <label htmlFor="floating_color" className="dark:text-white">
               Color
@@ -103,7 +120,7 @@ function RegistroNuevoMueble() {
             <select
               name="color"
               id="floating_color"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow  border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.color}
               onChange={handleChange}
@@ -126,7 +143,7 @@ function RegistroNuevoMueble() {
             <select
               name="espacio"
               id="floating_espacio"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent border-b-2 dark:bg-abitacoloDarkGrayShadow border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.espacio}
               onChange={handleChange}
@@ -150,7 +167,7 @@ function RegistroNuevoMueble() {
             <select
               name="estilo"
               id="floating_estilo"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none  focus:ring-0"
               required
               value={formData.estilo}
               onChange={handleChange}
@@ -174,7 +191,7 @@ function RegistroNuevoMueble() {
             <select
               name="categoria"
               id="floating_categoria"
-              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              className="py-2.5 w-full bg-transparent dark:bg-abitacoloDarkGrayShadow border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
               required
               value={formData.categoria}
               onChange={handleChange}
@@ -201,37 +218,31 @@ function RegistroNuevoMueble() {
             Precio por mes
           </label>
         </div>
-     
-      <div className="relative  w-full mb-5 group">
-        <input
-          type="number"
-          name="precio_mes"
-          id="floating_precio_mes"
-          className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-abitacoloGreen -500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-          placeholder=" "
-          required
-          value={formData.precio_mes}
-          onChange={handleChange}
-        />
-        <label
-          htmlFor="floating_precio_mes"
-          className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-abitacoloGreen -600 peer-focus:dark:text-abitacoloGreen -500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >
-          Precio por mes
-        </label>
-      </div>
 
-       <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative  w-full mb-5 group">
+        <div className="w-full mb-5 group">
           <input
-            type="date"
-            name="fecha_entrega"
-            id="floating_fecha_entrega"
-            className="block py-2.5  w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            value={formData.fecha_entrega}
+            type="number"
+            name="precio_mes"
+            id="floating_precio_mes"
+            className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            placeholder="€/mes"
+            required
+            value={formData.precio_mes}
             onChange={handleChange}
           />
         </div>
+
+        <div className="grid md:grid-cols-2 md:gap-6">
+          <div className="w-full mb-5 group">
+            <input
+              type="date"
+              name="fecha_entrega"
+              id="floating_fecha_entrega"
+              className="py-2.5 w-full bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+              value={formData.fecha_entrega}
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 md:gap-6">
@@ -297,7 +308,7 @@ function RegistroNuevoMueble() {
             type="text"
             name="personalidad"
             id="floating_personalidad"
-            className="py-2.5 w-full text-md bg-transparent border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
+            className="py-2.5 w-full text-md bg-transparent  border-b-2 border-gray-400 focus:border-abitacoloGreen focus:outline-none focus:ring-0"
             placeholder="Personalidad"
             required
             value={formData.personalidad}
@@ -307,7 +318,7 @@ function RegistroNuevoMueble() {
         <div className="boton flex justify-center">
           <button
             type="submit"
-            className="text-white bg-abitacoloDarkGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
+            className=" bg-abitacoloGray dark:bg-abitacoloGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center "
           >
             Nuevo mueble
           </button>

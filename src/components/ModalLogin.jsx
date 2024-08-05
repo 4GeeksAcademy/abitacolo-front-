@@ -94,21 +94,7 @@ const ModalLogin = ({ onClose }) => {
                       autoComplete="current-password"
                     />
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-start">
-                      <input
-                        id="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      />
-                      <label
-                        htmlFor="remember"
-                        className="ml-3 text-abitacoloGrayShadow dark:text-gray-300"
-                      >
-                        Recordarme
-                      </label>
-                    </div>
-                  </div>
+
                   <a
                     href="#"
                     className="text- font-medium text-primary-600 hover:underline dark:text-primary-500"
@@ -117,7 +103,7 @@ const ModalLogin = ({ onClose }) => {
                   </a>
                   <button
                     type="submit"
-                    className="w-full text-white bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
+                    className="w-full text-black bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
                   >
                     Entrar en la cuenta
                   </button>
