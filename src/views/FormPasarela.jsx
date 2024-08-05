@@ -3,7 +3,8 @@ import { Context } from "../context/appContext";
 import BotonUelz from "../components/BotonUelz";
 
 const FormPasarela = () => {
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
+
 
   const [formUel, setFormUel] = useState({
     name: "",
@@ -24,7 +25,7 @@ const FormPasarela = () => {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-
+    
     // Aquí puedes manejar el envío del formulario
   }, []);
 
@@ -109,7 +110,7 @@ const FormPasarela = () => {
           </div>
         </div>
       </form>
-      <BotonUelz />
+      <BotonUelz formUel={formUel}/>
     </div>
   );
 };
