@@ -19,6 +19,7 @@ import DetalleMueble from "./components/DetalleMueble.jsx";
 import ConfigurarCuenta from "./views/ConfigurarCuenta.jsx";
 import FormPasarela from "./views/FormPasarela.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
+import Footer from "./components/Footer.jsx";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -35,14 +36,16 @@ i18next.init({
 
 const MainContent = () => {
   const location = useLocation();
-  const showButton = location.pathname == "/FormPasarela";
-
   const { store, actions } = useContext(Context);
 
+  // Comprueba si la ruta actual es "/NuevoMueble"
+  const showHeader =
+    !location.pathname.startsWith("/NuevoMueble") &&
+    !location.pathname.startsWith("/mueble/");
   return (
     <>
       <Navbar />
-      <HeaderBody />
+      {showHeader && <HeaderBody />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
@@ -60,7 +63,7 @@ const MainContent = () => {
         <Route path="/FormPasarela" element={<FormPasarela />} />
         <Route path="*" element={<h1>Not found!</h1>} />
       </Routes>
-      <FooterBody />
+      <Footer />
     </>
   );
 };

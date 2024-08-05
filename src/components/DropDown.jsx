@@ -4,10 +4,13 @@ import React, { useContext, useState } from "react";
 import ModalLogin from "./ModalLogin";
 import { Context } from "../context/appContext";
 import { useTranslation } from "react-i18next";
+import Carrito from "./Carrito";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const openModal = () => setIsModalOpen(true);
@@ -51,15 +54,28 @@ export default function DropDown() {
           className="py-2 text-gray-700 font-bold text-xl"
           aria-labelledby="dropdownButton "
         >
-          <li>
-            <button
-              onClick={openModal}
-              className="block px-4 py-2  w-full hover:bg-gray-100 "
-            >
-              <FontAwesomeIcon icon={faUser} />{" "}
-              {store.user?.nombre ? store.user.nombre : t("navBar.profile")}
-            </button>
+          <li className="block px-4 py-2 hover:bg-gray-100 ">
+            {store.user ? (
+              <button
+                onClick={() => navigate("/ConfigurarCuenta")}
+                className="items-center w-full"
+              >
+                <FontAwesomeIcon icon={faUser} />
+                {store.user?.name ? store.user.name : store.user.email}
+              </button>
+            ) : (
+              <button onClick={openModal} className="items-center w-full">
+                <FontAwesomeIcon icon={faUser} />
+                {t("navBar.profile")}
+              </button>
+            )}
+
             {isModalOpen && <ModalLogin onClose={closeModal} />}
+          </li>
+          <li>
+            <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+              <Carrito />
+            </a>
           </li>
           <li>
             <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">

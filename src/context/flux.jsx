@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       user: null,
       payment_data: {
+        name_plan: "",
         type_sub: "",
         time_sub: "",
         payment_day: "",
