@@ -68,7 +68,7 @@ const ConfigurarCuenta = () => {
         store.user.favourites.length > 0 && (
           <>
             <p className="p-2 text-xl">Mis favoritos:</p>
-            <div className="flex justify-between px-5 my-5">
+            <div className="grid grid-cols-8 px-5 my-5 max-w-full">
               <ModalFavoritos />
             </div>
           </>

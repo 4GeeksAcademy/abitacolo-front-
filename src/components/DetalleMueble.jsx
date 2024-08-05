@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Context } from "../context/appContext";
 import FavButton from "./FavButton";
@@ -40,7 +40,7 @@ const DetalleMueble = () => {
       if (store.muebles.length === 0) {
         await actions.getMuebles();
       }
-      const foundMueble = store.muebles.find(m => m.id_codigo === id);
+      const foundMueble = store.muebles.find((m) => m.id_codigo === id);
       if (foundMueble) {
         setMueble(foundMueble);
       } else {
@@ -57,21 +57,43 @@ const DetalleMueble = () => {
 
   if (isLoading) return <p>Cargando mueble...</p>;
   if (!mueble) return <p>Mueble no encontrado</p>;
-  
+
   const imageMap = {
-    a001, b001, b002, c001, c002, c003, d001, d002, f001, h001, l001,
-    n001, n002, n003, n004, n005, o001, r001, r002, r003, s001, s002, t001, t002,
+    a001,
+    b001,
+    b002,
+    c001,
+    c002,
+    c003,
+    d001,
+    d002,
+    f001,
+    h001,
+    l001,
+    n001,
+    n002,
+    n003,
+    n004,
+    n005,
+    o001,
+    r001,
+    r002,
+    r003,
+    s001,
+    s002,
+    t001,
+    t002,
   };
 
   return (
-    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray">
+    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray min-h-screen">
       <Link to="/" className="mb-4">
         <button className="border  dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
           Volver
         </button>
       </Link>
       <div className="flex flex-col md:flex-row md:items-start md:space-x-8 mt-4 md:mt-0">
-        <div className="md:w-1/2 mb-4 md:mb-0 pb-0 md:pb-10">
+        <div className="md:w-1/2 mb-4  md:pb-10">
           <img
             src={imageMap[mueble.id_codigo] || otros}
             alt={mueble.nombre}
@@ -122,7 +144,6 @@ const DetalleMueble = () => {
       </div>
     </div>
   );
-  
 };
 
 export default DetalleMueble;
