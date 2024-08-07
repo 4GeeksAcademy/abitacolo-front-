@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import otros from "../assets/ModoClaro/Categorias/Otros_objetos.png";
@@ -26,8 +26,12 @@ import s001 from "../assets/Muebles/s001.webp";
 import s002 from "../assets/Muebles/s002.webp";
 import t001 from "../assets/Muebles/t001.webp";
 import t002 from "../assets/Muebles/t002.webp";
+import { Context } from "../context/appContext";
+import FavButton from "./FavButton";
 
 const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
+  const { actions, store } = useContext(Context);
+
   if (!mueblesPorCategorias || mueblesPorCategorias.length === 0) {
     return (
       <p className="text-center text-xl">
@@ -68,7 +72,7 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </p>
       <Link to={"/"}>
         <button
-          className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen"
+          className="border dark:text-white dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen focus:ring-4 focus:outline-none"
           aria-label="Volver"
         >
           Volver
@@ -76,38 +80,78 @@ const MueblesPorCategoria = ({ mueblesPorCategorias }) => {
       </Link>
       <div className="grid max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch gap-4">
         {mueblesPorCategorias.map((mueble) => (
-          <div key={mueble.id_codigo} className="p-4 rounded-lg">
-            <img
-              src={imageMap[mueble.id_codigo] ? imageMap[mueble.id_codigo] : otros}
-              alt={mueble.id_codigo}
-            />
+          <div
+            key={mueble.id_codigo}
+            className="p-4 rounded-lg grid place-content-center"
+          >
+            <Link key={mueble.id_codigo} to={`/mueble/${mueble.id_codigo}`}>
+              <div className="flex justify-end">
+                {mueble.novedad && (
+                  <span className="bg-abitacoloGreen w-fit font-bold dark:text-white rounded-lg text-black py-1 px-2">
+                    {" "}
+                    Novedad
+                  </span>
+                )}
+              </div>
 
-            <h3 className="font-semibold">{mueble.nombre}</h3>
-            <p>
-              <strong>Personalidad:</strong> {mueble.personalidad}
-            </p>
-            <p>
-              <strong>Color:</strong> {mueble.color}
-            </p>
-            <p>
-              <strong>Estilo:</strong> {mueble.estilo}
-            </p>
-            <p>
-              <strong>Espacio:</strong> {mueble.espacio}
-            </p>
-            <p>
-              <strong>{mueble.precio_mes}€/mes</strong>
-            </p>
-            <p>
-              <strong>
-                {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}cm
-                (H)
-              </strong>
-            </p>
+              <img
+                className="rounded-full h-fit w-fit object-cover"
+                src={
+                  imageMap[mueble.id_codigo]
+                    ? imageMap[mueble.id_codigo]
+                    : otros
+                }
+                alt={mueble.id_codigo}
+              />
+              <h3 className="font-semibold">{mueble.nombre}</h3>
+              <p>
+                <strong>Personalidad:</strong> {mueble.personalidad}
+              </p>
+              <p>
+                <strong>Color:</strong> {mueble.color}
+              </p>
+              {/* <p>
+                <strong>Estilo:</strong> {mueble.estilo}
+              </p>
+              <p>
+                <strong>Espacio:</strong> {mueble.espacio}
+              </p>
+              <p>
+                <strong>{mueble.precio_mes}€/mes</strong>
+              </p>
+              <p>
+                <strong>
+                  {mueble.ancho}cm (A) x {mueble.fondo}cm (F) x {mueble.altura}
+                  cm (H)
+                </strong>
+              </p> */}
+              <p>
+                <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
+              </p>
+            </Link>
 
-            <p>
-              <strong>Disponible:</strong> {mueble.disponible ? "Sí" : "No"}
-            </p>
+            {store.user?.email && (
+              <div className="flex justify-between ">
+                <div className="dark:text-white">
+                  {mueble.disponible && (
+                    <button
+                      className="p-2  bg-abitacoloGreen rounded-md me-3 mt-3"
+                      onClick={() => actions.addMuebleToCarrito(mueble)}
+                    >
+                      Añadir al carrito
+                    </button>
+                  )}
+
+                  <Link to={`/mueble/${mueble.id_codigo}`}>
+                    <button className="p-2 bg-abitacoloGrayShadow hover:bg-abitacoloGreen focus:ring-4 focus:outline-none rounded-md mt-3">
+                      Detalles
+                    </button>
+                  </Link>
+                </div>
+
+                <FavButton mueble={mueble} />
+              </div>
+            )}
           </div>
         ))}
       </div>
