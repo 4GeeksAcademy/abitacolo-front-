@@ -95,12 +95,6 @@ const ModalLogin = ({ onClose }) => {
                     />
                   </div>
 
-                  <a
-                    href="#"
-                    className="text- font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Olvidó su contraseña?
-                  </a>
                   <button
                     type="submit"
                     className="w-full text-black bg-abitacoloGreen hover:ring-2 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5"
