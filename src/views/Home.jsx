@@ -44,9 +44,9 @@ const Home = () => {
         {mueblesCategorizados.length > 0 ? (
           <div className="grid w-full place-items-center max-laptop:grid-cols-2 grid-cols-3">
             {mueblesCategorizados.map(({ categoria, muebles }) => (
-              <div className="max-w-96">
+              <div key={categoria} className="max-w-96">
                 {" "}
-                <Link key={categoria} to={`/categoria/${categoria}`}>
+                <Link to={`/categoria/${categoria}`}>
                   <CardCategorias
                     categoria={categoria}
                     recuperados={muebles.length}

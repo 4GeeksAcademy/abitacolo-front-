@@ -12,8 +12,8 @@ const ModalFavoritos = () => {
     <>
       {" "}
       {favoritos.map((mueble) => (
-        <Link to={`/mueble/${mueble.id_codigo}`}>
-          <div className="mx-2" key={mueble.nombre}>
+        <Link key={mueble.id_codigo} to={`/mueble/${mueble.id_codigo}`}>
+          <div className="mx-2">
             <p className="m-4 font-bold" key={mueble.nombre}>
               {mueble.nombre}
             </p>
