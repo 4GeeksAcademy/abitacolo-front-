@@ -36,19 +36,17 @@ const SignUp = () => {
       return;
     }
 
-    // Crear un nuevo objeto
     const filledFormData = Object.fromEntries(
       Object.entries(formData).filter(([_, value]) => value !== "")
     );
 
-    // Enviar solo los datos con valores
     actions.registerUser(filledFormData);
     navigate("/");
   };
 
   return (
-    <div className="font-sans bg-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
-      <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
+    <div className="bg-abitacoloGray dark:bg-abitacoloDarkGrayShadow">
+      <div className="min-h-screen flex flex-col sm:justify-center items-center">
         <div className="relative sm:max-w-sm w-full">
           <div className="bg-abitacoloDarkGrayShadow shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6" />
           <div className="bg-abitacoloGreen shadow-lg w-full h-full rounded-3xl absolute transform rotate-6" />
@@ -123,21 +121,6 @@ const SignUp = () => {
                   className="bg-abitacoloGreen w-full py-3 rounded-xl text-black shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
                 >
                   Registrar
-                </button>
-              </div>
-              <div className="flex mt-7 items-center text-center">
-                <hr className="border-gray-300 border-1 w-full rounded-md" />
-                <span className="block font-medium text-sm text-gray-600 w-full">
-                  Regístrate con
-                </span>
-                <hr className="border-gray-300 border-1 w-full rounded-md" />
-              </div>
-              <div className="flex mt-7 justify-center w-full">
-                <button
-                  type="button"
-                  className="bg-abitacoloGrayShadow border-none px-4 py-2 rounded-xl cursor-pointer text-black shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
-                >
-                  Google
                 </button>
               </div>
 

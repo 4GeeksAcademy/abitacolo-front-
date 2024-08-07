@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "/src/views/Home.jsx";
 import Navbar from "./components/NavBar.jsx";
-import FooterBody from "./components/FooterBody.jsx";
 import injectContext, { Context } from "./context/appContext.jsx";
 import "./index.css";
 
@@ -41,7 +40,8 @@ const MainContent = () => {
   // Comprueba si la ruta actual es "/NuevoMueble"
   const showHeader =
     !location.pathname.startsWith("/NuevoMueble") &&
-    !location.pathname.startsWith("/mueble/");
+    !location.pathname.startsWith("/mueble/") &&
+    !location.pathname.startsWith("/SignUp");
   return (
     <>
       <Navbar />

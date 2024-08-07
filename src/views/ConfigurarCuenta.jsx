@@ -66,12 +66,12 @@ const ConfigurarCuenta = () => {
       {store.user &&
         store.user.favourites &&
         store.user.favourites.length > 0 && (
-          <>
+          <div className=" rounded-lg p-2 bg-gray-100 dark:text-black">
             <p className="p-2 text-xl">Mis favoritos:</p>
             <div className="grid grid-cols-8 px-5 my-5 max-w-full">
               <ModalFavoritos />
             </div>
-          </>
+          </div>
         )}
 
       <form onSubmit={handleSubmit}>

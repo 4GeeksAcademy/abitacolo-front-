@@ -66,7 +66,9 @@ const Carrito = () => {
               store.carrito.map((mueble, index) => (
                 <li key={index} className="px-4 py-2 border-b">
                   <div className="flex justify-between items-center">
-                    <span>{mueble.nombre}</span>
+                    <Link to={`/mueble/${mueble.id_codigo}`}>
+                      <span>{mueble.nombre}</span>
+                    </Link>
                     <button
                       onClick={() =>
                         actions.removeMuebleFromCarrito(mueble.id_codigo)

@@ -30,9 +30,9 @@ const categoryImages = {
 };
 
 const CardCategorias = ({ categoria, recuperados = 0, disponibles = 0 }) => (
-  <div className="flex flex-col items-center justify-center rounded-lg max-lg:p-2" >
+  <div className="flex flex-col items-center max-lg:p-2 w-max">
     <img
-      className="rounded-full h-full w-full object-cover "
+      className="rounded-full object-cover w-max"
       src={categoryImages[categoria]}
       alt={categoria}
     />

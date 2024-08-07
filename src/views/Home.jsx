@@ -24,8 +24,8 @@ const Home = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:px-20 py-10 dark:bg-prueba-color">
-      <div className="max-xl:hidden">
+    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:ps-20 py-10 dark:bg-prueba-color">
+      <div className="max-xl:hidden lg:px-20">
         <HeaderHome />
       </div>
       <div className="smartphone:hidden">
@@ -42,17 +42,19 @@ const Home = () => {
           <Filters />
         </div>
         {mueblesCategorizados.length > 0 ? (
-          <div className="grid w-full max-laptop:grid-cols-2 grid-cols-3 justify-items-stretch h-fit">
+          <div className="grid w-full max-laptop:grid-cols-2 grid-cols-3 justify-items-center">
             {mueblesCategorizados.map(({ categoria, muebles }) => (
-              <Link key={categoria} to={`/categoria/${categoria}`}>
-                <CardCategorias
-                  categoria={categoria}
-                  recuperados={muebles.length}
-                  disponibles={
-                    muebles.filter((mueble) => mueble.disponible).length
-                  }
-                />
-              </Link>
+              <div className="grid place-items-center w-full" key={categoria}>
+                <Link to={`/categoria/${categoria}`}>
+                  <CardCategorias
+                    categoria={categoria}
+                    recuperados={muebles.length}
+                    disponibles={
+                      muebles.filter((mueble) => mueble.disponible).length
+                    }
+                  />
+                </Link>
+              </div>
             ))}
           </div>
         ) : (

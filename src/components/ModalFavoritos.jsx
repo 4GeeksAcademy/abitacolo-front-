@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../context/appContext";
+import { Link } from "react-router-dom";
 
 const ModalFavoritos = () => {
   const { store } = useContext(Context);
@@ -11,12 +12,14 @@ const ModalFavoritos = () => {
     <>
       {" "}
       {favoritos.map((mueble) => (
-        <div className="mx-2" key={mueble.nombre}>
-          <p className="m-4 font-bold" key={mueble.nombre}>
-            {mueble.nombre}
-          </p>
-          <p>Disponible: {mueble.disponible ? "Sí" : "No"}</p>
-        </div>
+        <Link to={`/mueble/${mueble.id_codigo}`}>
+          <div className="mx-2" key={mueble.nombre}>
+            <p className="m-4 font-bold" key={mueble.nombre}>
+              {mueble.nombre}
+            </p>
+            <p>Disponible: {mueble.disponible ? "Sí" : "No"}</p>
+          </div>
+        </Link>
       ))}
     </>
   );
