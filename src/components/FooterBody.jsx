@@ -40,7 +40,7 @@ const FooterBody = ({ isModal = false }) => {
         <p className="place-self-end text-xl sm:text-2xl">MADRID</p>
       </div>
       <div className={contentClass}>
-        <div className="flex flex-col items-center text-sm text-center dark:bg-abitacoloGrayShadow bg-abitacoloGray pt-4 px-2 dark:text-white">
+        <div className="flex flex-col items-center h-fit text-sm text-center dark:bg-abitacoloGrayShadow bg-abitacoloGray pt-4 rounded-lg p-2 dark:text-white">
           <FontAwesomeIcon icon={faRecycle} size="2xl" className="mb-2" />
           <span className="font-bold mb-1">{t("footer.recycleOne")}</span>
           <Markdown>{t("footer.recycleTwo")}</Markdown>

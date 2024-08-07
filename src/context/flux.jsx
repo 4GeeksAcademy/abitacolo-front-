@@ -124,6 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw new Error(`HTTP error! status: ${response.status}`);
           const data = await response.json();
           console.log(data);
+          nav;
         } catch (error) {
           console.log(error);
         }
