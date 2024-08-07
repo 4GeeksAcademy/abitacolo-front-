@@ -13,7 +13,7 @@ const HeaderBody = () => {
   return (
     <div className="px-5 lg:px-20 dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow py-8">
       {" "}
-      <header className="text-center  flex flex-col md:flex-row justify-between md:mx-48">
+      <header className="text-center  flex flex-col md:flex-row md:mx-48">
         <div className="">
           <Markdown className="mt-4 text-3xl text-left">
             {t("navBar.body")}

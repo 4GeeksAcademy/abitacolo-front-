@@ -24,7 +24,7 @@ const Home = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5 lg:ps-20 py-10 dark:bg-prueba-color">
+    <div className="bg-abitacoloGray dark:text-abitacoloGray dark:bg-abitacoloDarkGrayShadow px-5  py-10 dark:bg-prueba-color">
       <div className="max-xl:hidden lg:px-20">
         <HeaderHome />
       </div>
@@ -37,15 +37,16 @@ const Home = () => {
         </button>
         {isModalOpen && <ModalFiltros onClose={closeModal} />}
       </div>
-      <div className="flex mt-14 max-xl:justify-center">
+      <div className="flex mt-14 max-xl:justify-center lg:ps-20">
         <div className="max-smartphone:hidden">
           <Filters />
         </div>
         {mueblesCategorizados.length > 0 ? (
-          <div className="grid w-full max-laptop:grid-cols-2 grid-cols-3 justify-items-center">
+          <div className="grid w-full place-items-center max-laptop:grid-cols-2 grid-cols-3">
             {mueblesCategorizados.map(({ categoria, muebles }) => (
-              <div className="grid place-items-center w-full" key={categoria}>
-                <Link to={`/categoria/${categoria}`}>
+              <div className="max-w-96">
+                {" "}
+                <Link key={categoria} to={`/categoria/${categoria}`}>
                   <CardCategorias
                     categoria={categoria}
                     recuperados={muebles.length}

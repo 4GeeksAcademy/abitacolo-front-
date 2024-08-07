@@ -44,7 +44,6 @@ const DetalleMueble = () => {
       if (foundMueble) {
         setMueble(foundMueble);
       } else {
-        // Intenta cargar el mueble directamente si no se encuentra en el store
         const response = await fetch(`${API_BASE_URL}/mueble/${id}`);
         const data = await response.json();
         setMueble(data);
@@ -86,7 +85,7 @@ const DetalleMueble = () => {
   };
 
   return (
-    <div className="mx-auto p-4 pt-0 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray min-h-screen">
+    <div className="mx-auto p-4 dark:text-white md:pt-4 dark:bg-abitacoloDarkGrayShadow bg-abitacoloGray min-h-screen">
       <Link to="/" className="mb-4">
         <button className="border  dark:font-bold p-2 rounded-lg border-abitacoloDarkGrayShadow bg-abitacoloGreen">
           Volver
