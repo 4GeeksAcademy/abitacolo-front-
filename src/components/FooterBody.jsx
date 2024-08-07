@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import abitacolo from "../assets/ModoClaro/Logos/AbitacoloNegro.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,9 +11,13 @@ import { faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import SwitchLanguage from "./SwitchLanguage";
+import abitacoloMadridNegro from "../assets/ModoClaro/Logos/AbitacoloMadridNegro.png";
+import abitacoloMadridBlanco from "../assets/ModoOscuro/Logos/AbitacoloMadridBlanco.png";
+import { Context } from "../context/appContext";
 
 const FooterBody = ({ isModal = false }) => {
   const [t] = useTranslation("global");
+  const { store } = useContext(Context);
 
   const containerClass = isModal
     ? "px-4 py-6 overflow-y-auto max-h-[80vh]"
@@ -26,7 +30,11 @@ const FooterBody = ({ isModal = false }) => {
   return (
     <div className={`${containerClass} dark:bg-abitacoloDarkGrayShadow dark:text-abitacoloGray`}>
       <div className="flex justify-between border-b-2 dark:border-abitacoloGrayShadow border-black mb-6">
-        <img className="w-40 sm:w-60" src={abitacolo} alt="Abitacolo" />
+        <img className="w-40 sm:w-60" src={
+                  store.isDarkMode
+                    ? abitacoloMadridBlanco
+                    : abitacoloMadridNegro
+                } alt="Abitacolo" />
         <p className="place-self-end text-xl sm:text-2xl">MADRID</p>
       </div>
       <div className={contentClass}>
